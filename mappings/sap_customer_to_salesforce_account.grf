@@ -1,0 +1,508 @@
+<?xml version="1.0" encoding="UTF-8"?><Graph __version="3.5.0" author="Marek" created="Mon Jul 07 17:06:28 CEST 2014" description="SAP Customer to Salesforce Account" guiVersion="3.4.3.P" id="1404746803282" licenseCode="Unlicensed" licenseType="Unknown" modified="Mon Jul 07 17:06:28 CEST 2014" modifiedBy="Marek" name="SAP_Customer_to_Salesforce_Account" revision="1.0" showComponentDetails="false">
+<Global>
+<Metadata __index="0" __referenceCounter="1" __sourcePath="{}/Account" _dataStructure="SINGLE_DIMENSIONAL_COLLECTION" _id="__id" _type="Output" id="864f7839-34c9-4e43-9070-50be1fbcf0eb">
+<Record fieldDelimiter="," name="Account" recordDelimiter="\n\\|\r\n\\|\r" type="delimited">
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+<Field __implementationClass="java.lang.String" __index="13" __sourcePath="{}/Account/AccountNumber" containerType="SINGLE" label="AccountNumber" name="AccountNumber" type="string"/>
+<Field __index="26" __sourcePath="{}/Account/AccountSource" containerType="SINGLE" label="AccountSource" name="AccountSource" type="string"/>
+<Field __index="15" __sourcePath="{}/Account/Active_x005f_x005fc" containerType="SINGLE" label="Active__c" name="Active__c" type="string"/>
+<Field __implementationClass="java.lang.String" __index="34" __sourcePath="{}/Account/AnnualRevenue" containerType="SINGLE" label="AnnualRevenue" name="AnnualRevenue" type="string"/>
+<Field __implementationClass="java.lang.String" __index="16" __sourcePath="{}/Account/BillingCity" containerType="SINGLE" label="BillingCity" name="BillingCity" type="string"/>
+<Field __implementationClass="java.lang.String" __index="9" __sourcePath="{}/Account/BillingCountry" containerType="SINGLE" label="BillingCountry" name="BillingCountry" type="string"/>
+<Field __implementationClass="java.lang.String" __index="37" __sourcePath="{}/Account/BillingPostalCode" containerType="SINGLE" label="BillingPostalCode" name="BillingPostalCode" type="string"/>
+<Field __implementationClass="java.lang.String" __index="35" __sourcePath="{}/Account/BillingState" containerType="SINGLE" label="BillingState" name="BillingState" type="string"/>
+<Field __implementationClass="java.lang.String" __index="14" __sourcePath="{}/Account/BillingStreet" containerType="SINGLE" label="BillingStreet" name="BillingStreet" type="string"/>
+<Field __index="20" __sourcePath="{}/Account/CleanStatus" containerType="SINGLE" label="CleanStatus" name="CleanStatus" type="string"/>
+<Field __implementationClass="java.lang.String" __index="19" __sourcePath="{}/Account/CreatedById" containerType="SINGLE" label="CreatedById" name="CreatedById" type="string"/>
+<Field __dmType="Calendar" __implementationClass="java.util.Calendar" __index="50" __sourcePath="{}/Account/CreatedDate" containerType="SINGLE" label="CreatedDate" name="CreatedDate" type="string"/>
+<Field __index="47" __sourcePath="{}/Account/CustomerPriority_x005f_x005fc" containerType="SINGLE" label="CustomerPriority__c" name="CustomerPriority__c" type="string"/>
+<Field __implementationClass="java.lang.String" __index="6" __sourcePath="{}/Account/DandbCompanyId" containerType="SINGLE" label="DandbCompanyId" name="DandbCompanyId" type="string"/>
+<Field __implementationClass="java.lang.String" __index="40" __sourcePath="{}/Account/Description" containerType="SINGLE" label="Description" name="Description" type="string"/>
+<Field __implementationClass="java.lang.String" __index="27" __sourcePath="{}/Account/DunsNumber" containerType="SINGLE" label="DunsNumber" name="DunsNumber" type="string"/>
+<Field __implementationClass="java.lang.String" __index="44" __sourcePath="{}/Account/Fax" containerType="SINGLE" label="Fax" name="Fax" type="string"/>
+<Field __implementationClass="java.lang.String" __index="22" __sourcePath="{}/Account/Id" containerType="SINGLE" label="Id" name="Id" type="string"/>
+<Field __index="24" __sourcePath="{}/Account/Industry" containerType="SINGLE" label="Industry" name="Industry" type="string"/>
+<Field __implementationClass="java.lang.Boolean" __index="21" __sourcePath="{}/Account/IsDeleted" containerType="SINGLE" label="IsDeleted" name="IsDeleted" type="boolean"/>
+<Field __implementationClass="java.lang.String" __index="10" __sourcePath="{}/Account/Jigsaw" containerType="SINGLE" label="Jigsaw" name="Jigsaw" type="string"/>
+<Field __implementationClass="java.lang.String" __index="51" __sourcePath="{}/Account/JigsawCompanyId" containerType="SINGLE" label="JigsawCompanyId" name="JigsawCompanyId" type="string"/>
+<Field __dmType="Calendar" __implementationClass="java.util.Calendar" __index="36" __sourcePath="{}/Account/LastActivityDate" containerType="SINGLE" label="LastActivityDate" name="LastActivityDate" type="string"/>
+<Field __implementationClass="java.lang.String" __index="41" __sourcePath="{}/Account/LastModifiedById" containerType="SINGLE" label="LastModifiedById" name="LastModifiedById" type="string"/>
+<Field __dmType="Calendar" __implementationClass="java.util.Calendar" __index="3" __sourcePath="{}/Account/LastModifiedDate" containerType="SINGLE" label="LastModifiedDate" name="LastModifiedDate" type="string"/>
+<Field __implementationClass="java.lang.String" __index="48" __sourcePath="{}/Account/MasterRecordId" containerType="SINGLE" label="MasterRecordId" name="MasterRecordId" type="string"/>
+<Field __implementationClass="java.lang.String" __index="8" __sourcePath="{}/Account/NaicsCode" containerType="SINGLE" label="NaicsCode" name="NaicsCode" type="string"/>
+<Field __implementationClass="java.lang.String" __index="18" __sourcePath="{}/Account/NaicsDesc" containerType="SINGLE" label="NaicsDesc" name="NaicsDesc" type="string"/>
+<Field __implementationClass="java.lang.String" __index="49" __sourcePath="{}/Account/Name" containerType="SINGLE" label="Name" name="Name" type="string"/>
+<Field __implementationClass="java.lang.Integer" __index="5" __sourcePath="{}/Account/NumberOfEmployees" containerType="SINGLE" label="NumberOfEmployees" name="NumberOfEmployees" type="integer"/>
+<Field __implementationClass="java.lang.Double" __index="4" __sourcePath="{}/Account/NumberofLocations_x005f_x005fc" containerType="SINGLE" label="NumberofLocations__c" name="NumberofLocations__c" type="number"/>
+<Field __implementationClass="java.lang.String" __index="32" __sourcePath="{}/Account/OwnerId" containerType="SINGLE" label="OwnerId" name="OwnerId" type="string"/>
+<Field __index="53" __sourcePath="{}/Account/Ownership" containerType="SINGLE" label="Ownership" name="Ownership" type="string"/>
+<Field __implementationClass="java.lang.String" __index="1" __sourcePath="{}/Account/ParentId" containerType="SINGLE" label="ParentId" name="ParentId" type="string"/>
+<Field __implementationClass="java.lang.String" __index="28" __sourcePath="{}/Account/Phone" containerType="SINGLE" label="Phone" name="Phone" type="string"/>
+<Field __index="17" __sourcePath="{}/Account/Rating" containerType="SINGLE" label="Rating" name="Rating" type="string"/>
+<Field __dmType="Calendar" __implementationClass="java.util.Calendar" __index="29" __sourcePath="{}/Account/SLAExpirationDate_x005f_x005fc" containerType="SINGLE" label="SLAExpirationDate__c" name="SLAExpirationDate__c" type="string"/>
+<Field __implementationClass="java.lang.String" __index="38" __sourcePath="{}/Account/SLASerialNumber_x005f_x005fc" containerType="SINGLE" label="SLASerialNumber__c" name="SLASerialNumber__c" type="string"/>
+<Field __index="46" __sourcePath="{}/Account/SLA_x005f_x005fc" containerType="SINGLE" label="SLA__c" name="SLA__c" type="string"/>
+<Field __implementationClass="java.lang.String" __index="7" __sourcePath="{}/Account/ShippingCity" containerType="SINGLE" label="ShippingCity" name="ShippingCity" type="string"/>
+<Field __implementationClass="java.lang.String" __index="11" __sourcePath="{}/Account/ShippingCountry" containerType="SINGLE" label="ShippingCountry" name="ShippingCountry" type="string"/>
+<Field __implementationClass="java.lang.String" __index="23" __sourcePath="{}/Account/ShippingPostalCode" containerType="SINGLE" label="ShippingPostalCode" name="ShippingPostalCode" type="string"/>
+<Field __implementationClass="java.lang.String" __index="33" __sourcePath="{}/Account/ShippingState" containerType="SINGLE" label="ShippingState" name="ShippingState" type="string"/>
+<Field __implementationClass="java.lang.String" __index="43" __sourcePath="{}/Account/ShippingStreet" containerType="SINGLE" label="ShippingStreet" name="ShippingStreet" type="string"/>
+<Field __implementationClass="java.lang.String" __index="52" __sourcePath="{}/Account/Sic" containerType="SINGLE" label="Sic" name="Sic" type="string"/>
+<Field __implementationClass="java.lang.String" __index="0" __sourcePath="{}/Account/SicDesc" containerType="SINGLE" label="SicDesc" name="SicDesc" type="string"/>
+<Field __implementationClass="java.lang.String" __index="12" __sourcePath="{}/Account/Site" containerType="SINGLE" label="Site" name="Site" type="string"/>
+<Field __dmType="Calendar" __implementationClass="java.util.Calendar" __index="39" __sourcePath="{}/Account/SystemModstamp" containerType="SINGLE" label="SystemModstamp" name="SystemModstamp" type="string"/>
+<Field __implementationClass="java.lang.String" __index="2" __sourcePath="{}/Account/TickerSymbol" containerType="SINGLE" label="TickerSymbol" name="TickerSymbol" type="string"/>
+<Field __implementationClass="java.lang.String" __index="30" __sourcePath="{}/Account/Tradestyle" containerType="SINGLE" label="Tradestyle" name="Tradestyle" type="string"/>
+<Field __index="31" __sourcePath="{}/Account/Type" containerType="SINGLE" label="Type" name="Type" type="string"/>
+<Field __index="25" __sourcePath="{}/Account/UpsellOpportunity_x005f_x005fc" containerType="SINGLE" label="UpsellOpportunity__c" name="UpsellOpportunity__c" type="string"/>
+<Field __implementationClass="java.lang.String" __index="42" __sourcePath="{}/Account/Website" containerType="SINGLE" label="Website" name="Website" type="string"/>
+<Field __implementationClass="java.lang.String" __index="45" __sourcePath="{}/Account/YearStarted" containerType="SINGLE" label="YearStarted" name="YearStarted" type="string"/>
+</Record>
+</Metadata>
+<Metadata __index="0" __referenceCounter="1" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2" _dataStructure="OBJECT" _id="__id" _type="Input" id="6c10372e-8a85-46ec-9e43-b72abd85c52b">
+<Record fieldDelimiter="," name="BAPI_CUSTOMER_GETDETAIL2" recordDelimiter="\n\\|\r\n\\|\r" type="delimited">
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+<Field __index="0" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/import/COMPANYCODE" containerType="SINGLE" label="COMPANYCODE" name="COMPANYCODE" type="string"/>
+<Field __index="1" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/import/CUSTOMERNO" containerType="SINGLE" label="CUSTOMERNO" name="CUSTOMERNO" type="string"/>
+<Field __index="2" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERADDRESS/CUSTOMER" containerType="SINGLE" label="CUSTOMER" name="CUSTOMER" type="string"/>
+<Field __index="3" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERADDRESS/NAME" containerType="SINGLE" label="NAME" name="NAME" type="string"/>
+<Field __index="4" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERADDRESS/NAME_2" containerType="SINGLE" label="NAME_2" name="NAME_2" type="string"/>
+<Field __index="5" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERADDRESS/NAME_3" containerType="SINGLE" label="NAME_3" name="NAME_3" type="string"/>
+<Field __index="6" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERADDRESS/NAME_4" containerType="SINGLE" label="NAME_4" name="NAME_4" type="string"/>
+<Field __index="7" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERADDRESS/CITY" containerType="SINGLE" label="CITY" name="CITY" type="string"/>
+<Field __index="8" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERADDRESS/DISTRICT" containerType="SINGLE" label="DISTRICT" name="DISTRICT" type="string"/>
+<Field __index="9" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERADDRESS/PO_BOX" containerType="SINGLE" label="PO_BOX" name="PO_BOX" type="string"/>
+<Field __index="10" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERADDRESS/POBX_PCD" containerType="SINGLE" label="POBX_PCD" name="POBX_PCD" type="string"/>
+<Field __index="11" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERADDRESS/POSTL_CODE" containerType="SINGLE" label="POSTL_CODE" name="POSTL_CODE" type="string"/>
+<Field __index="12" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERADDRESS/REGION" containerType="SINGLE" label="REGION" name="REGION" type="string"/>
+<Field __index="13" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERADDRESS/COUNTYCODE" containerType="SINGLE" label="COUNTYCODE" name="COUNTYCODE" type="string"/>
+<Field __index="14" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERADDRESS/CITY_CODE" containerType="SINGLE" label="CITY_CODE" name="CITY_CODE" type="string"/>
+<Field __index="15" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERADDRESS/STREET" containerType="SINGLE" label="STREET" name="STREET" type="string"/>
+<Field __index="16" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERADDRESS/TELEPHONE" containerType="SINGLE" label="TELEPHONE" name="TELEPHONE" type="string"/>
+<Field __index="17" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERADDRESS/COUNTRY" containerType="SINGLE" label="COUNTRY" name="COUNTRY" type="string"/>
+<Field __index="18" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERADDRESS/COUNTRYISO" containerType="SINGLE" label="COUNTRYISO" name="COUNTRYISO" type="string"/>
+<Field __index="19" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERADDRESS/POBX_CTY" containerType="SINGLE" label="POBX_CTY" name="POBX_CTY" type="string"/>
+<Field __index="20" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERADDRESS/LANGU" containerType="SINGLE" label="LANGU" name="LANGU" type="string"/>
+<Field __index="21" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERADDRESS/LANGU_ISO" containerType="SINGLE" label="LANGU_ISO" name="LANGU_ISO" type="string"/>
+<Field __index="22" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERADDRESS/SORT_FLD" containerType="SINGLE" label="SORT_FLD" name="SORT_FLD" type="string"/>
+<Field __index="23" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERADDRESS/MATCHCODE1" containerType="SINGLE" label="MATCHCODE1" name="MATCHCODE1" type="string"/>
+<Field __index="24" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERADDRESS/MATCHCODE2" containerType="SINGLE" label="MATCHCODE2" name="MATCHCODE2" type="string"/>
+<Field __index="25" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERADDRESS/MATCHCODE3" containerType="SINGLE" label="MATCHCODE3" name="MATCHCODE3" type="string"/>
+<Field __index="26" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERADDRESS/FORMOFADDR" containerType="SINGLE" label="FORMOFADDR" name="FORMOFADDR" type="string"/>
+<Field __index="27" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERADDRESS/TELEBOX" containerType="SINGLE" label="TELEBOX" name="TELEBOX" type="string"/>
+<Field __index="28" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERADDRESS/TELEPHONE2" containerType="SINGLE" label="TELEPHONE2" name="TELEPHONE2" type="string"/>
+<Field __index="29" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERADDRESS/TELETEX" containerType="SINGLE" label="TELETEX" name="TELETEX" type="string"/>
+<Field __index="30" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERADDRESS/TELEX" containerType="SINGLE" label="TELEX" name="TELEX" type="string"/>
+<Field __index="31" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERADDRESS/TRANSPZONE" containerType="SINGLE" label="TRANSPZONE" name="TRANSPZONE" type="string"/>
+<Field __index="32" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERADDRESS/NIELSEN_ID" containerType="SINGLE" label="NIELSEN_ID" name="NIELSEN_ID" type="string"/>
+<Field __index="33" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERCOMPANYDETAIL/CUSTOMER" containerType="SINGLE" label="CUSTOMER" name="CUSTOMER_1" type="string"/>
+<Field __index="34" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERCOMPANYDETAIL/COMP_CODE" containerType="SINGLE" label="COMP_CODE" name="COMP_CODE" type="string"/>
+<Field __index="35" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERCOMPANYDETAIL/CLERK" containerType="SINGLE" label="CLERK" name="CLERK" type="string"/>
+<Field __index="36" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERCOMPANYDETAIL/HD_OFFICE" containerType="SINGLE" label="HD_OFFICE" name="HD_OFFICE" type="string"/>
+<Field __index="37" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERCOMPANYDETAIL/ALT_PAYER" containerType="SINGLE" label="ALT_PAYER" name="ALT_PAYER" type="string"/>
+<Field __index="38" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERCOMPANYDETAIL/CUVD_CLEAR" containerType="SINGLE" label="CUVD_CLEAR" name="CUVD_CLEAR" type="string"/>
+<Field __index="39" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERCOMPANYDETAIL/PMNTTRMS" containerType="SINGLE" label="PMNTTRMS" name="PMNTTRMS" type="string"/>
+<Field __index="40" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERCOMPANYDETAIL/ACT_AT_CUS" containerType="SINGLE" label="ACT_AT_CUS" name="ACT_AT_CUS" type="string"/>
+<Field __index="41" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERCOMPANYDETAIL/CUST_USER" containerType="SINGLE" label="CUST_USER" name="CUST_USER" type="string"/>
+<Field __index="42" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERCOMPANYDETAIL/NEXT_PAYEE" containerType="SINGLE" label="NEXT_PAYEE" name="NEXT_PAYEE" type="string"/>
+<Field __index="43" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERCOMPANYDETAIL/BUYING_GRP" containerType="SINGLE" label="BUYING_GRP" name="BUYING_GRP" type="string"/>
+<Field __index="44" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERCOMPANYDETAIL/INTERNET" containerType="SINGLE" label="INTERNET" name="INTERNET" type="string"/>
+<Field __index="45" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERCOMPANYDETAIL/FAX" containerType="SINGLE" label="FAX" name="FAX" type="string"/>
+<Field __index="46" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERCOMPANYDETAIL/PAYMENT_METHODS" containerType="SINGLE" label="PAYMENT_METHODS" name="PAYMENT_METHODS" type="string"/>
+<Field __index="47" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERCOMPANYDETAIL/TEL" containerType="SINGLE" label="TEL" name="TEL" type="string"/>
+<Field __index="48" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/CUSTOMER" containerType="SINGLE" label="CUSTOMER" name="CUSTOMER_2" type="string"/>
+<Field __index="49" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/ACC_1_TIME" containerType="SINGLE" label="ACC_1_TIME" name="ACC_1_TIME" type="string"/>
+<Field __index="50" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/ADDRESS" containerType="SINGLE" label="ADDRESS" name="ADDRESS" type="string"/>
+<Field __index="51" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/ORDR_BLK_G" containerType="SINGLE" label="ORDR_BLK_G" name="ORDR_BLK_G" type="string"/>
+<Field __index="52" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/EXPR_STAT" containerType="SINGLE" label="EXPR_STAT" name="EXPR_STAT" type="string"/>
+<Field __index="53" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/TRAIN_STAT" containerType="SINGLE" label="TRAIN_STAT" name="TRAIN_STAT" type="string"/>
+<Field __index="54" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/LOC_NO_1" containerType="SINGLE" label="LOC_NO_1" name="LOC_NO_1" type="string"/>
+<Field __index="55" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/LOC_NO_2" containerType="SINGLE" label="LOC_NO_2" name="LOC_NO_2" type="string"/>
+<Field __index="56" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/AUTH_GROUP" containerType="SINGLE" label="AUTH_GROUP" name="AUTH_GROUP" type="string"/>
+<Field __index="57" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/INDUSTRY" containerType="SINGLE" label="INDUSTRY" name="INDUSTRY" type="string"/>
+<Field __index="58" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/CHK_DIGIT" containerType="SINGLE" label="CHK_DIGIT" name="CHK_DIGIT" type="string"/>
+<Field __index="59" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/DATA_LINE" containerType="SINGLE" label="DATA_LINE" name="DATA_LINE" type="string"/>
+<Field __index="60" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/CREAT_DATE" containerType="SINGLE" label="CREAT_DATE" name="CREAT_DATE" type="string"/>
+<Field __index="61" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/ENTERED_BY" containerType="SINGLE" label="ENTERED_BY" name="ENTERED_BY" type="string"/>
+<Field __index="62" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/UNLOAD_PT" containerType="SINGLE" label="UNLOAD_PT" name="UNLOAD_PT" type="string"/>
+<Field __index="63" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/BILL_BLK_G" containerType="SINGLE" label="BILL_BLK_G" name="BILL_BLK_G" type="string"/>
+<Field __index="64" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/FISK_ADDR" containerType="SINGLE" label="FISK_ADDR" name="FISK_ADDR" type="string"/>
+<Field __index="65" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/WORK_TIME" containerType="SINGLE" label="WORK_TIME" name="WORK_TIME" type="string"/>
+<Field __index="66" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/ALT_PAYER" containerType="SINGLE" label="ALT_PAYER" name="ALT_PAYER_1" type="string"/>
+<Field __index="67" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/GROUPKEY" containerType="SINGLE" label="GROUPKEY" name="GROUPKEY" type="string"/>
+<Field __index="68" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/ACCNT_GRP" containerType="SINGLE" label="ACCNT_GRP" name="ACCNT_GRP" type="string"/>
+<Field __index="69" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/CLASSIFIC" containerType="SINGLE" label="CLASSIFIC" name="CLASSIFIC" type="string"/>
+<Field __index="70" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/VENDOR_NO" containerType="SINGLE" label="VENDOR_NO" name="VENDOR_NO" type="string"/>
+<Field __index="71" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/DELI_BLK_G" containerType="SINGLE" label="DELI_BLK_G" name="DELI_BLK_G" type="string"/>
+<Field __index="72" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/LOC_CODE" containerType="SINGLE" label="LOC_CODE" name="LOC_CODE" type="string"/>
+<Field __index="73" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/DEL_FLAG_G" containerType="SINGLE" label="DEL_FLAG_G" name="DEL_FLAG_G" type="string"/>
+<Field __index="74" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/REG_MARKET" containerType="SINGLE" label="REG_MARKET" name="REG_MARKET" type="string"/>
+<Field __index="75" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/PSTG_BLK_G" containerType="SINGLE" label="PSTG_BLK_G" name="PSTG_BLK_G" type="string"/>
+<Field __index="76" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/TAX_NO_1" containerType="SINGLE" label="TAX_NO_1" name="TAX_NO_1" type="string"/>
+<Field __index="77" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/TAX_NO_2" containerType="SINGLE" label="TAX_NO_2" name="TAX_NO_2" type="string"/>
+<Field __index="78" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/EQUAL_TAX" containerType="SINGLE" label="EQUAL_TAX" name="EQUAL_TAX" type="string"/>
+<Field __index="79" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/SLS_PUR_TX" containerType="SINGLE" label="SLS_PUR_TX" name="SLS_PUR_TX" type="string"/>
+<Field __index="80" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/PAYER_DOC" containerType="SINGLE" label="PAYER_DOC" name="PAYER_DOC" type="string"/>
+<Field __index="81" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/TRADE_ID" containerType="SINGLE" label="TRADE_ID" name="TRADE_ID" type="string"/>
+<Field __index="82" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/VAT_REG_NO" containerType="SINGLE" label="VAT_REG_NO" name="VAT_REG_NO" type="string"/>
+<Field __index="83" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/COMPETITOR" containerType="SINGLE" label="COMPETITOR" name="COMPETITOR" type="string"/>
+<Field __index="84" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/SLSPARTNER" containerType="SINGLE" label="SLSPARTNER" name="SLSPARTNER" type="string"/>
+<Field __index="85" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/PROSPECT" containerType="SINGLE" label="PROSPECT" name="PROSPECT" type="string"/>
+<Field __index="86" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/CUSTTYPE_4" containerType="SINGLE" label="CUSTTYPE_4" name="CUSTTYPE_4" type="string"/>
+<Field __index="87" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/DFLT_SP" containerType="SINGLE" label="DFLT_SP" name="DFLT_SP" type="string"/>
+<Field __index="88" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/LEGALSTAT" containerType="SINGLE" label="LEGALSTAT" name="LEGALSTAT" type="string"/>
+<Field __index="89" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/IND_CODE_1" containerType="SINGLE" label="IND_CODE_1" name="IND_CODE_1" type="string"/>
+<Field __index="90" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/IND_CODE_2" containerType="SINGLE" label="IND_CODE_2" name="IND_CODE_2" type="string"/>
+<Field __index="91" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/IND_CODE_3" containerType="SINGLE" label="IND_CODE_3" name="IND_CODE_3" type="string"/>
+<Field __index="92" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/IND_CODE_4" containerType="SINGLE" label="IND_CODE_4" name="IND_CODE_4" type="string"/>
+<Field __index="93" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/IND_CODE_5" containerType="SINGLE" label="IND_CODE_5" name="IND_CODE_5" type="string"/>
+<Field __index="94" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/INITCONTCT" containerType="SINGLE" label="INITCONTCT" name="INITCONTCT" type="string"/>
+<Field __index="95" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/ANN_SALES" containerType="SINGLE" label="ANN_SALES" name="ANN_SALES" type="string"/>
+<Field __index="96" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/SALES_YEAR" containerType="SINGLE" label="SALES_YEAR" name="SALES_YEAR" type="string"/>
+<Field __index="97" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/CURRENCY" containerType="SINGLE" label="CURRENCY" name="CURRENCY" type="string"/>
+<Field __index="98" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/CURRENCY_ISO" containerType="SINGLE" label="CURRENCY_ISO" name="CURRENCY_ISO" type="string"/>
+<Field __index="99" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/EMPLOYEES" containerType="SINGLE" label="EMPLOYEES" name="EMPLOYEES" type="string"/>
+<Field __index="100" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/EMPL_YEAR" containerType="SINGLE" label="EMPL_YEAR" name="EMPL_YEAR" type="string"/>
+<Field __index="101" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/ATTRIBUTE" containerType="SINGLE" label="ATTRIBUTE" name="ATTRIBUTE" type="string"/>
+<Field __index="102" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/ATTRIB_2" containerType="SINGLE" label="ATTRIB_2" name="ATTRIB_2" type="string"/>
+<Field __index="103" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/ATTRIB_3" containerType="SINGLE" label="ATTRIB_3" name="ATTRIB_3" type="string"/>
+<Field __index="104" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/ATTRIB_4" containerType="SINGLE" label="ATTRIB_4" name="ATTRIB_4" type="string"/>
+<Field __index="105" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/ATTRIB_5" containerType="SINGLE" label="ATTRIB_5" name="ATTRIB_5" type="string"/>
+<Field __index="106" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/ATTRIB_6" containerType="SINGLE" label="ATTRIB_6" name="ATTRIB_6" type="string"/>
+<Field __index="107" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/ATTRIB_7" containerType="SINGLE" label="ATTRIB_7" name="ATTRIB_7" type="string"/>
+<Field __index="108" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/ATTRIB_8" containerType="SINGLE" label="ATTRIB_8" name="ATTRIB_8" type="string"/>
+<Field __index="109" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/ATTRIB_9" containerType="SINGLE" label="ATTRIB_9" name="ATTRIB_9" type="string"/>
+<Field __index="110" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/ATTRIB_10" containerType="SINGLE" label="ATTRIB_10" name="ATTRIB_10" type="string"/>
+<Field __index="111" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/SOLE_PROP" containerType="SINGLE" label="SOLE_PROP" name="SOLE_PROP" type="string"/>
+<Field __index="112" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/ANN_SALES1" containerType="SINGLE" label="ANN_SALES1" name="ANN_SALES1" type="string"/>
+<Field __index="113" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/TAXJURCODE" containerType="SINGLE" label="TAXJURCODE" name="TAXJURCODE" type="string"/>
+<Field __index="114" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/FY_VARIANT" containerType="SINGLE" label="FY_VARIANT" name="FY_VARIANT" type="string"/>
+<Field __index="115" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/DLVSCHEDUSE" containerType="SINGLE" label="DLVSCHEDUSE" name="DLVSCHEDUSE" type="string"/>
+<Field __index="116" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/INSPBYCUST" containerType="SINGLE" label="INSPBYCUST" name="INSPBYCUST" type="string"/>
+<Field __index="117" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/INSPAFTDEL" containerType="SINGLE" label="INSPAFTDEL" name="INSPAFTDEL" type="string"/>
+<Field __index="118" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/REF_ACTGR" containerType="SINGLE" label="REF_ACTGR" name="REF_ACTGR" type="string"/>
+<Field __index="119" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/PLANT" containerType="SINGLE" label="PLANT" name="PLANT" type="string"/>
+<Field __index="120" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/DME_IND" containerType="SINGLE" label="DME_IND" name="DME_IND" type="string"/>
+<Field __index="121" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/INSTR_KEY" containerType="SINGLE" label="INSTR_KEY" name="INSTR_KEY" type="string"/>
+<Field __index="122" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/DATA_TRANS" containerType="SINGLE" label="DATA_TRANS" name="DATA_TRANS" type="string"/>
+<Field __index="123" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/ASSIGN_HI" containerType="SINGLE" label="ASSIGN_HI" name="ASSIGN_HI" type="string"/>
+<Field __index="124" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/PMNT_BLOCK" containerType="SINGLE" label="PMNT_BLOCK" name="PMNT_BLOCK" type="string"/>
+<Field __index="125" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/LABCUSTGRP" containerType="SINGLE" label="LABCUSTGRP" name="LABCUSTGRP" type="string"/>
+<Field __index="126" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/NON_MILIT" containerType="SINGLE" label="NON_MILIT" name="NON_MILIT" type="string"/>
+<Field __index="127" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/MILIT_USE" containerType="SINGLE" label="MILIT_USE" name="MILIT_USE" type="string"/>
+<Field __index="128" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/CUST_COND_GRP1" containerType="SINGLE" label="CUST_COND_GRP1" name="CUST_COND_GRP1" type="string"/>
+<Field __index="129" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/CUST_COND_GRP2" containerType="SINGLE" label="CUST_COND_GRP2" name="CUST_COND_GRP2" type="string"/>
+<Field __index="130" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/CUST_COND_GRP3" containerType="SINGLE" label="CUST_COND_GRP3" name="CUST_COND_GRP3" type="string"/>
+<Field __index="131" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/CUST_COND_GRP4" containerType="SINGLE" label="CUST_COND_GRP4" name="CUST_COND_GRP4" type="string"/>
+<Field __index="132" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/CUST_COND_GRP5" containerType="SINGLE" label="CUST_COND_GRP5" name="CUST_COND_GRP5" type="string"/>
+<Field __index="133" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/ALTPAYERAC" containerType="SINGLE" label="ALTPAYERAC" name="ALTPAYERAC" type="string"/>
+<Field __index="134" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/TAX_TYPE" containerType="SINGLE" label="TAX_TYPE" name="TAX_TYPE" type="string"/>
+<Field __index="135" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/TAX_NO_TY" containerType="SINGLE" label="TAX_NO_TY" name="TAX_NO_TY" type="string"/>
+<Field __index="136" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/TAX_NO_3" containerType="SINGLE" label="TAX_NO_3" name="TAX_NO_3" type="string"/>
+<Field __index="137" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/TAX_NO_4" containerType="SINGLE" label="TAX_NO_4" name="TAX_NO_4" type="string"/>
+<Field __index="138" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/NO_ICMS" containerType="SINGLE" label="NO_ICMS" name="NO_ICMS" type="string"/>
+<Field __index="139" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/NO_IPI" containerType="SINGLE" label="NO_IPI" name="NO_IPI" type="string"/>
+<Field __index="140" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/SUBT_GRP" containerType="SINGLE" label="SUBT_GRP" name="SUBT_GRP" type="string"/>
+<Field __index="141" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/CFOP_CAT" containerType="SINGLE" label="CFOP_CAT" name="CFOP_CAT" type="string"/>
+<Field __index="142" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/TAXLAWICMS" containerType="SINGLE" label="TAXLAWICMS" name="TAXLAWICMS" type="string"/>
+<Field __index="143" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/TAXLAWIPI" containerType="SINGLE" label="TAXLAWIPI" name="TAXLAWIPI" type="string"/>
+<Field __index="144" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/BCW" containerType="SINGLE" label="BCW" name="BCW" type="string"/>
+<Field __index="145" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/NUCL_NONP" containerType="SINGLE" label="NUCL_NONP" name="NUCL_NONP" type="string"/>
+<Field __index="146" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/NATL_SEC" containerType="SINGLE" label="NATL_SEC" name="NATL_SEC" type="string"/>
+<Field __index="147" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/MISS_TECH" containerType="SINGLE" label="MISS_TECH" name="MISS_TECH" type="string"/>
+<Field __index="148" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/SALES_BLKG" containerType="SINGLE" label="SALES_BLKG" name="SALES_BLKG" type="string"/>
+<Field __index="149" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/URL" containerType="SINGLE" label="URL" name="URL" type="string"/>
+<Field __index="150" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/REP_NAME" containerType="SINGLE" label="REP_NAME" name="REP_NAME" type="string"/>
+<Field __index="151" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/BUS_TYPE" containerType="SINGLE" label="BUS_TYPE" name="BUS_TYPE" type="string"/>
+<Field __index="152" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/IND_TYPE" containerType="SINGLE" label="IND_TYPE" name="IND_TYPE" type="string"/>
+<Field __index="153" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/CONF_ST" containerType="SINGLE" label="CONF_ST" name="CONF_ST" type="string"/>
+<Field __index="154" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/CONF_DATE" containerType="SINGLE" label="CONF_DATE" name="CONF_DATE" type="string"/>
+<Field __index="155" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/CONF_TIME" containerType="SINGLE" label="CONF_TIME" name="CONF_TIME" type="string"/>
+<Field __index="156" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/NO_DELETE" containerType="SINGLE" label="NO_DELETE" name="NO_DELETE" type="string"/>
+<Field __index="157" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/CUSTOMERGENERALDETAIL/CONSUMER" containerType="SINGLE" label="CONSUMER" name="CONSUMER" type="string"/>
+<Field __index="158" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/RETURN/TYPE" containerType="SINGLE" label="TYPE" name="TYPE" type="string"/>
+<Field __index="159" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/RETURN/ID" containerType="SINGLE" label="ID" name="ID" type="string"/>
+<Field __index="160" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/RETURN/NUMBER" containerType="SINGLE" label="NUMBER" name="NUMBER" type="string"/>
+<Field __index="161" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/RETURN/MESSAGE" containerType="SINGLE" label="MESSAGE" name="MESSAGE" type="string"/>
+<Field __index="162" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/RETURN/LOG_NO" containerType="SINGLE" label="LOG_NO" name="LOG_NO" type="string"/>
+<Field __index="163" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/RETURN/LOG_MSG_NO" containerType="SINGLE" label="LOG_MSG_NO" name="LOG_MSG_NO" type="string"/>
+<Field __index="164" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/RETURN/MESSAGE_V1" containerType="SINGLE" label="MESSAGE_V1" name="MESSAGE_V1" type="string"/>
+<Field __index="165" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/RETURN/MESSAGE_V2" containerType="SINGLE" label="MESSAGE_V2" name="MESSAGE_V2" type="string"/>
+<Field __index="166" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/RETURN/MESSAGE_V3" containerType="SINGLE" label="MESSAGE_V3" name="MESSAGE_V3" type="string"/>
+<Field __index="167" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/export/RETURN/MESSAGE_V4" containerType="SINGLE" label="MESSAGE_V4" name="MESSAGE_V4" type="string"/>
+</Record>
+</Metadata>
+<Metadata __index="168" __referenceCounter="0" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/tables/CUSTOMERBANKDETAIL/row" _dataStructure="SINGLE_DIMENSIONAL_COLLECTION" _id="__id" _metadataParentId="6c10372e-8a85-46ec-9e43-b72abd85c52b" _parent_id="__parent_id" _type="Input" id="91f96674-749e-4f88-86d1-b74fd0a913ca">
+<Record fieldDelimiter="," name="row" recordDelimiter="\n\\|\r\n\\|\r" type="delimited">
+<Field __artificialType="_parent_id" __systemManaged="true" name="__parent_id" type="string"/>
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+<Field __index="168" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/tables/CUSTOMERBANKDETAIL/row/CUSTOMER" containerType="SINGLE" label="CUSTOMER" name="CUSTOMER" type="string"/>
+<Field __index="169" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/tables/CUSTOMERBANKDETAIL/row/BANK_CTRY" containerType="SINGLE" label="BANK_CTRY" name="BANK_CTRY" type="string"/>
+<Field __index="170" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/tables/CUSTOMERBANKDETAIL/row/BANK_KEY" containerType="SINGLE" label="BANK_KEY" name="BANK_KEY" type="string"/>
+<Field __index="171" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/tables/CUSTOMERBANKDETAIL/row/BANK_ACCT" containerType="SINGLE" label="BANK_ACCT" name="BANK_ACCT" type="string"/>
+<Field __index="172" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/tables/CUSTOMERBANKDETAIL/row/CTRL_KEY" containerType="SINGLE" label="CTRL_KEY" name="CTRL_KEY" type="string"/>
+<Field __index="173" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/tables/CUSTOMERBANKDETAIL/row/PARTNER_BK" containerType="SINGLE" label="PARTNER_BK" name="PARTNER_BK" type="string"/>
+<Field __index="174" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/tables/CUSTOMERBANKDETAIL/row/COLL_AUTH" containerType="SINGLE" label="COLL_AUTH" name="COLL_AUTH" type="string"/>
+<Field __index="175" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/tables/CUSTOMERBANKDETAIL/row/BANK_REF" containerType="SINGLE" label="BANK_REF" name="BANK_REF" type="string"/>
+<Field __index="176" __sourcePath="{}/BAPI_CUSTOMER_GETDETAIL2/tables/CUSTOMERBANKDETAIL/row/@id" containerType="SINGLE" label="id" name="id" type="integer"/>
+</Record>
+</Metadata>
+<Dictionary>
+<Entry id="DictionaryEntry0" input="true" name="inputPayload" output="false" type="object"/>
+<Entry id="DictionaryEntry1" input="false" name="outputPayload" output="true" type="object"/>
+</Dictionary>
+</Global>
+<Phase number="0">
+<Node enabled="enabled" guiName="Foreach 'BAPI_CUSTOMER_GETDETAIL2' -&gt; 'Account'" guiX="460" guiY="20" id="FOREACH_BAPI_CUSTOMER_GETDETAIL2_ACCOUNT" transformClass="com.mulesoft.datamapper.transform.MelRecordTransform" type="REFORMAT">
+<attr name="melScript"><![CDATA[//MEL
+//START -> DO NOT REMOVE
+output.__id = input.__id;
+//END -> DO NOT REMOVE
+output.Fax = input.FAX;
+output.Name = input.NAME;]]></attr>
+</Node>
+<Node cacheInMemory="true" enabled="enabled" fileURL="dict:outputPayload" guiName="Map&lt;k,v&gt; WRITER" guiX="900" guiY="20" id="MAP_WRITER0" type="MAP_WRITER">
+<attr name="mapping"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<clover:collection clover:name="Account" xmlns:clover="http://www.cloveretl.com/ns/xmlmapping">
+  <item clover:inPort="0">
+    <SicDesc clover:dataType="java.lang.String">$0.SicDesc</SicDesc>
+    <ParentId clover:dataType="java.lang.String">$0.ParentId</ParentId>
+    <TickerSymbol clover:dataType="java.lang.String">$0.TickerSymbol</TickerSymbol>
+    <LastModifiedDate clover:dataType="java.util.Calendar">$0.LastModifiedDate</LastModifiedDate>
+    <clover:element clover:name="NumberofLocations__c" clover:dataType="java.lang.Double">$0.NumberofLocations__c</clover:element>
+    <NumberOfEmployees clover:dataType="java.lang.Integer">$0.NumberOfEmployees</NumberOfEmployees>
+    <DandbCompanyId clover:dataType="java.lang.String">$0.DandbCompanyId</DandbCompanyId>
+    <ShippingCity clover:dataType="java.lang.String">$0.ShippingCity</ShippingCity>
+    <NaicsCode clover:dataType="java.lang.String">$0.NaicsCode</NaicsCode>
+    <BillingCountry clover:dataType="java.lang.String">$0.BillingCountry</BillingCountry>
+    <Jigsaw clover:dataType="java.lang.String">$0.Jigsaw</Jigsaw>
+    <ShippingCountry clover:dataType="java.lang.String">$0.ShippingCountry</ShippingCountry>
+    <Site clover:dataType="java.lang.String">$0.Site</Site>
+    <AccountNumber clover:dataType="java.lang.String">$0.AccountNumber</AccountNumber>
+    <BillingStreet clover:dataType="java.lang.String">$0.BillingStreet</BillingStreet>
+    <clover:element clover:name="Active__c">$0.Active__c</clover:element>
+    <BillingCity clover:dataType="java.lang.String">$0.BillingCity</BillingCity>
+    <Rating>$0.Rating</Rating>
+    <NaicsDesc clover:dataType="java.lang.String">$0.NaicsDesc</NaicsDesc>
+    <CreatedById clover:dataType="java.lang.String">$0.CreatedById</CreatedById>
+    <CleanStatus>$0.CleanStatus</CleanStatus>
+    <IsDeleted clover:dataType="java.lang.Boolean">$0.IsDeleted</IsDeleted>
+    <Id clover:dataType="java.lang.String">$0.Id</Id>
+    <ShippingPostalCode clover:dataType="java.lang.String">$0.ShippingPostalCode</ShippingPostalCode>
+    <Industry>$0.Industry</Industry>
+    <clover:element clover:name="UpsellOpportunity__c">$0.UpsellOpportunity__c</clover:element>
+    <AccountSource>$0.AccountSource</AccountSource>
+    <DunsNumber clover:dataType="java.lang.String">$0.DunsNumber</DunsNumber>
+    <Phone clover:dataType="java.lang.String">$0.Phone</Phone>
+    <clover:element clover:name="SLAExpirationDate__c" clover:dataType="java.util.Calendar">$0.SLAExpirationDate__c</clover:element>
+    <Tradestyle clover:dataType="java.lang.String">$0.Tradestyle</Tradestyle>
+    <Type>$0.Type</Type>
+    <OwnerId clover:dataType="java.lang.String">$0.OwnerId</OwnerId>
+    <ShippingState clover:dataType="java.lang.String">$0.ShippingState</ShippingState>
+    <AnnualRevenue clover:dataType="java.lang.String">$0.AnnualRevenue</AnnualRevenue>
+    <BillingState clover:dataType="java.lang.String">$0.BillingState</BillingState>
+    <LastActivityDate clover:dataType="java.util.Calendar">$0.LastActivityDate</LastActivityDate>
+    <BillingPostalCode clover:dataType="java.lang.String">$0.BillingPostalCode</BillingPostalCode>
+    <clover:element clover:name="SLASerialNumber__c" clover:dataType="java.lang.String">$0.SLASerialNumber__c</clover:element>
+    <SystemModstamp clover:dataType="java.util.Calendar">$0.SystemModstamp</SystemModstamp>
+    <Description clover:dataType="java.lang.String">$0.Description</Description>
+    <LastModifiedById clover:dataType="java.lang.String">$0.LastModifiedById</LastModifiedById>
+    <Website clover:dataType="java.lang.String">$0.Website</Website>
+    <ShippingStreet clover:dataType="java.lang.String">$0.ShippingStreet</ShippingStreet>
+    <Fax clover:dataType="java.lang.String">$0.Fax</Fax>
+    <YearStarted clover:dataType="java.lang.String">$0.YearStarted</YearStarted>
+    <clover:element clover:name="SLA__c">$0.SLA__c</clover:element>
+    <clover:element clover:name="CustomerPriority__c">$0.CustomerPriority__c</clover:element>
+    <MasterRecordId clover:dataType="java.lang.String">$0.MasterRecordId</MasterRecordId>
+    <Name clover:dataType="java.lang.String">$0.Name</Name>
+    <CreatedDate clover:dataType="java.util.Calendar">$0.CreatedDate</CreatedDate>
+    <JigsawCompanyId clover:dataType="java.lang.String">$0.JigsawCompanyId</JigsawCompanyId>
+    <Sic clover:dataType="java.lang.String">$0.Sic</Sic>
+    <Ownership>$0.Ownership</Ownership>
+  </item>
+</clover:collection>]]></attr>
+<attr name="__typeName"><![CDATA[Account]]></attr>
+<attr name="_data_format"><![CDATA[MAP]]></attr>
+<attr name="__connectorName"><![CDATA[Salesforce]]></attr>
+</Node>
+<Node charset="UTF-8" enabled="enabled" fileURL="dict:inputPayload" guiName="XML READER" guiX="20" guiY="20" id="XML_READER0" type="XML_READER">
+<attr name="xmlSchemaURL"><![CDATA[.\src\main\resources\BAPI_CUSTOMER_GETDETAIL2.xsd]]></attr>
+<attr name="mapping"><![CDATA[<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Context outPort="0" sequenceField="__id" xpath="/BAPI_CUSTOMER_GETDETAIL2">
+  <Mapping cloverField="COMPANYCODE" trim="true" xpath="import/COMPANYCODE"/>
+  <Mapping cloverField="CUSTOMERNO" trim="true" xpath="import/CUSTOMERNO"/>
+  <Mapping cloverField="CUSTOMER" trim="true" xpath="export/CUSTOMERADDRESS/CUSTOMER"/>
+  <Mapping cloverField="NAME" trim="true" xpath="export/CUSTOMERADDRESS/NAME"/>
+  <Mapping cloverField="NAME_2" trim="true" xpath="export/CUSTOMERADDRESS/NAME_2"/>
+  <Mapping cloverField="NAME_3" trim="true" xpath="export/CUSTOMERADDRESS/NAME_3"/>
+  <Mapping cloverField="NAME_4" trim="true" xpath="export/CUSTOMERADDRESS/NAME_4"/>
+  <Mapping cloverField="CITY" trim="true" xpath="export/CUSTOMERADDRESS/CITY"/>
+  <Mapping cloverField="DISTRICT" trim="true" xpath="export/CUSTOMERADDRESS/DISTRICT"/>
+  <Mapping cloverField="PO_BOX" trim="true" xpath="export/CUSTOMERADDRESS/PO_BOX"/>
+  <Mapping cloverField="POBX_PCD" trim="true" xpath="export/CUSTOMERADDRESS/POBX_PCD"/>
+  <Mapping cloverField="POSTL_CODE" trim="true" xpath="export/CUSTOMERADDRESS/POSTL_CODE"/>
+  <Mapping cloverField="REGION" trim="true" xpath="export/CUSTOMERADDRESS/REGION"/>
+  <Mapping cloverField="COUNTYCODE" trim="true" xpath="export/CUSTOMERADDRESS/COUNTYCODE"/>
+  <Mapping cloverField="CITY_CODE" trim="true" xpath="export/CUSTOMERADDRESS/CITY_CODE"/>
+  <Mapping cloverField="STREET" trim="true" xpath="export/CUSTOMERADDRESS/STREET"/>
+  <Mapping cloverField="TELEPHONE" trim="true" xpath="export/CUSTOMERADDRESS/TELEPHONE"/>
+  <Mapping cloverField="COUNTRY" trim="true" xpath="export/CUSTOMERADDRESS/COUNTRY"/>
+  <Mapping cloverField="COUNTRYISO" trim="true" xpath="export/CUSTOMERADDRESS/COUNTRYISO"/>
+  <Mapping cloverField="POBX_CTY" trim="true" xpath="export/CUSTOMERADDRESS/POBX_CTY"/>
+  <Mapping cloverField="LANGU" trim="true" xpath="export/CUSTOMERADDRESS/LANGU"/>
+  <Mapping cloverField="LANGU_ISO" trim="true" xpath="export/CUSTOMERADDRESS/LANGU_ISO"/>
+  <Mapping cloverField="SORT_FLD" trim="true" xpath="export/CUSTOMERADDRESS/SORT_FLD"/>
+  <Mapping cloverField="MATCHCODE1" trim="true" xpath="export/CUSTOMERADDRESS/MATCHCODE1"/>
+  <Mapping cloverField="MATCHCODE2" trim="true" xpath="export/CUSTOMERADDRESS/MATCHCODE2"/>
+  <Mapping cloverField="MATCHCODE3" trim="true" xpath="export/CUSTOMERADDRESS/MATCHCODE3"/>
+  <Mapping cloverField="FORMOFADDR" trim="true" xpath="export/CUSTOMERADDRESS/FORMOFADDR"/>
+  <Mapping cloverField="TELEBOX" trim="true" xpath="export/CUSTOMERADDRESS/TELEBOX"/>
+  <Mapping cloverField="TELEPHONE2" trim="true" xpath="export/CUSTOMERADDRESS/TELEPHONE2"/>
+  <Mapping cloverField="TELETEX" trim="true" xpath="export/CUSTOMERADDRESS/TELETEX"/>
+  <Mapping cloverField="TELEX" trim="true" xpath="export/CUSTOMERADDRESS/TELEX"/>
+  <Mapping cloverField="TRANSPZONE" trim="true" xpath="export/CUSTOMERADDRESS/TRANSPZONE"/>
+  <Mapping cloverField="NIELSEN_ID" trim="true" xpath="export/CUSTOMERADDRESS/NIELSEN_ID"/>
+  <Mapping cloverField="CUSTOMER_1" trim="true" xpath="export/CUSTOMERCOMPANYDETAIL/CUSTOMER"/>
+  <Mapping cloverField="COMP_CODE" trim="true" xpath="export/CUSTOMERCOMPANYDETAIL/COMP_CODE"/>
+  <Mapping cloverField="CLERK" trim="true" xpath="export/CUSTOMERCOMPANYDETAIL/CLERK"/>
+  <Mapping cloverField="HD_OFFICE" trim="true" xpath="export/CUSTOMERCOMPANYDETAIL/HD_OFFICE"/>
+  <Mapping cloverField="ALT_PAYER" trim="true" xpath="export/CUSTOMERCOMPANYDETAIL/ALT_PAYER"/>
+  <Mapping cloverField="CUVD_CLEAR" trim="true" xpath="export/CUSTOMERCOMPANYDETAIL/CUVD_CLEAR"/>
+  <Mapping cloverField="PMNTTRMS" trim="true" xpath="export/CUSTOMERCOMPANYDETAIL/PMNTTRMS"/>
+  <Mapping cloverField="ACT_AT_CUS" trim="true" xpath="export/CUSTOMERCOMPANYDETAIL/ACT_AT_CUS"/>
+  <Mapping cloverField="CUST_USER" trim="true" xpath="export/CUSTOMERCOMPANYDETAIL/CUST_USER"/>
+  <Mapping cloverField="NEXT_PAYEE" trim="true" xpath="export/CUSTOMERCOMPANYDETAIL/NEXT_PAYEE"/>
+  <Mapping cloverField="BUYING_GRP" trim="true" xpath="export/CUSTOMERCOMPANYDETAIL/BUYING_GRP"/>
+  <Mapping cloverField="INTERNET" trim="true" xpath="export/CUSTOMERCOMPANYDETAIL/INTERNET"/>
+  <Mapping cloverField="FAX" trim="true" xpath="export/CUSTOMERCOMPANYDETAIL/FAX"/>
+  <Mapping cloverField="PAYMENT_METHODS" trim="true" xpath="export/CUSTOMERCOMPANYDETAIL/PAYMENT_METHODS"/>
+  <Mapping cloverField="TEL" trim="true" xpath="export/CUSTOMERCOMPANYDETAIL/TEL"/>
+  <Mapping cloverField="CUSTOMER_2" trim="true" xpath="export/CUSTOMERGENERALDETAIL/CUSTOMER"/>
+  <Mapping cloverField="ACC_1_TIME" trim="true" xpath="export/CUSTOMERGENERALDETAIL/ACC_1_TIME"/>
+  <Mapping cloverField="ADDRESS" trim="true" xpath="export/CUSTOMERGENERALDETAIL/ADDRESS"/>
+  <Mapping cloverField="ORDR_BLK_G" trim="true" xpath="export/CUSTOMERGENERALDETAIL/ORDR_BLK_G"/>
+  <Mapping cloverField="EXPR_STAT" trim="true" xpath="export/CUSTOMERGENERALDETAIL/EXPR_STAT"/>
+  <Mapping cloverField="TRAIN_STAT" trim="true" xpath="export/CUSTOMERGENERALDETAIL/TRAIN_STAT"/>
+  <Mapping cloverField="LOC_NO_1" trim="true" xpath="export/CUSTOMERGENERALDETAIL/LOC_NO_1"/>
+  <Mapping cloverField="LOC_NO_2" trim="true" xpath="export/CUSTOMERGENERALDETAIL/LOC_NO_2"/>
+  <Mapping cloverField="AUTH_GROUP" trim="true" xpath="export/CUSTOMERGENERALDETAIL/AUTH_GROUP"/>
+  <Mapping cloverField="INDUSTRY" trim="true" xpath="export/CUSTOMERGENERALDETAIL/INDUSTRY"/>
+  <Mapping cloverField="CHK_DIGIT" trim="true" xpath="export/CUSTOMERGENERALDETAIL/CHK_DIGIT"/>
+  <Mapping cloverField="DATA_LINE" trim="true" xpath="export/CUSTOMERGENERALDETAIL/DATA_LINE"/>
+  <Mapping cloverField="CREAT_DATE" trim="true" xpath="export/CUSTOMERGENERALDETAIL/CREAT_DATE"/>
+  <Mapping cloverField="ENTERED_BY" trim="true" xpath="export/CUSTOMERGENERALDETAIL/ENTERED_BY"/>
+  <Mapping cloverField="UNLOAD_PT" trim="true" xpath="export/CUSTOMERGENERALDETAIL/UNLOAD_PT"/>
+  <Mapping cloverField="BILL_BLK_G" trim="true" xpath="export/CUSTOMERGENERALDETAIL/BILL_BLK_G"/>
+  <Mapping cloverField="FISK_ADDR" trim="true" xpath="export/CUSTOMERGENERALDETAIL/FISK_ADDR"/>
+  <Mapping cloverField="WORK_TIME" trim="true" xpath="export/CUSTOMERGENERALDETAIL/WORK_TIME"/>
+  <Mapping cloverField="ALT_PAYER_1" trim="true" xpath="export/CUSTOMERGENERALDETAIL/ALT_PAYER"/>
+  <Mapping cloverField="GROUPKEY" trim="true" xpath="export/CUSTOMERGENERALDETAIL/GROUPKEY"/>
+  <Mapping cloverField="ACCNT_GRP" trim="true" xpath="export/CUSTOMERGENERALDETAIL/ACCNT_GRP"/>
+  <Mapping cloverField="CLASSIFIC" trim="true" xpath="export/CUSTOMERGENERALDETAIL/CLASSIFIC"/>
+  <Mapping cloverField="VENDOR_NO" trim="true" xpath="export/CUSTOMERGENERALDETAIL/VENDOR_NO"/>
+  <Mapping cloverField="DELI_BLK_G" trim="true" xpath="export/CUSTOMERGENERALDETAIL/DELI_BLK_G"/>
+  <Mapping cloverField="LOC_CODE" trim="true" xpath="export/CUSTOMERGENERALDETAIL/LOC_CODE"/>
+  <Mapping cloverField="DEL_FLAG_G" trim="true" xpath="export/CUSTOMERGENERALDETAIL/DEL_FLAG_G"/>
+  <Mapping cloverField="REG_MARKET" trim="true" xpath="export/CUSTOMERGENERALDETAIL/REG_MARKET"/>
+  <Mapping cloverField="PSTG_BLK_G" trim="true" xpath="export/CUSTOMERGENERALDETAIL/PSTG_BLK_G"/>
+  <Mapping cloverField="TAX_NO_1" trim="true" xpath="export/CUSTOMERGENERALDETAIL/TAX_NO_1"/>
+  <Mapping cloverField="TAX_NO_2" trim="true" xpath="export/CUSTOMERGENERALDETAIL/TAX_NO_2"/>
+  <Mapping cloverField="EQUAL_TAX" trim="true" xpath="export/CUSTOMERGENERALDETAIL/EQUAL_TAX"/>
+  <Mapping cloverField="SLS_PUR_TX" trim="true" xpath="export/CUSTOMERGENERALDETAIL/SLS_PUR_TX"/>
+  <Mapping cloverField="PAYER_DOC" trim="true" xpath="export/CUSTOMERGENERALDETAIL/PAYER_DOC"/>
+  <Mapping cloverField="TRADE_ID" trim="true" xpath="export/CUSTOMERGENERALDETAIL/TRADE_ID"/>
+  <Mapping cloverField="VAT_REG_NO" trim="true" xpath="export/CUSTOMERGENERALDETAIL/VAT_REG_NO"/>
+  <Mapping cloverField="COMPETITOR" trim="true" xpath="export/CUSTOMERGENERALDETAIL/COMPETITOR"/>
+  <Mapping cloverField="SLSPARTNER" trim="true" xpath="export/CUSTOMERGENERALDETAIL/SLSPARTNER"/>
+  <Mapping cloverField="PROSPECT" trim="true" xpath="export/CUSTOMERGENERALDETAIL/PROSPECT"/>
+  <Mapping cloverField="CUSTTYPE_4" trim="true" xpath="export/CUSTOMERGENERALDETAIL/CUSTTYPE_4"/>
+  <Mapping cloverField="DFLT_SP" trim="true" xpath="export/CUSTOMERGENERALDETAIL/DFLT_SP"/>
+  <Mapping cloverField="LEGALSTAT" trim="true" xpath="export/CUSTOMERGENERALDETAIL/LEGALSTAT"/>
+  <Mapping cloverField="IND_CODE_1" trim="true" xpath="export/CUSTOMERGENERALDETAIL/IND_CODE_1"/>
+  <Mapping cloverField="IND_CODE_2" trim="true" xpath="export/CUSTOMERGENERALDETAIL/IND_CODE_2"/>
+  <Mapping cloverField="IND_CODE_3" trim="true" xpath="export/CUSTOMERGENERALDETAIL/IND_CODE_3"/>
+  <Mapping cloverField="IND_CODE_4" trim="true" xpath="export/CUSTOMERGENERALDETAIL/IND_CODE_4"/>
+  <Mapping cloverField="IND_CODE_5" trim="true" xpath="export/CUSTOMERGENERALDETAIL/IND_CODE_5"/>
+  <Mapping cloverField="INITCONTCT" trim="true" xpath="export/CUSTOMERGENERALDETAIL/INITCONTCT"/>
+  <Mapping cloverField="ANN_SALES" trim="true" xpath="export/CUSTOMERGENERALDETAIL/ANN_SALES"/>
+  <Mapping cloverField="SALES_YEAR" trim="true" xpath="export/CUSTOMERGENERALDETAIL/SALES_YEAR"/>
+  <Mapping cloverField="CURRENCY" trim="true" xpath="export/CUSTOMERGENERALDETAIL/CURRENCY"/>
+  <Mapping cloverField="CURRENCY_ISO" trim="true" xpath="export/CUSTOMERGENERALDETAIL/CURRENCY_ISO"/>
+  <Mapping cloverField="EMPLOYEES" trim="true" xpath="export/CUSTOMERGENERALDETAIL/EMPLOYEES"/>
+  <Mapping cloverField="EMPL_YEAR" trim="true" xpath="export/CUSTOMERGENERALDETAIL/EMPL_YEAR"/>
+  <Mapping cloverField="ATTRIBUTE" trim="true" xpath="export/CUSTOMERGENERALDETAIL/ATTRIBUTE"/>
+  <Mapping cloverField="ATTRIB_2" trim="true" xpath="export/CUSTOMERGENERALDETAIL/ATTRIB_2"/>
+  <Mapping cloverField="ATTRIB_3" trim="true" xpath="export/CUSTOMERGENERALDETAIL/ATTRIB_3"/>
+  <Mapping cloverField="ATTRIB_4" trim="true" xpath="export/CUSTOMERGENERALDETAIL/ATTRIB_4"/>
+  <Mapping cloverField="ATTRIB_5" trim="true" xpath="export/CUSTOMERGENERALDETAIL/ATTRIB_5"/>
+  <Mapping cloverField="ATTRIB_6" trim="true" xpath="export/CUSTOMERGENERALDETAIL/ATTRIB_6"/>
+  <Mapping cloverField="ATTRIB_7" trim="true" xpath="export/CUSTOMERGENERALDETAIL/ATTRIB_7"/>
+  <Mapping cloverField="ATTRIB_8" trim="true" xpath="export/CUSTOMERGENERALDETAIL/ATTRIB_8"/>
+  <Mapping cloverField="ATTRIB_9" trim="true" xpath="export/CUSTOMERGENERALDETAIL/ATTRIB_9"/>
+  <Mapping cloverField="ATTRIB_10" trim="true" xpath="export/CUSTOMERGENERALDETAIL/ATTRIB_10"/>
+  <Mapping cloverField="SOLE_PROP" trim="true" xpath="export/CUSTOMERGENERALDETAIL/SOLE_PROP"/>
+  <Mapping cloverField="ANN_SALES1" trim="true" xpath="export/CUSTOMERGENERALDETAIL/ANN_SALES1"/>
+  <Mapping cloverField="TAXJURCODE" trim="true" xpath="export/CUSTOMERGENERALDETAIL/TAXJURCODE"/>
+  <Mapping cloverField="FY_VARIANT" trim="true" xpath="export/CUSTOMERGENERALDETAIL/FY_VARIANT"/>
+  <Mapping cloverField="DLVSCHEDUSE" trim="true" xpath="export/CUSTOMERGENERALDETAIL/DLVSCHEDUSE"/>
+  <Mapping cloverField="INSPBYCUST" trim="true" xpath="export/CUSTOMERGENERALDETAIL/INSPBYCUST"/>
+  <Mapping cloverField="INSPAFTDEL" trim="true" xpath="export/CUSTOMERGENERALDETAIL/INSPAFTDEL"/>
+  <Mapping cloverField="REF_ACTGR" trim="true" xpath="export/CUSTOMERGENERALDETAIL/REF_ACTGR"/>
+  <Mapping cloverField="PLANT" trim="true" xpath="export/CUSTOMERGENERALDETAIL/PLANT"/>
+  <Mapping cloverField="DME_IND" trim="true" xpath="export/CUSTOMERGENERALDETAIL/DME_IND"/>
+  <Mapping cloverField="INSTR_KEY" trim="true" xpath="export/CUSTOMERGENERALDETAIL/INSTR_KEY"/>
+  <Mapping cloverField="DATA_TRANS" trim="true" xpath="export/CUSTOMERGENERALDETAIL/DATA_TRANS"/>
+  <Mapping cloverField="ASSIGN_HI" trim="true" xpath="export/CUSTOMERGENERALDETAIL/ASSIGN_HI"/>
+  <Mapping cloverField="PMNT_BLOCK" trim="true" xpath="export/CUSTOMERGENERALDETAIL/PMNT_BLOCK"/>
+  <Mapping cloverField="LABCUSTGRP" trim="true" xpath="export/CUSTOMERGENERALDETAIL/LABCUSTGRP"/>
+  <Mapping cloverField="NON_MILIT" trim="true" xpath="export/CUSTOMERGENERALDETAIL/NON_MILIT"/>
+  <Mapping cloverField="MILIT_USE" trim="true" xpath="export/CUSTOMERGENERALDETAIL/MILIT_USE"/>
+  <Mapping cloverField="CUST_COND_GRP1" trim="true" xpath="export/CUSTOMERGENERALDETAIL/CUST_COND_GRP1"/>
+  <Mapping cloverField="CUST_COND_GRP2" trim="true" xpath="export/CUSTOMERGENERALDETAIL/CUST_COND_GRP2"/>
+  <Mapping cloverField="CUST_COND_GRP3" trim="true" xpath="export/CUSTOMERGENERALDETAIL/CUST_COND_GRP3"/>
+  <Mapping cloverField="CUST_COND_GRP4" trim="true" xpath="export/CUSTOMERGENERALDETAIL/CUST_COND_GRP4"/>
+  <Mapping cloverField="CUST_COND_GRP5" trim="true" xpath="export/CUSTOMERGENERALDETAIL/CUST_COND_GRP5"/>
+  <Mapping cloverField="ALTPAYERAC" trim="true" xpath="export/CUSTOMERGENERALDETAIL/ALTPAYERAC"/>
+  <Mapping cloverField="TAX_TYPE" trim="true" xpath="export/CUSTOMERGENERALDETAIL/TAX_TYPE"/>
+  <Mapping cloverField="TAX_NO_TY" trim="true" xpath="export/CUSTOMERGENERALDETAIL/TAX_NO_TY"/>
+  <Mapping cloverField="TAX_NO_3" trim="true" xpath="export/CUSTOMERGENERALDETAIL/TAX_NO_3"/>
+  <Mapping cloverField="TAX_NO_4" trim="true" xpath="export/CUSTOMERGENERALDETAIL/TAX_NO_4"/>
+  <Mapping cloverField="NO_ICMS" trim="true" xpath="export/CUSTOMERGENERALDETAIL/NO_ICMS"/>
+  <Mapping cloverField="NO_IPI" trim="true" xpath="export/CUSTOMERGENERALDETAIL/NO_IPI"/>
+  <Mapping cloverField="SUBT_GRP" trim="true" xpath="export/CUSTOMERGENERALDETAIL/SUBT_GRP"/>
+  <Mapping cloverField="CFOP_CAT" trim="true" xpath="export/CUSTOMERGENERALDETAIL/CFOP_CAT"/>
+  <Mapping cloverField="TAXLAWICMS" trim="true" xpath="export/CUSTOMERGENERALDETAIL/TAXLAWICMS"/>
+  <Mapping cloverField="TAXLAWIPI" trim="true" xpath="export/CUSTOMERGENERALDETAIL/TAXLAWIPI"/>
+  <Mapping cloverField="BCW" trim="true" xpath="export/CUSTOMERGENERALDETAIL/BCW"/>
+  <Mapping cloverField="NUCL_NONP" trim="true" xpath="export/CUSTOMERGENERALDETAIL/NUCL_NONP"/>
+  <Mapping cloverField="NATL_SEC" trim="true" xpath="export/CUSTOMERGENERALDETAIL/NATL_SEC"/>
+  <Mapping cloverField="MISS_TECH" trim="true" xpath="export/CUSTOMERGENERALDETAIL/MISS_TECH"/>
+  <Mapping cloverField="SALES_BLKG" trim="true" xpath="export/CUSTOMERGENERALDETAIL/SALES_BLKG"/>
+  <Mapping cloverField="URL" trim="true" xpath="export/CUSTOMERGENERALDETAIL/URL"/>
+  <Mapping cloverField="REP_NAME" trim="true" xpath="export/CUSTOMERGENERALDETAIL/REP_NAME"/>
+  <Mapping cloverField="BUS_TYPE" trim="true" xpath="export/CUSTOMERGENERALDETAIL/BUS_TYPE"/>
+  <Mapping cloverField="IND_TYPE" trim="true" xpath="export/CUSTOMERGENERALDETAIL/IND_TYPE"/>
+  <Mapping cloverField="CONF_ST" trim="true" xpath="export/CUSTOMERGENERALDETAIL/CONF_ST"/>
+  <Mapping cloverField="CONF_DATE" trim="true" xpath="export/CUSTOMERGENERALDETAIL/CONF_DATE"/>
+  <Mapping cloverField="CONF_TIME" trim="true" xpath="export/CUSTOMERGENERALDETAIL/CONF_TIME"/>
+  <Mapping cloverField="NO_DELETE" trim="true" xpath="export/CUSTOMERGENERALDETAIL/NO_DELETE"/>
+  <Mapping cloverField="CONSUMER" trim="true" xpath="export/CUSTOMERGENERALDETAIL/CONSUMER"/>
+  <Mapping cloverField="TYPE" trim="true" xpath="export/RETURN/TYPE"/>
+  <Mapping cloverField="ID" trim="true" xpath="export/RETURN/ID"/>
+  <Mapping cloverField="NUMBER" trim="true" xpath="export/RETURN/NUMBER"/>
+  <Mapping cloverField="MESSAGE" trim="true" xpath="export/RETURN/MESSAGE"/>
+  <Mapping cloverField="LOG_NO" trim="true" xpath="export/RETURN/LOG_NO"/>
+  <Mapping cloverField="LOG_MSG_NO" trim="true" xpath="export/RETURN/LOG_MSG_NO"/>
+  <Mapping cloverField="MESSAGE_V1" trim="true" xpath="export/RETURN/MESSAGE_V1"/>
+  <Mapping cloverField="MESSAGE_V2" trim="true" xpath="export/RETURN/MESSAGE_V2"/>
+  <Mapping cloverField="MESSAGE_V3" trim="true" xpath="export/RETURN/MESSAGE_V3"/>
+  <Mapping cloverField="MESSAGE_V4" trim="true" xpath="export/RETURN/MESSAGE_V4"/>
+</Context>
+]]></attr>
+<attr name="_data_format"><![CDATA[XML]]></attr>
+<attr name="__rootGlobalElementName"><![CDATA[BAPI_CUSTOMER_GETDETAIL2]]></attr>
+</Node>
+<Edge debugMode="true" fromNode="FOREACH_BAPI_CUSTOMER_GETDETAIL2_ACCOUNT:0" guiBendpoints="" id="Edge1" inPort="Port 0 (in)" metadata="864f7839-34c9-4e43-9070-50be1fbcf0eb" outPort="Port 0 (out)" toNode="MAP_WRITER0:0"/>
+<Edge debugMode="true" fromNode="XML_READER0:0" guiBendpoints="" id="Edge0" inPort="Port 0 (in)" metadata="6c10372e-8a85-46ec-9e43-b72abd85c52b" outPort="Port 0 (out)" toNode="FOREACH_BAPI_CUSTOMER_GETDETAIL2_ACCOUNT:0"/>
+</Phase>
+</Graph>

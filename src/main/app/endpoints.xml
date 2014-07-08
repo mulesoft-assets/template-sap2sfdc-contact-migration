@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:tracking="http://www.mulesoft.org/schema/mule/ee/tracking" xmlns:sap="http://www.mulesoft.org/schema/mule/sap" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+      xmlns="http://www.mulesoft.org/schema/mule/core"
+      xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+      xmlns:spring="http://www.springframework.org/schema/beans"
+      version="EE-3.5.0"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/sap http://www.mulesoft.org/schema/mule/sap/current/mule-sap.xsd
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/mule/ee/tracking/current/mule-tracking-ee.xsd">
+
+	<!-- 	In this file you should declare all your inbound endpoints and from here controll the access to your application -->
+
+	<flow name="triggerFlow" processingStrategy="synchronous" doc:name="triggerFlow" doc:description="This is the simpliest entry point to start the excecution of your Template
+Here you should:
+	* Define any inbound endpoint
+	* Handle any input parameter and transform it into the expected format by the mainFlow
+Here you should not:
+	* Run validations against external systems
+	* Choose flow of your application based on input parameters">
+        <http:inbound-endpoint exchange-pattern="request-response" host="localhost" port="${http.port}"  doc:name="Start Synchronization" path="migratecontacts"/>
+<sap:outbound-endpoint exchange-pattern="request-response" connector-ref="SAP" type="function" functionName="BAPI_CUSTOMER_GETCONTACTLIST" xmlVersion="2" outputXml="true" responseTimeout="10000" doc:name="query SAP for contacts">
+            <sap:definition><![CDATA[<jco>
+ <import>
+  <field name="MAXROWS">5</field>
+ </import>
+   <tables>
+  <table name="CUSTOMERRANGE">
+   <row>
+		<field name="SIGN">I</field>
+		<field name="OPTION">CP</field>
+		<field name="LOW">*</field>
+		<field name="HIGH"></field>
+   </row>   
+  </table>
+ </tables>
+</jco>]]></sap:definition>
+
+            </sap:outbound-endpoint>
+        <logger message="111111 #[payload]" level="INFO" doc:name="Logger"/>
+        <flow-ref name="mainFlow" doc:name="trigger 'mainFlow'" doc:description="mainFlow"/>
+        <set-payload value="&lt;body style='font-family:Courier'&gt;&lt;h1&gt;Batch Process initiated&lt;/h1&gt;&lt;b&gt;ID:&lt;/b&gt;#[payload.getId()]&lt;br/&gt;&lt;b&gt;Records to Be Processed: &lt;/b&gt;#[payload.getRecordCount()]&lt;br/&gt; &lt;b&gt;Start execution on: &lt;/b&gt;#[new java.util.Date()]&lt;/body&gt;" doc:name="set response body"/>
+        <http:response-builder status="200" contentType="text/html" doc:name="build HTTP response"/>
+
+    
+    </flow>
+</mule>

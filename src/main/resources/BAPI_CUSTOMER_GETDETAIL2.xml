@@ -1,0 +1,397 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BAPI_CUSTOMER_GETDETAIL2 timestamp="1404745621100"
+	version="1.0">
+	<import>
+		<COMPANYCODE type="field" sapDescription="Company code"
+			sapType="CHAR" sapLength="4" />
+		<CUSTOMERNO type="field" sapDescription="Customer" sapType="CHAR"
+			sapLength="10" />
+	</import>
+	<export>
+		<CUSTOMERADDRESS type="structure">
+			<CUSTOMER type="field" sapDescription="Customer Number"
+				sapType="CHAR" sapLength="10" />
+			<NAME type="field" sapDescription="Name 1" sapType="CHAR"
+				sapLength="35" />
+			<NAME_2 type="field" sapDescription="Name 2" sapType="CHAR"
+				sapLength="35" />
+			<NAME_3 type="field" sapDescription="Name 3" sapType="CHAR"
+				sapLength="35" />
+			<NAME_4 type="field" sapDescription="Name 4" sapType="CHAR"
+				sapLength="35" />
+			<CITY type="field" sapDescription="City" sapType="CHAR"
+				sapLength="35" />
+			<DISTRICT type="field" sapDescription="District" sapType="CHAR"
+				sapLength="35" />
+			<PO_BOX type="field" sapDescription="PO Box" sapType="CHAR"
+				sapLength="10" />
+			<POBX_PCD type="field" sapDescription="P.O. Box Postal Code"
+				sapType="CHAR" sapLength="10" />
+			<POSTL_CODE type="field" sapDescription="Postal Code"
+				sapType="CHAR" sapLength="10" />
+			<REGION type="field" sapDescription="Region (State, Province, County)"
+				sapType="CHAR" sapLength="3" />
+			<COUNTYCODE type="field" sapDescription="County Code"
+				sapType="CHAR" sapLength="3" />
+			<CITY_CODE type="field" sapDescription="City Code" sapType="CHAR"
+				sapLength="4" />
+			<STREET type="field" sapDescription="House number and street"
+				sapType="CHAR" sapLength="35" />
+			<TELEPHONE type="field" sapDescription="First telephone number"
+				sapType="CHAR" sapLength="16" />
+			<COUNTRY type="field" sapDescription="Country Key" sapType="CHAR"
+				sapLength="3" />
+			<COUNTRYISO type="field" sapDescription="Country ISO code"
+				sapType="CHAR" sapLength="2" />
+			<POBX_CTY type="field" sapDescription="PO Box city" sapType="CHAR"
+				sapLength="35" />
+			<LANGU type="field" sapDescription="Language Key" sapType="CHAR"
+				sapLength="1" />
+			<LANGU_ISO type="field" sapDescription="Language according to ISO 639"
+				sapType="CHAR" sapLength="2" />
+			<SORT_FLD type="field" sapDescription="Sort field" sapType="CHAR"
+				sapLength="10" />
+			<MATCHCODE1 type="field" sapDescription="Search term for matchcode search"
+				sapType="CHAR" sapLength="25" />
+			<MATCHCODE2 type="field" sapDescription="Search Term for Matchcode Search"
+				sapType="CHAR" sapLength="25" />
+			<MATCHCODE3 type="field" sapDescription="Search term for matchcode search"
+				sapType="CHAR" sapLength="25" />
+			<FORMOFADDR type="field" sapDescription="Title" sapType="CHAR"
+				sapLength="15" />
+			<TELEBOX type="field" sapDescription="Telebox number"
+				sapType="CHAR" sapLength="15" />
+			<TELEPHONE2 type="field" sapDescription="Second telephone number"
+				sapType="CHAR" sapLength="16" />
+			<TELETEX type="field" sapDescription="Teletex number"
+				sapType="CHAR" sapLength="30" />
+			<TELEX type="field" sapDescription="Telex number" sapType="CHAR"
+				sapLength="30" />
+			<TRANSPZONE type="field"
+				sapDescription="Transportation zone to or from which the goods are delivered"
+				sapType="CHAR" sapLength="10" />
+			<NIELSEN_ID type="field" sapDescription="Nielsen ID"
+				sapType="CHAR" sapLength="2" />
+		</CUSTOMERADDRESS>
+		<CUSTOMERCOMPANYDETAIL type="structure">
+			<CUSTOMER type="field" sapDescription="Customer Number"
+				sapType="CHAR" sapLength="10" />
+			<COMP_CODE type="field" sapDescription="Company Code"
+				sapType="CHAR" sapLength="4" />
+			<CLERK type="field" sapDescription="Accounting clerk" sapType="CHAR"
+				sapLength="2" />
+			<HD_OFFICE type="field"
+				sapDescription="Head office account number (in branch accounts)"
+				sapType="CHAR" sapLength="10" />
+			<ALT_PAYER type="field" sapDescription="Account number of an alternative payer"
+				sapType="CHAR" sapLength="10" />
+			<CUVD_CLEAR type="field"
+				sapDescription="Indicator: Clearing between customer and vendor ?"
+				sapType="CHAR" sapLength="1" />
+			<PMNTTRMS type="field" sapDescription="Terms of Payment Key"
+				sapType="CHAR" sapLength="4" />
+			<ACT_AT_CUS type="field" sapDescription="Our account number at customer"
+				sapType="CHAR" sapLength="12" />
+			<CUST_USER type="field" sapDescription="User at customer"
+				sapType="CHAR" sapLength="15" />
+			<NEXT_PAYEE type="field" sapDescription="Next payee"
+				sapType="CHAR" sapLength="10" />
+			<BUYING_GRP type="field" sapDescription="Account Number of Buying Group"
+				sapType="CHAR" sapLength="10" />
+			<INTERNET type="field" sapDescription="Internet address of partner company clerk"
+				sapType="CHAR" sapLength="130" />
+			<FAX type="field" sapDescription="Accounting clerk's fax number at the customer/vendor"
+				sapType="CHAR" sapLength="31" />
+			<PAYMENT_METHODS type="field"
+				sapDescription="List of the Payment Methods to be Considered"
+				sapType="CHAR" sapLength="10" />
+			<TEL type="field"
+				sapDescription="Accounting clerk's telephone number at business partner"
+				sapType="CHAR" sapLength="30" />
+		</CUSTOMERCOMPANYDETAIL>
+		<CUSTOMERGENERALDETAIL type="structure">
+			<CUSTOMER type="field" sapDescription="Customer Number"
+				sapType="CHAR" sapLength="10" />
+			<ACC_1_TIME type="field"
+				sapDescription="Indicator: Is the account a one-time account?"
+				sapType="CHAR" sapLength="1" />
+			<ADDRESS type="field" sapDescription="Address" sapType="CHAR"
+				sapLength="10" />
+			<ORDR_BLK_G type="field" sapDescription="Central order block for customer"
+				sapType="CHAR" sapLength="2" />
+			<EXPR_STAT type="field" sapDescription="Express train station"
+				sapType="CHAR" sapLength="25" />
+			<TRAIN_STAT type="field" sapDescription="Train station"
+				sapType="CHAR" sapLength="25" />
+			<LOC_NO_1 type="field" sapDescription="International location number  (part 1)"
+				sapType="NUM" sapLength="7" />
+			<LOC_NO_2 type="field" sapDescription="International location number (Part 2)"
+				sapType="NUM" sapLength="5" />
+			<AUTH_GROUP type="field" sapDescription="Authorization Group"
+				sapType="CHAR" sapLength="4" />
+			<INDUSTRY type="field" sapDescription="Industry key"
+				sapType="CHAR" sapLength="4" />
+			<CHK_DIGIT type="field"
+				sapDescription="Check digit for the international location number"
+				sapType="NUM" sapLength="1" />
+			<DATA_LINE type="field" sapDescription="Data communication line no."
+				sapType="CHAR" sapLength="14" />
+			<CREAT_DATE type="field" sapDescription="Date on which the Record Was Created"
+				sapType="DATE" sapLength="8" />
+			<ENTERED_BY type="field" sapDescription="Name of Person who Created the Object"
+				sapType="CHAR" sapLength="12" />
+			<UNLOAD_PT type="field" sapDescription="Indicator: Unloading points exist"
+				sapType="CHAR" sapLength="1" />
+			<BILL_BLK_G type="field" sapDescription="Central billing block for customer"
+				sapType="CHAR" sapLength="2" />
+			<FISK_ADDR type="field"
+				sapDescription="Account number of the master record with the fiscal address"
+				sapType="CHAR" sapLength="10" />
+			<WORK_TIME type="field" sapDescription="Working Time Calendar"
+				sapType="CHAR" sapLength="2" />
+			<ALT_PAYER type="field" sapDescription="Account number of an alternative payer"
+				sapType="CHAR" sapLength="10" />
+			<GROUPKEY type="field" sapDescription="Group key" sapType="CHAR"
+				sapLength="10" />
+			<ACCNT_GRP type="field" sapDescription="Customer Account Group"
+				sapType="CHAR" sapLength="4" />
+			<CLASSIFIC type="field" sapDescription="Customer classification"
+				sapType="CHAR" sapLength="2" />
+			<VENDOR_NO type="field" sapDescription="Account Number of Vendor or Creditor"
+				sapType="CHAR" sapLength="10" />
+			<DELI_BLK_G type="field" sapDescription="Central delivery block for the customer"
+				sapType="CHAR" sapLength="2" />
+			<LOC_CODE type="field" sapDescription="City Coordinates"
+				sapType="CHAR" sapLength="10" />
+			<DEL_FLAG_G type="field" sapDescription="Central Deletion Flag for Master Record"
+				sapType="CHAR" sapLength="1" />
+			<REG_MARKET type="field" sapDescription="Regional Market"
+				sapType="CHAR" sapLength="5" />
+			<PSTG_BLK_G type="field" sapDescription="Central posting block"
+				sapType="CHAR" sapLength="1" />
+			<TAX_NO_1 type="field" sapDescription="Tax Number 1"
+				sapType="CHAR" sapLength="16" />
+			<TAX_NO_2 type="field" sapDescription="Tax Number 2"
+				sapType="CHAR" sapLength="11" />
+			<EQUAL_TAX type="field"
+				sapDescription="Indicator: Business Partner Subject to Equalization Tax?"
+				sapType="CHAR" sapLength="1" />
+			<SLS_PUR_TX type="field" sapDescription="Liable for VAT"
+				sapType="CHAR" sapLength="1" />
+			<PAYER_DOC type="field"
+				sapDescription="Indicator: Is an alternative payer allowed in document?"
+				sapType="CHAR" sapLength="1" />
+			<TRADE_ID type="field" sapDescription="Company ID of trading partner"
+				sapType="CHAR" sapLength="6" />
+			<VAT_REG_NO type="field" sapDescription="VAT Registration Number"
+				sapType="CHAR" sapLength="20" />
+			<COMPETITOR type="field" sapDescription="Indicator: Competitor"
+				sapType="CHAR" sapLength="1" />
+			<SLSPARTNER type="field" sapDescription="Indicator: Sales partner"
+				sapType="CHAR" sapLength="1" />
+			<PROSPECT type="field" sapDescription="Indicator: Sales prospect"
+				sapType="CHAR" sapLength="1" />
+			<CUSTTYPE_4 type="field" sapDescription="Indicator for customer type 4"
+				sapType="CHAR" sapLength="1" />
+			<DFLT_SP type="field" sapDescription="ID for default sold-to party"
+				sapType="CHAR" sapLength="1" />
+			<LEGALSTAT type="field" sapDescription="Legal status"
+				sapType="CHAR" sapLength="2" />
+			<IND_CODE_1 type="field" sapDescription="Industry Code 1"
+				sapType="CHAR" sapLength="10" />
+			<IND_CODE_2 type="field" sapDescription="Industry code 2"
+				sapType="CHAR" sapLength="10" />
+			<IND_CODE_3 type="field" sapDescription="Industry code 3"
+				sapType="CHAR" sapLength="10" />
+			<IND_CODE_4 type="field" sapDescription="Industry code 4"
+				sapType="CHAR" sapLength="10" />
+			<IND_CODE_5 type="field" sapDescription="Industry code 5"
+				sapType="CHAR" sapLength="10" />
+			<INITCONTCT type="field" sapDescription="Initial contact"
+				sapType="CHAR" sapLength="10" />
+			<ANN_SALES type="field" sapDescription="Currency amount in BAPI interfaces"
+				sapType="BCD" sapLength="12" />
+			<SALES_YEAR type="field" sapDescription="Year For Which Sales are Given"
+				sapType="NUM" sapLength="4" />
+			<CURRENCY type="field" sapDescription="Currency Key"
+				sapType="CHAR" sapLength="5" />
+			<CURRENCY_ISO type="field" sapDescription="ISO currency code"
+				sapType="CHAR" sapLength="3" />
+			<EMPLOYEES type="field" sapDescription="Yearly number of employees"
+				sapType="NUM" sapLength="6" />
+			<EMPL_YEAR type="field"
+				sapDescription="Year for which the number of employees is given"
+				sapType="NUM" sapLength="4" />
+			<ATTRIBUTE type="field" sapDescription="Attribute 1"
+				sapType="CHAR" sapLength="2" />
+			<ATTRIB_2 type="field" sapDescription="Attribute 2" sapType="CHAR"
+				sapLength="2" />
+			<ATTRIB_3 type="field" sapDescription="Attribute 3" sapType="CHAR"
+				sapLength="2" />
+			<ATTRIB_4 type="field" sapDescription="Attribute 4" sapType="CHAR"
+				sapLength="2" />
+			<ATTRIB_5 type="field" sapDescription="Attribute 5" sapType="CHAR"
+				sapLength="2" />
+			<ATTRIB_6 type="field" sapDescription="Attribute 6" sapType="CHAR"
+				sapLength="3" />
+			<ATTRIB_7 type="field" sapDescription="Attribute 7" sapType="CHAR"
+				sapLength="3" />
+			<ATTRIB_8 type="field" sapDescription="Attribute 8" sapType="CHAR"
+				sapLength="3" />
+			<ATTRIB_9 type="field" sapDescription="Attribute 9" sapType="CHAR"
+				sapLength="3" />
+			<ATTRIB_10 type="field" sapDescription="Attribute 10"
+				sapType="CHAR" sapLength="3" />
+			<SOLE_PROP type="field" sapDescription="Natural Person"
+				sapType="CHAR" sapLength="1" />
+			<ANN_SALES1 type="field" sapDescription="Currency amount in BAPI interfaces"
+				sapType="BCD" sapLength="12" />
+			<TAXJURCODE type="field" sapDescription="Tax Jurisdiction"
+				sapType="CHAR" sapLength="15" />
+			<FY_VARIANT type="field" sapDescription="Fiscal Year Variant"
+				sapType="CHAR" sapLength="2" />
+			<DLVSCHEDUSE type="field" sapDescription="Usage Indicator"
+				sapType="CHAR" sapLength="3" />
+			<INSPBYCUST type="field"
+				sapDescription="Inspection Carried Out By Customer (No Inspection Lot)"
+				sapType="CHAR" sapLength="1" />
+			<INSPAFTDEL type="field"
+				sapDescription="Inspection for a Delivery Note After Outbound Delivery"
+				sapType="CHAR" sapLength="1" />
+			<REF_ACTGR type="field"
+				sapDescription="Reference Account Group for One-Time Account (Customer)"
+				sapType="CHAR" sapLength="4" />
+			<PLANT type="field" sapDescription="Plant" sapType="CHAR"
+				sapLength="4" />
+			<DME_IND type="field" sapDescription="Indicator for Data Medium Exchange"
+				sapType="CHAR" sapLength="1" />
+			<INSTR_KEY type="field" sapDescription="Instruction key for data medium exchange"
+				sapType="CHAR" sapLength="2" />
+			<DATA_TRANS type="field"
+				sapDescription="Status of Data Transfer into Subsequent Release"
+				sapType="CHAR" sapLength="1" />
+			<ASSIGN_HI type="field" sapDescription="Assignment to Hierarchy"
+				sapType="NUM" sapLength="2" />
+			<PMNT_BLOCK type="field" sapDescription="Payment Block"
+				sapType="CHAR" sapLength="1" />
+			<LABCUSTGRP type="field" sapDescription="IS-R Labeling: customer/plant group"
+				sapType="CHAR" sapLength="10" />
+			<NON_MILIT type="field" sapDescription="ID for mainly non-military use"
+				sapType="CHAR" sapLength="1" />
+			<MILIT_USE type="field" sapDescription="ID for mainly military use"
+				sapType="CHAR" sapLength="1" />
+			<CUST_COND_GRP1 type="field" sapDescription="Customer condition group 1"
+				sapType="CHAR" sapLength="2" />
+			<CUST_COND_GRP2 type="field" sapDescription="Customer condition group 2"
+				sapType="CHAR" sapLength="2" />
+			<CUST_COND_GRP3 type="field" sapDescription="Customer condition group 3"
+				sapType="CHAR" sapLength="2" />
+			<CUST_COND_GRP4 type="field" sapDescription="Customer condition group 4"
+				sapType="CHAR" sapLength="2" />
+			<CUST_COND_GRP5 type="field" sapDescription="Customer condition group 5"
+				sapType="CHAR" sapLength="2" />
+			<ALTPAYERAC type="field"
+				sapDescription="Indicator: Alternative payer using account number"
+				sapType="CHAR" sapLength="1" />
+			<TAX_TYPE type="field" sapDescription="Tax type" sapType="CHAR"
+				sapLength="2" />
+			<TAX_NO_TY type="field" sapDescription="Tax Number Type"
+				sapType="CHAR" sapLength="2" />
+			<TAX_NO_3 type="field" sapDescription="Tax Number 3"
+				sapType="CHAR" sapLength="18" />
+			<TAX_NO_4 type="field" sapDescription="Tax Number 4"
+				sapType="CHAR" sapLength="18" />
+			<NO_ICMS type="field" sapDescription="Customer is ICMS-exempt"
+				sapType="CHAR" sapLength="1" />
+			<NO_IPI type="field" sapDescription="Customer is IPI-exempt"
+				sapType="CHAR" sapLength="1" />
+			<SUBT_GRP type="field"
+				sapDescription="Customer group for Substitui�ao Tribut�ria calculation"
+				sapType="CHAR" sapLength="3" />
+			<CFOP_CAT type="field" sapDescription="Customer's CFOP category"
+				sapType="CHAR" sapLength="2" />
+			<TAXLAWICMS type="field" sapDescription="Tax law: ICMS"
+				sapType="CHAR" sapLength="3" />
+			<TAXLAWIPI type="field" sapDescription="Tax law: IPI"
+				sapType="CHAR" sapLength="3" />
+			<BCW type="field" sapDescription="Indicator for biochemical warfare for legal control"
+				sapType="CHAR" sapLength="1" />
+			<NUCL_NONP type="field"
+				sapDescription="Indicator for nuclear nonproliferation for legal control"
+				sapType="CHAR" sapLength="1" />
+			<NATL_SEC type="field"
+				sapDescription="Indicator for national security for legal control"
+				sapType="CHAR" sapLength="1" />
+			<MISS_TECH type="field"
+				sapDescription="Indicator for missile technology for legal control"
+				sapType="CHAR" sapLength="1" />
+			<SALES_BLKG type="field" sapDescription="Central sales block for customer"
+				sapType="CHAR" sapLength="2" />
+			<URL type="field" sapDescription="Uniform Resource Locator"
+				sapType="CHAR" sapLength="132" />
+			<REP_NAME type="field" sapDescription="Name of Representative"
+				sapType="CHAR" sapLength="10" />
+			<BUS_TYPE type="field" sapDescription="Type of Business"
+				sapType="CHAR" sapLength="30" />
+			<IND_TYPE type="field" sapDescription="Type of Industry"
+				sapType="CHAR" sapLength="30" />
+			<CONF_ST type="field" sapDescription="Status of Change Authorization (Central)"
+				sapType="CHAR" sapLength="1" />
+			<CONF_DATE type="field" sapDescription="Date on Which the Changes Were Confirmed"
+				sapType="DATE" sapLength="8" />
+			<CONF_TIME type="field" sapDescription="Time of Last Change Confirmation"
+				sapType="TIME" sapLength="6" />
+			<NO_DELETE type="field" sapDescription="Central deletion block for master record"
+				sapType="CHAR" sapLength="1" />
+			<CONSUMER type="field" sapDescription="Indicator: Consumer"
+				sapType="CHAR" sapLength="1" />
+		</CUSTOMERGENERALDETAIL>
+		<RETURN type="structure">
+			<TYPE type="field"
+				sapDescription="Message type: S Success, E Error, W Warning, I Info, A Abort"
+				sapType="CHAR" sapLength="1" />
+			<ID type="field" sapDescription="Message Class" sapType="CHAR"
+				sapLength="20" />
+			<NUMBER type="field" sapDescription="Message Number" sapType="NUM"
+				sapLength="3" />
+			<MESSAGE type="field" sapDescription="Message Text" sapType="CHAR"
+				sapLength="220" />
+			<LOG_NO type="field" sapDescription="Application log: log number"
+				sapType="CHAR" sapLength="20" />
+			<LOG_MSG_NO type="field"
+				sapDescription="Application log: Internal message serial number"
+				sapType="NUM" sapLength="6" />
+			<MESSAGE_V1 type="field" sapDescription="Message Variable"
+				sapType="CHAR" sapLength="50" />
+			<MESSAGE_V2 type="field" sapDescription="Message Variable"
+				sapType="CHAR" sapLength="50" />
+			<MESSAGE_V3 type="field" sapDescription="Message Variable"
+				sapType="CHAR" sapLength="50" />
+			<MESSAGE_V4 type="field" sapDescription="Message Variable"
+				sapType="CHAR" sapLength="50" />
+		</RETURN>
+	</export>
+	<tables>
+		<CUSTOMERBANKDETAIL type="table">
+			<row id="0">
+				<CUSTOMER type="field" sapDescription="Customer Number"
+					sapType="CHAR" sapLength="10" />
+				<BANK_CTRY type="field" sapDescription="Bank country key"
+					sapType="CHAR" sapLength="3" />
+				<BANK_KEY type="field" sapDescription="Bank Keys" sapType="CHAR"
+					sapLength="15" />
+				<BANK_ACCT type="field" sapDescription="Bank account number"
+					sapType="CHAR" sapLength="18" />
+				<CTRL_KEY type="field" sapDescription="Bank Control Key"
+					sapType="CHAR" sapLength="2" />
+				<PARTNER_BK type="field" sapDescription="Partner Bank Type"
+					sapType="CHAR" sapLength="4" />
+				<COLL_AUTH type="field"
+					sapDescription="Indicator: Is there collection authorization ?"
+					sapType="CHAR" sapLength="1" />
+				<BANK_REF type="field" sapDescription="Reference specifications for bank details"
+					sapType="CHAR" sapLength="20" />
+			</row>
+		</CUSTOMERBANKDETAIL>
+	</tables>
+</BAPI_CUSTOMER_GETDETAIL2>

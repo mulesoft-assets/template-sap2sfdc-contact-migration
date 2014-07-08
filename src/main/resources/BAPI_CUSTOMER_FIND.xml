@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BAPI_CUSTOMER_FIND timestamp="1404737272303" version="1.0">
+<import>
+<MAX_CNT type="field" sapDescription="Maximum Number of Records Found" sapType="INT" sapLength="4"/>
+<PL_HOLD type="field" sapDescription="Meta Char.Permitted" sapType="CHAR" sapLength="1"/>
+</import>
+<export>
+<RETURN type="structure">
+<TYPE type="field" sapDescription="Message type: S Success, E Error, W Warning, I Info, A Abort" sapType="CHAR" sapLength="1"/>
+<ID type="field" sapDescription="Message Class" sapType="CHAR" sapLength="20"/>
+<NUMBER type="field" sapDescription="Message Number" sapType="NUM" sapLength="3"/>
+<MESSAGE type="field" sapDescription="Message Text" sapType="CHAR" sapLength="220"/>
+<LOG_NO type="field" sapDescription="Application log: log number" sapType="CHAR" sapLength="20"/>
+<LOG_MSG_NO type="field" sapDescription="Application log: Internal message serial number" sapType="NUM" sapLength="6"/>
+<MESSAGE_V1 type="field" sapDescription="Message Variable" sapType="CHAR" sapLength="50"/>
+<MESSAGE_V2 type="field" sapDescription="Message Variable" sapType="CHAR" sapLength="50"/>
+<MESSAGE_V3 type="field" sapDescription="Message Variable" sapType="CHAR" sapLength="50"/>
+<MESSAGE_V4 type="field" sapDescription="Message Variable" sapType="CHAR" sapLength="50"/>
+</RETURN>
+</export>
+<tables>
+<RESULT_TAB type="table">
+<row id="0">
+<COMP_CODE type="field" sapDescription="Company Code" sapType="CHAR" sapLength="4"/>
+<TABNAME type="field" sapDescription="Table Name" sapType="CHAR" sapLength="30"/>
+<FIELDNAME type="field" sapDescription="Field Name" sapType="CHAR" sapLength="30"/>
+<FIELDVALUE type="field" sapDescription="Field value" sapType="CHAR" sapLength="132"/>
+<CUSTOMER type="field" sapDescription="Customer Number" sapType="CHAR" sapLength="10"/>
+<PSTG_BLK_G type="field" sapDescription="Central posting block" sapType="CHAR" sapLength="1"/>
+<PSTG_BLK_C type="field" sapDescription="Posting block for company code" sapType="CHAR" sapLength="1"/>
+<DEL_FLAG_G type="field" sapDescription="Central Deletion Flag for Master Record" sapType="CHAR" sapLength="1"/>
+<DEL_FLAG_C type="field" sapDescription="Deletion Flag for Master Record (Company Code Level)" sapType="CHAR" sapLength="1"/>
+<TYPE type="field" sapDescription="Message type: S Success, E Error, W Warning, I Info, A Abort" sapType="CHAR" sapLength="1"/>
+<ID type="field" sapDescription="Message Class" sapType="CHAR" sapLength="20"/>
+<NUMBER type="field" sapDescription="Message Number" sapType="NUM" sapLength="3"/>
+<MESSAGE type="field" sapDescription="Message Text" sapType="CHAR" sapLength="220"/>
+<LOG_NO type="field" sapDescription="Application log: log number" sapType="CHAR" sapLength="20"/>
+<LOG_MSG_NO type="field" sapDescription="Application log: Internal message serial number" sapType="NUM" sapLength="6"/>
+<MESSAGE_V1 type="field" sapDescription="Message Variable" sapType="CHAR" sapLength="50"/>
+<MESSAGE_V2 type="field" sapDescription="Message Variable" sapType="CHAR" sapLength="50"/>
+<MESSAGE_V3 type="field" sapDescription="Message Variable" sapType="CHAR" sapLength="50"/>
+<MESSAGE_V4 type="field" sapDescription="Message Variable" sapType="CHAR" sapLength="50"/></row></RESULT_TAB>
+<SELOPT_TAB type="table">
+<row id="0">
+<COMP_CODE type="field" sapDescription="Company Code" sapType="CHAR" sapLength="4"/>
+<TABNAME type="field" sapDescription="Table Name" sapType="CHAR" sapLength="30"/>
+<FIELDNAME type="field" sapDescription="Field Name" sapType="CHAR" sapLength="30"/>
+<FIELDVALUE type="field" sapDescription="Field value" sapType="CHAR" sapLength="132"/></row></SELOPT_TAB>
+</tables>
+</BAPI_CUSTOMER_FIND>

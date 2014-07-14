@@ -106,14 +106,14 @@ http://www.mulesoft.org/schema/mule/smtp http://www.mulesoft.org/schema/mule/smt
             </batch:step>
         </batch:process-records>
         <batch:on-complete>
-            <scatter-gather doc:name="Scatter-Gather">
+            <scatter-gather doc:name="All">
                 <processor-chain>
-                    <json:object-to-json-transformer doc:name="Object to JSON"/>
-                    <logger level="INFO" doc:name="Logger"/>
+                    <json:object-to-json-transformer doc:name="transform BatchJobInstance to JSON"/>
+                    <logger message="Migration process has finished: #[payload]" level="INFO" doc:name="log migration process has finished"/>
                 </processor-chain>
                 <processor-chain>
-                    <json:object-to-json-transformer doc:name="Object to JSON"/>
-                    <smtp:outbound-endpoint host="localhost" responseTimeout="10000" doc:name="SMTP"/>
+                    <json:object-to-json-transformer doc:name="transform BatchJobInstance to JSON"/>
+                    <smtp:outbound-endpoint host="${smtp.host}" port="${smtp.port}" user="${smtp.user}" password="${smtp.password}" to="${mail.to}" from="${mail.from}" subject="${mail.subject}" responseTimeout="10000" connector-ref="gmailConnector" doc:name="send result of the batch in mail"/>
                 </processor-chain>
             </scatter-gather>
 

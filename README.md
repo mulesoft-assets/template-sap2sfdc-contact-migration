@@ -1,5 +1,5 @@
 
-# Anypoint Template: SAP2SFDC-contact-broadcast
+# Anypoint Template: SAP2SFDC-contact-migration
 
 + [License Agreement](#licenseagreement)
 + [Use Case](#usecase)
@@ -106,7 +106,7 @@ For instructions on how to create a custom field in SFDC plase check this link:
 
 
 # Run it! <a name="runit"/>
-Simple steps to get SAP2SFDC-contact-broadcast running.
+Simple steps to get SAP2SFDC-contact-migration running.
 
 
 ## Running on premise <a name="runonopremise"/>

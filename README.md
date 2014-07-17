@@ -26,7 +26,10 @@ Note that using this template is subject to the conditions of this [License Agre
 Please review the terms of the license before downloading and using this template. In short, you are allowed to use the template for free with Mule ESB Enterprise Edition, CloudHub, or as a trial in Anypoint Studio.
 
 # Use Case <a name="usecase"/>
-WE NEED A NICE GUY WHO WRITE THIS FOR US!!!!
+Use this template if would like to sync Customer's Contacts from SAP to Salesforce Contacts in manner one time synchronization hitting the Http endpoint 
+			Inboud SAP endpoint retrieves all Contacts in SAP using standard BAPI  **BAPI_CUSTOMER_GETCONTACTLIST** and transforms them to Salesforce Contacts
+			In this template you may to choose whether Account for Contact should be created as well during the process. 
+			This functionality relies on standard BAPI for retrieving details about customers **BAPI_CUSTOMER_GETDETAIL2**
 
 # Considerations <a name="considerations"/>
 
@@ -89,19 +92,13 @@ In order to have this template working as expected, you should be aware of your 
 
 ### As destination of data
 
-This template makes use of the `External ID` field offered by Salesforce. Here is a short description on how SFDC define external ID's 
+</section>
+		<section id="running_on_studio">
+		<![CDATA[
+In order to make this Anypoint Template run on Mule Studio there are a few extra steps that needs to be made.
+Please check this Documentation Page:
 
-+ [What is an external ID?](http://help.salesforce.com/apex/HTViewHelpDoc?id=faq_import_general_what_is_an_external.htm)
-
-The templates uses the External ID in order to do xRef between the entities in both systems. The idea is, once an entity is created in SFDC it's decorated with an ID from the source system which will be used afteward for the template to reference it.
-
-You will need to create a new custom field in your **Product** entity in SFDC with the following name: 
-
-+ `sap_external_id`
-
-For instructions on how to create a custom field in SFDC plase check this link:
-
-+ [Create Custom Fields](http://www.salesforce.com/smallbusinesscenter/faq/customize.jsp#customfield)
++ [Enabling Your Studio Project for SAP](http://www.mulesoft.org/documentation/display/current/SAP+Connector#SAPConnector-EnablingYourStudioProjectforSAP)
 
 
 
@@ -139,10 +136,7 @@ Once you have imported you Anypoint Template into Anypoint Studio you need to fo
 + Once that is done, right click on you Anypoint Template project folder 
 + Hover you mouse over `"Run as"`
 + Click on  `"Mule Application"`
-In order to make this Anypoint Template run on Mule Studio there are a few extra steps that needs to be made.
-Please check this Documentation Page:
 
-+ [Enabling Your Studio Project for SAP](http://www.mulesoft.org/documentation/display/current/SAP+Connector#SAPConnector-EnablingYourStudioProjectforSAP)
 
 ### Running on Mule ESB stand alone <a name="runonmuleesbstandalone"/>
 Complete all properties in one of the property files, for example in [mule.prod.properties] (../blob/master/src/main/resources/mule.prod.properties) and run your app with the corresponding environment variable to use it. To follow the example, this will be `mule.env=prod`. 
@@ -193,7 +187,7 @@ In order to use this Mule Anypoint Template you need to configure properties (Cr
 + mail.to=your.email@gmail.com
 + mail.subject=Mail subject
 
-# policy for creating accounts in SF syncAccount, assignDummyAccount, doNotCreateAccount
+**Policy for creating accounts in SF syncAccount, assignDummyAccount, doNotCreateAccount**
 + account.sync.policy=syncAccount
 
 # API Calls <a name="apicalls"/>
@@ -202,13 +196,15 @@ Therefore calculating this amount may be an important factor to
 consider. Product Broadcast Template calls to the API can be
 calculated using the formula:
 
-**X / 200**
+**X * 3 + X / 200**
 
-Being X the number of Products to be synchronized on each run.
+Being X the number of Contacts to be synchronized on each run.
 
-The division by 200 is because, by default, Users are gathered in groups
-of 200 for each Upsert API Call in the commit step. Also consider
-that this calls are executed repeatedly every polling cycle.
+Multiplication by 3 is because for every user if account.sync.policy is set to value **syncAccounts** for every contact will be checked
+if an account with matching name exists in Salesforce and if not it will be created.
+
+The division by 200 is because, by default, contacts are gathered in groups
+of 200 for each Upsert API Call in the commit step. 
 
 For instance if 10 records are fetched from origin instance, then 1 api
 calls to SFDC will be made ( 1).

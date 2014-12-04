@@ -23,21 +23,27 @@ Here you should not:
 	* Choose flow of your application based on input parameters">
         <http:inbound-endpoint exchange-pattern="request-response" host="localhost" port="${http.port}"  doc:name="Start Synchronization" path="migratecontacts"/>
 <sap:outbound-endpoint exchange-pattern="request-response" connector-ref="SAP" type="function" functionName="BAPI_CUSTOMER_GETCONTACTLIST" xmlVersion="2" outputXml="true" responseTimeout="10000" doc:name="query SAP for contacts">
-            <sap:definition><![CDATA[<jco>
+            <sap:definition><![CDATA[<BAPI_CUSTOMER_GETCONTACTLIST type="function">
  <import>
-  <field name="MAXROWS">5</field>
+  <MAXROWS type="field" sapDescription="Maximum number of contact persons"
+			sapType="INT" sapLength="4">5</MAXROWS>
  </import>
-   <tables>
-  <table name="CUSTOMERRANGE">
-   <row>
-		<field name="SIGN">I</field>
-		<field name="OPTION">CP</field>
-		<field name="LOW">*</field>
-		<field name="HIGH"></field>
-   </row>   
-  </table>
+ <tables>
+		<CUSTOMERRANGE type="table">
+			<row id="0">
+				<SIGN type="field"
+					sapDescription="Inclusion/exclusion criterion SIGN for range tables"
+					sapType="CHAR" sapLength="1">I</SIGN>
+				<OPTION type="field" sapDescription="Selection operator OPTION for range tables"
+					sapType="CHAR" sapLength="2">CP</OPTION>
+				<LOW type="field" sapDescription="Customer Number" sapType="CHAR"
+					sapLength="10">*</LOW>
+				<HIGH type="field" sapDescription="Customer Number" sapType="CHAR"
+					sapLength="10"></HIGH>
+			</row>
+		</CUSTOMERRANGE>
  </tables>
-</jco>]]></sap:definition>
+</BAPI_CUSTOMER_GETCONTACTLIST>]]></sap:definition>
 
             </sap:outbound-endpoint>
         <logger message="111111 #[payload]" level="INFO" doc:name="Logger"/>

@@ -36,13 +36,14 @@ http://www.mulesoft.org/schema/mule/smtp http://www.mulesoft.org/schema/mule/smt
                         <enricher source="#[payload[0]]" target="#[recordVars['sapCustomer']]" doc:name="store result in 'sapCustomer'">
                             <processor-chain doc:name="Processor Chain">
                                 <sap:outbound-endpoint exchange-pattern="request-response" connector-ref="SAP" type="function" functionName="BAPI_CUSTOMER_GETDETAIL2" xmlVersion="2" outputXml="true" evaluateFunctionResponse="true" responseTimeout="10000" doc:name="Get Customer by Number">
-                                    <sap:definition><![CDATA[<jco>
+                                    <sap:definition><![CDATA[<BAPI_CUSTOMER_GETDETAIL2 type="function">
 	<import>
-		<field name="CUSTOMERNO">#[org.apache.commons.lang3.StringEscapeUtils.escapeXml(payload['AccountId'])]</field>
+		<CUSTOMERNO type="field" sapDescription="Customer" sapType="CHAR"
+			sapLength="10">#[org.apache.commons.lang3.StringEscapeUtils.escapeXml(payload['AccountId'])]</CUSTOMERNO>
 	</import>
   	<tables>
 	</tables>
-</jco>
+</BAPI_CUSTOMER_GETDETAIL2>
 ]]></sap:definition>
                                 </sap:outbound-endpoint>
                                 <data-mapper:transform config-ref="SAP_Customer_to_Salesforce_Account" doc:name="SAP Customer to Salesforce Account"/>

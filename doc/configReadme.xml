@@ -1,14 +1,17 @@
 <?xml version="1.0"?>
 <configuration>
 	<placeholders>
-		<placeholder id="template_name">SAP2SFDC-contact-migration</placeholder>
+		<placeholder id="template_name">SAP to Salesforce Contact Migration</placeholder>
 	</placeholders>
 	<sections>
 		<section id="use_case">
-			Use this template if would like to sync Customer's Contacts from SAP to Salesforce Contacts in manner one time synchronization hitting the Http endpoint 
-			Inboud SAP endpoint retrieves all Contacts in SAP using standard BAPI  **BAPI_CUSTOMER_GETCONTACTLIST** and transforms them to Salesforce Contacts
-			In this template you may to choose whether Account for Contact should be created as well during the process. 
-			This functionality relies on standard BAPI for retrieving details about customers **BAPI_CUSTOMER_GETDETAIL2**
+Use this template if you would like to sync SAP Customer's Contacts to Salesforce Contacts in manner one time synchronization hitting an HTTP endpoint.
+
+This Anypoint Template retrieves all Contacts in SAP using the standard BAPI **BAPI_CUSTOMER_GETCONTACTLIST** and transforms them into Salesforce Contacts.
+
+In this template you may to choose whether the Account for a Contact should be created as well during the process. 
+
+This functionality relies on the standard BAPI **BAPI_CUSTOMER_GETDETAIL2** for retrieving details about customers.
 		</section>
 		<section id="considerations">
 		<![CDATA[
@@ -26,12 +29,6 @@ This Anypoint template uses a few private Maven dependencies in oder to work. If
 You will find that there are three dependencies in the pom.xml file that begin with the following group id: 
 	**com.sap.conn.jco** 
 These dependencies are private for Mulesoft and will cause you application not to build from a Maven command line. You need to replace them with "provided" scope and copy the libraries into the build path.
-]]>
-		</section>
-		<section id="sap_src">
-<![CDATA[
-4. Partner profile
-Partner profile needs to be customized type of logical system as partner type. Outbound parameter of message type MATMAS is defined in the partner profile. As receiver port an RFC destination created earlier is used. Idoc Type MATMAS01 is defined.
 ]]>
 		</section>
 		<section id="sfdc_dst">

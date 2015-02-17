@@ -1,5 +1,5 @@
 
-# Anypoint Template: SAP to Salesforce Contact Migration
+# Anypoint Template: SAP2SFDC-contact-migration
 
 + [License Agreement](#licenseagreement)
 + [Use Case](#usecase)
@@ -26,13 +26,10 @@ Note that using this template is subject to the conditions of this [License Agre
 Please review the terms of the license before downloading and using this template. In short, you are allowed to use the template for free with Mule ESB Enterprise Edition, CloudHub, or as a trial in Anypoint Studio.
 
 # Use Case <a name="usecase"/>
-Use this template if you would like to sync SAP Customer's Contacts to Salesforce Contacts in manner one time synchronization hitting an HTTP endpoint.
-
-This Anypoint Template retrieves all Contacts in SAP using the standard BAPI **BAPI_CUSTOMER_GETCONTACTLIST** and transforms them into Salesforce Contacts.
-
-In this template you may to choose whether the Account for a Contact should be created as well during the process. 
-
-This functionality relies on the standard BAPI **BAPI_CUSTOMER_GETDETAIL2** for retrieving details about customers.
+Use this template if would like to sync Customer's Contacts from SAP to Salesforce Contacts in manner one time synchronization hitting the Http endpoint 
+			Inboud SAP endpoint retrieves all Contacts in SAP using standard BAPI  **BAPI_CUSTOMER_GETCONTACTLIST** and transforms them to Salesforce Contacts
+			In this template you may to choose whether Account for Contact should be created as well during the process. 
+			This functionality relies on standard BAPI for retrieving details about customers **BAPI_CUSTOMER_GETDETAIL2**
 
 # Considerations <a name="considerations"/>
 
@@ -61,7 +58,8 @@ There may be a few things that you need to know regarding SAP, in order for this
 SAP backend system is used as source of data. SAP Connector is used to send and receive the data from the SAP backend. 
 The connector can either use RFC calls of BAPI functions and/or IDoc messages for data exchange and needs to be properly customized as per chapter: [Properties to be configured](#propertiestobeconfigured)
 
-
+4. Partner profile
+Partner profile needs to be customized type of logical system as partner type. Outbound parameter of message type MATMAS is defined in the partner profile. As receiver port an RFC destination created earlier is used. Idoc Type MATMAS01 is defined.
 
 ## Salesforce Considerations <a name="salesforceconsiderations"/>
 
@@ -98,7 +96,7 @@ Please check this Documentation Page:
 
 
 # Run it! <a name="runit"/>
-Simple steps to get SAP to Salesforce Contact Migration running.
+Simple steps to get SAP2SFDC-contact-migration running.
 
 
 ## Running on premise <a name="runonopremise"/>
@@ -150,40 +148,43 @@ In order to use this Mule Anypoint Template you need to configure properties (Cr
 ### Application configuration
 **SAP Connector configuration**
 
-+ sap.jco.ashost=your.sap.address.com
-+ sap.jco.user=SAP_USER
-+ sap.jco.passwd=SAP_PASS
-+ sap.jco.sysnr=14
-+ sap.jco.client=800
-+ sap.jco.lang=EN
++ sap.jco.ashost `your.sap.address.com`
++ sap.jco.user `SAP_USER`
++ sap.jco.passwd `SAP_PASS`
++ sap.jco.sysnr `14`
++ sap.jco.client `800`
++ sap.jco.lang `EN`
 
 **SAP Endpoint configuration**
 
-+ sap.jco.connectioncount=2
-+ sap.jco.gwhost=your.sap.addres.com
-+ sap.jco.gwservice=sapgw14
-+ sap.jco.idoc.programid=PROGRAM_ID
++ sap.jco.connectioncount `2`
++ sap.jco.gwhost `your.sap.addres.com`
++ sap.jco.gwservice `sapgw14`
++ sap.jco.idoc.programid `PROGRAM_ID`
 
 **SalesForce Connector configuration**
 
-+ sfdc.username=bob.dylan@sfdc
-+ sfdc.password=DylanPassword123
-+ sfdc.securityToken=avsfwCUl7apQs56Xq2AKi3X
-+ sfdc.url=https://test.salesforce.com/services/Soap/u/28.0
++ sfdc.username `bob.dylan@sfdc`
++ sfdc.password `DylanPassword123`
++ sfdc.securityToken `avsfwCUl7apQs56Xq2AKi3X`
++ sfdc.url `https://test.salesforce.com/services/Soap/u/28.0`
 
-# SMPT Services configuration
-+ smtp.host=smtp.gmail.com
-+ smtp.port=587
-+ smtp.user=gmailuser
-+ smtp.password=gmailpassword
+**SMPT Services configuration**
 
-# Mail details
-+ mail.from=your.email@gmail.com
-+ mail.to=your.email@gmail.com
-+ mail.subject=Mail subject
++ smtp.host `smtp.gmail.com`
++ smtp.port `587`
++ smtp.user `gmailuser`
++ smtp.password `gmailpassword`
+
+**Mail details**
+
++ mail.from `your.email@gmail.com`
++ mail.to `your.email@gmail.com`
++ mail.subject `Mail subject`
 
 **Policy for creating accounts in SF syncAccount, assignDummyAccount, doNotCreateAccount**
-+ account.sync.policy=syncAccount
+
++ account.sync.policy `syncAccount`
 
 # API Calls <a name="apicalls"/>
 SalesForce imposes limits on the number of API Calls that can be made.

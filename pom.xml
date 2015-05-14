@@ -15,8 +15,8 @@
 	<name>template-sap2sfdc-contact-migration Anypoint Template Project</name>
 
 	<properties>
-		<sap.jco.version>3.0.9</sap.jco.version>
-		<sap.idoc.version>3.0.9</sap.idoc.version>
+		<sap.jco.version>3.0.10</sap.jco.version>
+		<sap.idoc.version>3.0.10</sap.idoc.version>
 		<sap.build.type>mac64</sap.build.type>
 	</properties>
 

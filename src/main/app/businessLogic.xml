@@ -51,6 +51,7 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
 ]]></sap:definition>
 
 
+
                                 </sap:outbound-endpoint>
                                 <data-mapper:transform config-ref="SAP_Customer_to_Salesforce_Account" doc:name="SAP Customer to Salesforce Account"/>
                             </processor-chain>

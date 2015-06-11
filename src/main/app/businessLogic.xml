@@ -1,31 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<mule xmlns:spring="http://www.springframework.org/schema/beans" xmlns:smtp="http://www.mulesoft.org/schema/mule/smtp" 
+<mule xmlns:tracking="http://www.mulesoft.org/schema/mule/ee/tracking" xmlns:metadata="http://www.mulesoft.org/schema/mule/metadata" 
+	  xmlns:dw="http://www.mulesoft.org/schema/mule/ee/dw" 
+	  xmlns:spring="http://www.springframework.org/schema/beans" 
+	  xmlns:smtp="http://www.mulesoft.org/schema/mule/smtp" 
 	  xmlns:json="http://www.mulesoft.org/schema/mule/json" 
 	  xmlns:sap="http://www.mulesoft.org/schema/mule/sap" 
 	  xmlns:batch="http://www.mulesoft.org/schema/mule/batch" 
-	  xmlns:data-mapper="http://www.mulesoft.org/schema/mule/ee/data-mapper" 
 	  xmlns:sfdc="http://www.mulesoft.org/schema/mule/sfdc"
       xmlns="http://www.mulesoft.org/schema/mule/core"
       xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
-      version="EE-3.6.2"
+      version="EE-3.7.0"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
 http://www.mulesoft.org/schema/mule/batch http://www.mulesoft.org/schema/mule/batch/current/mule-batch.xsd
-http://www.mulesoft.org/schema/mule/ee/data-mapper http://www.mulesoft.org/schema/mule/ee/data-mapper/current/mule-data-mapper.xsd
 http://www.mulesoft.org/schema/mule/sfdc http://www.mulesoft.org/schema/mule/sfdc/current/mule-sfdc.xsd
 http://www.mulesoft.org/schema/mule/sap http://www.mulesoft.org/schema/mule/sap/current/mule-sap.xsd
 http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/json/current/mule-json.xsd
 http://www.mulesoft.org/schema/mule/smtp http://www.mulesoft.org/schema/mule/smtp/current/mule-smtp.xsd
-http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd">
-
-    <data-mapper:config name="XML_To_Contact" transformationGraphPath="xml_to_contact.grf" doc:name="XML_To_Contact"/>
-    <data-mapper:config name="SAP_Customer_to_Salesforce_Account" transformationGraphPath="sap_customer_to_salesforce_account.grf" doc:name="SAP_Customer_to_Salesforce_Account"/>
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/ee/dw http://www.mulesoft.org/schema/mule/ee/dw/current/dw.xsd
+http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/mule/ee/tracking/current/mule-tracking-ee.xsd">
 
     <batch:job name="syncContactBatch">
         <batch:threading-profile poolExhaustedAction="WAIT"/>
         <batch:input>
-            <data-mapper:transform config-ref="XML_To_Contact" doc:name="Map XML To Contact"/>
+            <dw:transform-message doc:name="Transform Message">
+                <dw:set-payload><![CDATA[%dw 0.1
+%input payload application/xml
+%output application/java
+---
+payload.BAPI_CUSTOMER_GETCONTACTLIST.tables.CONTACTADDRESSDATA.*row map
+{
+	LastName : $.LASTNAME,
+	FirstName : $.FIRSTNAME,
+	Email : $.E_MAIL,
+	MailingCity : $.CITY,
+	MailingCountry : $.COUNTRY,
+	MailingPostalCode : $.POSTL_COD1,
+	MailingStreet : $.STREET,
+	Description : $.PERS_NO,
+	MailingState : $.STREET,
+	AccountId : $.CUSTOMER
+}]]></dw:set-payload>
+            </dw:transform-message>
+
         </batch:input>
         <batch:process-records>
             <batch:step name="getContactInSalesforceStep">
@@ -53,7 +72,17 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
 
 
                                 </sap:outbound-endpoint>
-                                <data-mapper:transform config-ref="SAP_Customer_to_Salesforce_Account" doc:name="SAP Customer to Salesforce Account"/>
+                                <dw:transform-message doc:name="Transform Message">
+                                    <dw:set-payload><![CDATA[%dw 0.1
+%input payload application/xml
+%output application/java
+---
+payload map 
+{
+	Fax : $.BAPI_CUSTOMER_GETDETAIL2.export.CUSTOMERCOMPANYDETAIL.FAX,
+	Name : $.BAPI_CUSTOMER_GETDETAIL2.export.CUSTOMERADDRESS.NAME	
+}]]></dw:set-payload>
+                                </dw:transform-message>
                             </processor-chain>
                         </enricher>
                         <enricher source="#[payload]" target="#[recordVars['sfAccount']]" doc:name="store result in 'sfAccount'">
@@ -61,7 +90,7 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
                         </enricher>
 
 	                <choice doc:name="Choice">
-	                    <when expression="#[recordVars['sfAccount'] is NullPayload]">
+	                    <when expression="#[recordVars['sfAccount'] == null]">
 	                        <enricher doc:name="store result in 'idOfAccountInSalesforce'" target="#[recordVars['idOfAccountInSalesforce']]" source="#[payload]">
 		                        <processor-chain doc:name="Processor Chain">
 
@@ -96,7 +125,7 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
                 <expression-component doc:name="Remove AccountId"><![CDATA[payload.remove('AccountId');]]></expression-component>
             </batch:step>            
             <batch:step name="upsertContactInSalesforceStep">
-                <expression-component doc:name="Prepare Contact for upsert"><![CDATA[if (recordVars['contactInSalesforce'] instanceof NullPayload) {
+                <expression-component doc:name="Prepare Contact for upsert"><![CDATA[if (recordVars['contactInSalesforce'] == null) {
 	// Remove ID as it is an insert
 	payload.remove('Id')
 } else {

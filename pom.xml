@@ -32,12 +32,13 @@
 							<groupId>org.mule.modules</groupId>
 							<artifactId>mule-module-sfdc</artifactId>
 						</inclusion>
-					
-					</inclusions>
+			            <inclusion>
+				            <groupId>com.mulesoft.muleesb.transports</groupId>
+				            <artifactId>mule-transport-sap</artifactId>
+			            </inclusion>
+			        </inclusions>
 				</configuration>
 			</plugin>
-
-			
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-dependency-plugin</artifactId>
@@ -140,12 +141,6 @@
             <version>${mule.version}</version>
             <scope>provided</scope>
         </dependency>
-<!--     <dependency> -->
-<!--             <groupId>com.mulesoft.weave</groupId> -->
-<!--             <artifactId>mule-plugin-weave_2.11</artifactId> -->
-<!--             <version>1.0.0-RC2-SNAPSHOT</version> -->
-<!--             <scope>provided</scope> -->
-<!--         </dependency> -->
     </dependencies>
 
 	<repositories>

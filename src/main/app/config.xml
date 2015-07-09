@@ -22,6 +22,6 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
     <sfdc:config name="Salesforce" username="${sfdc.username}" password="${sfdc.password}" securityToken="${sfdc.securityToken}" url="${sfdc.url}" doc:name="Salesforce">
         <sfdc:connection-pooling-profile initialisationPolicy="INITIALISE_ONE" exhaustedAction="WHEN_EXHAUSTED_GROW"/>
     </sfdc:config>
-    <smtp:gmail-connector name="gmailConnector" doc:name="Gmail" validateConnections="true" doc:description="This is the connector used to send email notifications. You should change its configuration to select a different email provider"/>
+    <smtp:gmail-connector name="gmailConnector" doc:name="Gmail" validateConnections="true" doc:description="This is the connector used to send email notifications. You should change its configuration to select a different email provider" contentType="text/html"/>
     
 </mule>

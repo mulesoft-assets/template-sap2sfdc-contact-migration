@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
 
@@ -32,11 +33,11 @@
 							<groupId>org.mule.modules</groupId>
 							<artifactId>mule-module-sfdc</artifactId>
 						</inclusion>
-			            <inclusion>
-				            <groupId>com.mulesoft.muleesb.transports</groupId>
-				            <artifactId>mule-transport-sap</artifactId>
-			            </inclusion>
-			        </inclusions>
+						<inclusion>
+							<groupId>com.mulesoft.muleesb.transports</groupId>
+							<artifactId>mule-transport-sap</artifactId>
+						</inclusion>
+					</inclusions>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -77,7 +78,7 @@
 						<configuration>
 							<tasks>
 								<zip destfile="${project.build.directory}/${project.build.finalName}.zip" update="true">
-									<zipfileset dir="${project.build.directory}/temp-native-lib" prefix="lib"/>
+									<zipfileset dir="${project.build.directory}/temp-native-lib" prefix="lib" />
 								</zip>
 							</tasks>
 						</configuration>
@@ -95,8 +96,7 @@
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 			<version>3.0</version>
-		</dependency>	
-		
+		</dependency>
 		<dependency>
 			<groupId>org.mule.modules</groupId>
 			<artifactId>mule-module-sfdc</artifactId>
@@ -107,8 +107,6 @@
 			<artifactId>mule-transport-sap</artifactId>
 			<version>${sap.version}</version>
 		</dependency>
-
-		
 		<dependency>
 			<groupId>com.sap.conn.jco</groupId>
 			<artifactId>sapjco3</artifactId>
@@ -128,20 +126,19 @@
 			<version>${sap.idoc.version}</version>
 			<scope>test</scope>
 		</dependency>
-
-	<dependency>
-            <groupId>org.mule.modules</groupId>
-            <artifactId>mule-module-spring-config</artifactId>
-            <version>${mule.version}</version>
-            <scope>provided</scope>
-        </dependency>
-    <dependency>
-            <groupId>org.mule.modules</groupId>
-            <artifactId>mule-module-http</artifactId>
-            <version>${mule.version}</version>
-            <scope>provided</scope>
-        </dependency>
-    </dependencies>
+		<dependency>
+			<groupId>org.mule.modules</groupId>
+			<artifactId>mule-module-spring-config</artifactId>
+			<version>${mule.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mule.modules</groupId>
+			<artifactId>mule-module-http</artifactId>
+			<version>${mule.version}</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
 
 	<repositories>
 		<repository>
@@ -167,12 +164,11 @@
 			<url>https://repository.mulesoft.org/nexus/content/repositories/thirdparty/</url>
 			<layout>default</layout>
 		</repository>
-		
 	</repositories>
 	<scm>
 		<connection>scm:git:https://github.com/mulesoft/template-sap2sfdc-contact-broadcast.git</connection>
 		<developerConnection>scm:git:https://github.com/mulesoft/template-sap2sfdc-contact-broadcast.git</developerConnection>
 		<url>http://github.com/mulesoft/template-sap2sfdc-contact-broadcast</url>
-	  <tag>HEAD</tag>
-  </scm>
+		<tag>HEAD</tag>
+	</scm>
 </project>

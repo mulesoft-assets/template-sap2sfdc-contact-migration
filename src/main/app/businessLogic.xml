@@ -111,7 +111,7 @@ payload.BAPI_CUSTOMER_GETCONTACTLIST.tables.CONTACTADDRESSDATA map {
                     <sfdc:upsert config-ref="Salesforce" externalIdFieldName="Id" type="Contact" doc:name="Upsert Contact in Salesforce">
                         <sfdc:objects ref="#[payload]"/>
                     </sfdc:upsert>
-                    <logger message="2222 #[payload]" level="INFO" doc:name="Log result"/>
+                    <logger message="Upsert result: #[payload]" level="INFO" doc:name="Log result"/>
                 </batch:commit>
             </batch:step>
         </batch:process-records>

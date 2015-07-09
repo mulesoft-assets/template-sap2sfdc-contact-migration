@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<mule xmlns:sap="http://www.mulesoft.org/schema/mule/sap" 
+<mule xmlns:spring="http://www.springframework.org/schema/beans" xmlns:sap="http://www.mulesoft.org/schema/mule/sap" 
 	xmlns:sfdc="http://www.mulesoft.org/schema/mule/sfdc" 
 	xmlns="http://www.mulesoft.org/schema/mule/core" 
 	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
@@ -8,9 +8,10 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 	xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
 http://www.mulesoft.org/schema/mule/sfdc http://www.mulesoft.org/schema/mule/sfdc/current/mule-sfdc.xsd
-http://www.mulesoft.org/schema/mule/sap http://www.mulesoft.org/schema/mule/sap/current/mule-sap.xsd">
-    <sub-flow name="createContactSapFlow" doc:name="createContactSapFlow">
-        <logger level="INFO" doc:name="Logger" message="5555555555555555555555555 #[payload]"/>
+http://www.mulesoft.org/schema/mule/sap http://www.mulesoft.org/schema/mule/sap/current/mule-sap.xsd
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd">
+    <sub-flow name="createContactSapFlow" >
+
         
 		<processor-chain doc:name="Processor Chain">
 			<sap:outbound-endpoint exchange-pattern="request-response"
@@ -27,23 +28,23 @@ http://www.mulesoft.org/schema/mule/sap http://www.mulesoft.org/schema/mule/sap/
 
 			</sap:outbound-endpoint>
 		</processor-chain>
-        <logger message="999999999999 #[payload]" level="INFO" doc:name="Logger"/>        
+        
         
     </sub-flow>
-    <sub-flow name="deleteFromSapFlow" doc:name="deleteFromSapFlow">
+    <sub-flow name="deleteFromSapFlow" >
         <logger level="INFO" doc:name="Logger"/>
     </sub-flow>
-    <sub-flow name="retrieveContactFromSalesforceFlow" doc:name="retrieveContactFromSalesforceFlow">
-        <logger message="aaaaaaaaaaaaaa #[payload]" level="INFO" doc:name="Logger"/>
+    <sub-flow name="retrieveContactFromSalesforceFlow" >
+
         <sfdc:query-single config-ref="Salesforce" query="SELECT Id, AccountID, Account.Name, FirstName, LastName FROM Contact WHERE FirstName = '#[payload[&quot;FirstName&quot;]]' and LastName = '#[payload[&quot;LastName&quot;]]'" doc:name="Salesforce" />
-        <logger level="INFO" doc:name="Logger"/>
+
     </sub-flow>
-    <sub-flow name="deleteFromSalesforceFlow" doc:name="deleteFromSalesforceFlow">
-        <logger message="#[payload]" level="INFO" doc:name="Logger"/>
+    <sub-flow name="deleteFromSalesforceFlow" >
+
         <sfdc:delete config-ref="Salesforce" doc:name="Salesforce">
             <sfdc:ids ref="#[payload]"/>
         </sfdc:delete>
-        <logger message="#[payload]" level="INFO" doc:name="Logger"/>
+
     </sub-flow>
 
 </mule>

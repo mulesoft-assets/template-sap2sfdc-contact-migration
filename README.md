@@ -1,5 +1,5 @@
 
-# Anypoint Template: SAP2SFDC-contact-migration
+# Anypoint Template: SAP to Salesforce contact migration
 
 + [License Agreement](#licenseagreement)
 + [Use Case](#usecase)
@@ -26,18 +26,18 @@ Note that using this template is subject to the conditions of this [License Agre
 Please review the terms of the license before downloading and using this template. In short, you are allowed to use the template for free with Mule ESB Enterprise Edition, CloudHub, or as a trial in Anypoint Studio.
 
 # Use Case <a name="usecase"/>
-Use this template if would like to sync Customer's Contacts from SAP to Salesforce Contacts in manner one time synchronization hitting the Http endpoint 
-			Inboud SAP endpoint retrieves all Contacts in SAP using standard BAPI  **BAPI_CUSTOMER_GETCONTACTLIST** and transforms them to Salesforce Contacts
-			In this template you may to choose whether Account for Contact should be created as well during the process. 
+Use this template if would like to sync Contacts from SAP to Salesforce in manner of one time synchronization by hitting the HTTP endpoint. 
+			Inbound SAP endpoint retrieves all Contacts in SAP using standard BAPI  **BAPI_CUSTOMER_GETCONTACTLIST** and transforms them to Salesforce Contacts
+			In this template you may choose whether Account for Contact should be created as well during the migration process. 
 			This functionality relies on standard BAPI for retrieving details about customers **BAPI_CUSTOMER_GETDETAIL2**
 
 # Considerations <a name="considerations"/>
 
 To make this Anypoint Template run, there are certain preconditions that must be considered.
-All of them deal with the preparations in both source (SAP) and destination (SFDC) systems, that must be made in order for all to run smoothly.
+All of them deal with the preparations in both source (SAP) and destination (SFDC) systems, that must be made in order for everything to run smoothly.
 **Failling to do so could lead to unexpected behavior of the template.**
 
-Before continue with the use of this Anypoint Template, you may want to check out this [Documentation Page](http://www.mulesoft.org/documentation/display/current/SAP+Connector#SAPConnector-EnablingYourStudioProjectforSAP), that will teach you how to work 
+Before unsing this Anypoint Template, you may want to check out this [Documentation Page](http://www.mulesoft.org/documentation/display/current/SAP+Connector#SAPConnector-EnablingYourStudioProjectforSAP), that will teach you how to work 
 with SAP and Anypoint Studio-
 
 ## Disclaimer
@@ -87,7 +87,7 @@ In order to have this template working as expected, you should be aware of your 
 </section>
 		<section id="running_on_studio">
 		<![CDATA[
-In order to make this Anypoint Template run on Mule Studio there are a few extra steps that needs to be made.
+In order to make this Anypoint Template run on Anypoint Studio there are a few extra steps that needs to be made.
 Please check this Documentation Page:
 
 + [Enabling Your Studio Project for SAP](http://www.mulesoft.org/documentation/display/current/SAP+Connector#SAPConnector-EnablingYourStudioProjectforSAP)
@@ -100,7 +100,7 @@ Please check this Documentation Page:
 
 
 # Run it! <a name="runit"/>
-Simple steps to get SAP2SFDC-contact-migration running.
+Simple steps to get SAP to Salesforce contact migration running.
 
 
 ## Running on premise <a name="runonopremise"/>
@@ -166,7 +166,7 @@ In order to use this Mule Anypoint Template you need to configure properties (Cr
 + sfdc.securityToken `avsfwCUl7apQs56Xq2AKi3X`
 + sfdc.url `https://test.salesforce.com/services/Soap/u/28.0`
 
-**SMPT Services configuration**
+**SMTP Services configuration**
 
 + smtp.host `smtp.gmail.com`
 + smtp.port `587`
@@ -179,7 +179,7 @@ In order to use this Mule Anypoint Template you need to configure properties (Cr
 + mail.to `your.email@gmail.com`
 + mail.subject `Mail subject`
 
-**Policy for creating accounts in SF syncAccount, assignDummyAccount, doNotCreateAccount**
+**Policy for creating accounts in SF syncAccount, doNotCreateAccount**
 
 + account.sync.policy `syncAccount`
 
@@ -199,8 +199,8 @@ if an account with matching name exists in Salesforce and if not it will be crea
 The division by 200 is because, by default, contacts are gathered in groups
 of 200 for each Upsert API Call in the commit step. 
 
-For instance if 10 records are fetched from origin instance, then 1 api
-calls to SFDC will be made ( 1).
+For instance if 10 records are fetched from origin instance, then 31 api
+calls to SFDC will be made (worst case scenario). If accounts already exist or syncing of accounts is disabled, there will be fewer API calls made.
 
 
 # Customize It!<a name="customizeit"/>

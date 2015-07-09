@@ -11,10 +11,8 @@ import java.io.FileInputStream;
 import java.util.Date;
 import java.util.Properties;
 
-import org.junit.Rule;
 import org.mule.api.config.MuleProperties;
 import org.mule.tck.junit4.FunctionalTestCase;
-import org.mule.tck.junit4.rule.DynamicPort;
 
 /**
  * This is the base test class for Anypoint Templates integration tests.

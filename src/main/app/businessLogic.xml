@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<mule xmlns:tracking="http://www.mulesoft.org/schema/mule/ee/tracking" xmlns:metadata="http://www.mulesoft.org/schema/mule/metadata" 
-	  xmlns:dw="http://www.mulesoft.org/schema/mule/ee/dw" 
-	  xmlns:spring="http://www.springframework.org/schema/beans" 
-	  xmlns:smtp="http://www.mulesoft.org/schema/mule/smtp" 
-	  xmlns:json="http://www.mulesoft.org/schema/mule/json" 
-	  xmlns:sap="http://www.mulesoft.org/schema/mule/sap" 
-	  xmlns:batch="http://www.mulesoft.org/schema/mule/batch" 
-	  xmlns:sfdc="http://www.mulesoft.org/schema/mule/sfdc"
-      xmlns="http://www.mulesoft.org/schema/mule/core"
-      xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
-      version="EE-3.7.0"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+<mule version="EE-3.7.0"
+	xmlns:tracking="http://www.mulesoft.org/schema/mule/ee/tracking" 
+	xmlns:dw="http://www.mulesoft.org/schema/mule/ee/dw" 
+	xmlns:spring="http://www.springframework.org/schema/beans" 
+	xmlns:smtp="http://www.mulesoft.org/schema/mule/smtp" 
+ 	xmlns:json="http://www.mulesoft.org/schema/mule/json" 
+  	xmlns:sap="http://www.mulesoft.org/schema/mule/sap" 
+  	xmlns:batch="http://www.mulesoft.org/schema/mule/batch" 
+  	xmlns:sfdc="http://www.mulesoft.org/schema/mule/sfdc"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
 http://www.mulesoft.org/schema/mule/batch http://www.mulesoft.org/schema/mule/batch/current/mule-batch.xsd
 http://www.mulesoft.org/schema/mule/sfdc http://www.mulesoft.org/schema/mule/sfdc/current/mule-sfdc.xsd
 http://www.mulesoft.org/schema/mule/sap http://www.mulesoft.org/schema/mule/sap/current/mule-sap.xsd
@@ -22,44 +22,40 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
 http://www.mulesoft.org/schema/mule/ee/dw http://www.mulesoft.org/schema/mule/ee/dw/current/dw.xsd
 http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/mule/ee/tracking/current/mule-tracking-ee.xsd">
 
+
     <batch:job name="syncContactBatch">
         <batch:threading-profile poolExhaustedAction="WAIT"/>
         <batch:input>
-            <dw:transform-message doc:name="Map XML to Contact">
-                <dw:set-payload><![CDATA[%dw 0.1
+            <dw:transform-message doc:name="XML to Contact">
+                <dw:set-payload><![CDATA[%dw 1.0
 %input payload application/xml
 %output application/java
 ---
-payload.BAPI_CUSTOMER_GETCONTACTLIST.tables.CONTACTADDRESSDATA.*row map
-{
-	LastName : $.LASTNAME,
-	FirstName : $.FIRSTNAME,
-	Email : $.E_MAIL,
-	MailingCity : $.CITY,
-	MailingCountry : $.COUNTRY,
-	MailingPostalCode : $.POSTL_COD1,
-	MailingStreet : $.STREET,
-	Description : $.PERS_NO,
-	MailingState : $.STREET,
-	AccountId : $.CUSTOMER
+payload.BAPI_CUSTOMER_GETCONTACTLIST.tables.CONTACTADDRESSDATA map {
+  LastName          : $.LASTNAME,
+  FirstName         : $.FIRSTNAME,
+  Email             : $.E_MAIL,
+  MailingCity       : $.CITY,
+  MailingCountry    : $.COUNTRY,
+  MailingPostalCode : $.POSTL_COD1,
+  MailingStreet     : $.STREET,
+  Description       : $.PERS_NO,
+  MailingState      : $.STREET,
+  (AccountId        : $.CUSTOMER) when $.CUSTOMER != null
 }]]></dw:set-payload>
             </dw:transform-message>
-
         </batch:input>
         <batch:process-records>
             <batch:step name="getContactInSalesforceStep">
-                <enricher source="#[payload]" target="#[recordVars['contactInSalesforce']]" doc:name="store result in 'contactInSalesforce'">
+                <enricher source="#[payload == null ? null : payload.Id]" target="#[payload.Id]" doc:name="enrich payload with existing contact Id">
                     <sfdc:query-single config-ref="Salesforce" query="Select Name, Id from Contact where LastName = '#[payload['LastName']]' and FirstName = '#[payload['FirstName']]'" doc:name="Query Salesforce for Contact"/>
                 </enricher>
             </batch:step>
-            <batch:step name="findOrCreateAccountInSalesforceSet" accept-expression="'syncAccount' == '${account.sync.policy}'">
-            
-	            <choice doc:name="Choice">
-	                	<when expression="#[payload['AccountId'] != null]">
-                        <enricher source="#[payload[0]]" target="#[recordVars['sapCustomer']]" doc:name="store result in 'sapCustomer'">
-                            <processor-chain doc:name="Processor Chain">
-                                <sap:outbound-endpoint exchange-pattern="request-response" connector-ref="SAP" type="function" functionName="BAPI_CUSTOMER_GETDETAIL2" xmlVersion="2" outputXml="true" evaluateFunctionResponse="true" responseTimeout="10000" doc:name="Get Customer by Number">
-                                    <sap:definition><![CDATA[<BAPI_CUSTOMER_GETDETAIL2 type="function">
+            <batch:step name="findOrCreateAccountInSalesforceStep" accept-expression="payload.AccountId != null &amp;&amp; '${account.sync.policy}' == 'syncAccount'">
+                <enricher source="#[payload]" target="#[recordVars.sapCustomer]" doc:name="store result in 'sapCustomer'">
+                    <processor-chain doc:name="Processor Chain">
+                        <sap:outbound-endpoint exchange-pattern="request-response" connector-ref="SAP" type="function" functionName="BAPI_CUSTOMER_GETDETAIL2" xmlVersion="2" outputXml="true" evaluateFunctionResponse="true" responseTimeout="10000" doc:name="Get Customer by Number">
+                            <sap:definition><![CDATA[<BAPI_CUSTOMER_GETDETAIL2 type="function">
 	<import>
 		<CUSTOMERNO type="field" sapDescription="Customer" sapType="CHAR"
 			sapLength="10">#[org.apache.commons.lang3.StringEscapeUtils.escapeXml(payload['AccountId'])]</CUSTOMERNO>
@@ -68,93 +64,75 @@ payload.BAPI_CUSTOMER_GETCONTACTLIST.tables.CONTACTADDRESSDATA.*row map
 	</tables>
 </BAPI_CUSTOMER_GETDETAIL2>
 ]]></sap:definition>
-
-
-
-                                </sap:outbound-endpoint>
-                                <dw:transform-message doc:name="Map SAP Customer to Salesforce Account">
-                                    <dw:set-payload><![CDATA[%dw 0.1
+                        </sap:outbound-endpoint>
+                        <dw:transform-message doc:name="SAP Customer to Salesforce Account">
+                            <dw:set-payload><![CDATA[%dw 1.0
 %input payload application/xml
 %output application/java
+
+%var export = payload.BAPI_CUSTOMER_GETDETAIL2.export
 ---
-payload map 
 {
-	Fax : $.BAPI_CUSTOMER_GETDETAIL2.export.CUSTOMERCOMPANYDETAIL.FAX,
-	Name : $.BAPI_CUSTOMER_GETDETAIL2.export.CUSTOMERADDRESS.NAME	
+  Name: export.CUSTOMERADDRESS.NAME,
+  Fax: export.CUSTOMERCOMPANYDETAIL.FAX
 }]]></dw:set-payload>
-                                </dw:transform-message>
+                        </dw:transform-message>
+
+                    </processor-chain>
+                </enricher>
+                <enricher source="#[payload]" target="#[recordVars.sfAccount]" doc:name="store result in 'sfAccount'">
+                    <sfdc:query-single config-ref="Salesforce" query="SELECT Id, Name FROM Account WHERE Name = '#[recordVars.sapCustomer.Name]'" doc:name="Query Account in  Salesforce Instance "/>
+                </enricher>
+                <choice doc:name="Does the corresponding account need to be created in Salesforce?">
+                    <when expression="#[recordVars.sfAccount == null]">
+                        <enricher source="#[payload[0].getId()]" target="#[payload.AccountId]" doc:name="store new accountId to payload">
+                            <processor-chain doc:name="Processor Chain">
+                                <sfdc:create-single config-ref="Salesforce" type="Account" doc:name="Create Account in Salesforce">
+                                    <sfdc:object ref="#[recordVars.sapCustomer]"/>
+                                </sfdc:create-single>
                             </processor-chain>
                         </enricher>
-                        <enricher source="#[payload]" target="#[recordVars['sfAccount']]" doc:name="store result in 'sfAccount'">
-                            <sfdc:query-single config-ref="Salesforce" query="SELECT Id, Name FROM Account WHERE Name = '#[recordVars['sapCustomer']['Name']]'" doc:name="Query Account in  Salesforce Instance "/>
+                    </when>
+                    <otherwise>
+                        <enricher  target="#[payload.AccountId]" doc:name="store existing accountId to payload">
+                            <set-payload value="#[recordVars.sfAccount.Id]" doc:name="Set Payload"/>
                         </enricher>
-
-	                <choice doc:name="Choice">
-	                    <when expression="#[recordVars['sfAccount'] == null]">
-	                        <enricher doc:name="store result in 'idOfAccountInSalesforce'" target="#[recordVars['idOfAccountInSalesforce']]" source="#[payload]">
-		                        <processor-chain doc:name="Processor Chain">
-
-	                                <set-payload value="#[recordVars['sapCustomer']]" doc:name="Set Payload"/>
-	       		                     <sfdc:create-single config-ref="Salesforce" type="Account" doc:name="Create Account in Salesforce">
-
-	       	        	             </sfdc:create-single>
-	                                <expression-transformer expression="#[payload[0].getId()]" doc:name="Get new account id"/>
-		                        </processor-chain>
-	                        </enricher>
-	                    </when>
-	                    <otherwise>
-
-	                        <enricher target="#[recordVars['idOfAccountInSalesforce']]" doc:name="store result in idOfAccountInSalesforce" source="#[payload]">
-	     	                   <expression-transformer expression="#[recordVars['sfAccount']['Id']]" doc:name="Get new account id"/>
-	                        </enricher>
-	                    </otherwise>
-	                </choice>
-	                <expression-component doc:name="Det AccountId"><![CDATA[payload['AccountId'] = recordVars['idOfAccountInSalesforce'];
-	]]></expression-component>
-	</when>
-	                    <otherwise>
-	                        <logger level="INFO" doc:name="Logger" message="There is no Account assigned to this contact. Doing nothing"/>
-	                    </otherwise>
-	                </choice>            
+                    </otherwise>
+                </choice>
+            
             
             </batch:step>
-            <batch:step name="setDummyAccountIdStep" accept-expression="'assignDummyAccount' == '${account.sync.policy}'">
-                <expression-component doc:name="Set dummy AccountId"><![CDATA[payload['AccountId']= '${account.id.in.b}';]]></expression-component>
-            </batch:step>            
-            <batch:step name="doNotCreateAccountStep" accept-expression="'doNotCreateAccount' == '${account.sync.policy}'">
-                <expression-component doc:name="Remove AccountId"><![CDATA[payload.remove('AccountId');]]></expression-component>
-            </batch:step>            
+            
             <batch:step name="upsertContactInSalesforceStep">
-                <expression-component doc:name="Prepare Contact for upsert"><![CDATA[if (recordVars['contactInSalesforce'] == null) {
-	// Remove ID as it is an insert
-	payload.remove('Id')
-} else {
-	// Add target system ID as it is an update
-    payload.put('Id', recordVars['contactInSalesforce']['Id'])
-}]]></expression-component>
-                <logger message="before upsert  #[payload] " level="INFO" doc:name="Log before upsert"/>
 
-                <batch:commit size="100" doc:name="Batch Commit">
+                <logger message="before upsert:  #[payload] " level="INFO" doc:name="Log before upsert"/>
+
+                <batch:commit size="200" doc:name="Batch Commit">
                     <sfdc:upsert config-ref="Salesforce" externalIdFieldName="Id" type="Contact" doc:name="Upsert Contact in Salesforce">
                         <sfdc:objects ref="#[payload]"/>
                     </sfdc:upsert>
-                    <logger message="2222 #[payload]" level="INFO" doc:name="Log result"/>
+                    <logger message="Upsert result: #[payload]" level="INFO" doc:name="Log result"/>
                 </batch:commit>
             </batch:step>
         </batch:process-records>
         <batch:on-complete>
-            <scatter-gather doc:name="All">
-                <processor-chain>
-                    <json:object-to-json-transformer doc:name="Transform BatchJobInstance to JSON"/>
-                    <logger message="Migration process has finished: #[payload]" level="INFO" doc:name="Log migration process has finished"/>
-                </processor-chain>
-                <processor-chain>
-                    <json:object-to-json-transformer doc:name="Transform BatchJobInstance to JSON"/>
-                    <smtp:outbound-endpoint host="${smtp.host}" port="${smtp.port}" user="${smtp.user}" password="${smtp.password}" to="${mail.to}" from="${mail.from}" subject="${mail.subject}" responseTimeout="10000" connector-ref="gmailConnector" doc:name="Send result of the batch in mail"/>
-                </processor-chain>
-            </scatter-gather>
-
-        </batch:on-complete>
+			<scatter-gather doc:name="All">
+				<processor-chain>
+					<json:object-to-json-transformer
+						doc:name="transform BatchJobInstance to JSON" />
+					<logger message="Migration process has finished: #[payload]"
+						level="INFO" doc:name="log 'Migration process has finished'" />
+				</processor-chain>
+				<processor-chain>
+					<parse-template location="./src/main/resources/email/body.html"
+						doc:name="Parse Template" />
+					<smtp:outbound-endpoint host="${smtp.host}"
+						port="${smtp.port}" user="${smtp.user}" password="${smtp.password}"
+						connector-ref="gmailConnector" to="${mail.to}" from="${mail.from}"
+						subject="${mail.subject}" responseTimeout="10000" doc:name="send mail" />
+				</processor-chain>
+			</scatter-gather>
+		</batch:on-complete>
     </batch:job>
     <flow name="mainFlow"  doc:description="This flow is the entry point to the Kick business logic.
 This flow should control the direction of the application, and it should be called by the different endpoints that your Template exposes to trigger it.">

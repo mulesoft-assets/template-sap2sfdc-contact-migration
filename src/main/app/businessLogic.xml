@@ -58,7 +58,7 @@ payload.BAPI_CUSTOMER_GETCONTACTLIST.tables.CONTACTADDRESSDATA map {
                             <sap:definition><![CDATA[<BAPI_CUSTOMER_GETDETAIL2 type="function">
 	<import>
 		<CUSTOMERNO type="field" sapDescription="Customer" sapType="CHAR"
-			sapLength="10">#[org.apache.commons.lang3.StringEscapeUtils.escapeXml(payload['AccountId'])]</CUSTOMERNO>
+			sapLength="10">#[payload.AccountId]</CUSTOMERNO>
 	</import>
   	<tables>
 	</tables>

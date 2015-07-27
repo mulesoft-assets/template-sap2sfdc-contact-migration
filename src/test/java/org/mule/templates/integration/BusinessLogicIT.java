@@ -33,8 +33,9 @@ import com.mulesoft.module.batch.BatchTestHelper;
 public class BusinessLogicIT extends AbstractTemplateTestCase {
 	protected static final String TEMPLATE_NAME = "contact-migration";
 	protected static final int TIMEOUT_SEC = 120;
+	private static final Logger LOG = LogManager.getLogger(BusinessLogicIT.class);
 	private BatchTestHelper helper;
-	private static final Logger log = LogManager.getLogger(BusinessLogicIT.class);
+	
 	
 	protected SubflowInterceptingChainLifecycleWrapper createContactSapFlow;
 	protected SubflowInterceptingChainLifecycleWrapper deleteFromSapFlow;
@@ -84,7 +85,7 @@ public class BusinessLogicIT extends AbstractTemplateTestCase {
 		payload.put("LastName", existingContactLastName);
 		MuleEvent event = retrieveContactFromSalesforceFlow.process(getTestEvent(payload, MessageExchangePattern.REQUEST_RESPONSE));
 		sfContact = (Map<String, Object>) event.getMessage().getPayload();
-		log.info(sfContact);
+		LOG.info(sfContact);
 		
 		Assert.assertNotNull(sfContact);
 		Assert.assertNotNull(sfContact.get("Account"));
@@ -94,7 +95,7 @@ public class BusinessLogicIT extends AbstractTemplateTestCase {
 	
 	private void deleteSalesforceTestData() throws MuleException, Exception{
 		MuleEvent event = deleteFromSalesforceFlow.process(getTestEvent(idsToDelete, MessageExchangePattern.REQUEST_RESPONSE));
-		log.info(event.getMessage().getPayload());
+		LOG.info(event.getMessage().getPayload());
 	}
 	
 

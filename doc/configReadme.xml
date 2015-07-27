@@ -5,10 +5,10 @@
 	</placeholders>
 	<sections>
 		<section id="use_case">
-			Use this template if would like to sync Contacts from SAP to Salesforce in manner of one time synchronization by hitting the HTTP endpoint. 
-			Inbound SAP endpoint retrieves all Contacts in SAP using standard BAPI  **BAPI_CUSTOMER_GETCONTACTLIST** and transforms them to Salesforce Contacts
-			In this template you may choose whether Account for Contact should be created as well during the migration process. 
-			This functionality relies on standard BAPI for retrieving details about customers **BAPI_CUSTOMER_GETDETAIL2**
+		Use this template if would like to sync Contacts from SAP to Salesforce in manner of one time synchronization by hitting the HTTP endpoint. 
+		Inbound SAP endpoint retrieves all Contacts in SAP using standard BAPI  **BAPI_CUSTOMER_GETCONTACTLIST** and transforms them to Salesforce Contacts
+		In this template you may choose whether Account for Contact should be created as well during the migration process. 
+		This functionality relies on standard BAPI for retrieving details about customers **BAPI_CUSTOMER_GETDETAIL2**
 		</section>
 		<section id="considerations">
 		<![CDATA[

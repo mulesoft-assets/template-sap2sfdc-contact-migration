@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<mule version="EE-3.7.0"
+<mule 
 	xmlns:tracking="http://www.mulesoft.org/schema/mule/ee/tracking" 
 	xmlns:dw="http://www.mulesoft.org/schema/mule/ee/dw" 
 	xmlns:spring="http://www.springframework.org/schema/beans" 
@@ -122,7 +122,7 @@ payload.BAPI_CUSTOMER_GETCONTACTLIST.tables.CONTACTADDRESSDATA map {
 						level="INFO" doc:name="log 'Migration process has finished'" />
 				</processor-chain>
 				<processor-chain>
-					<parse-template location="./src/main/resources/email/body.html"
+					<parse-template location="email/body.html"
 						doc:name="Parse Template" />
 					<smtp:outbound-endpoint host="${smtp.host}"
 						port="${smtp.port}" user="${smtp.user}" password="${smtp.password}"

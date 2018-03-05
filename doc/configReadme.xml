@@ -20,17 +20,8 @@ Before using this Anypoint Template, you may want to check out this [Documentati
 
 ## Disclaimer
 
-This Anypoint template uses a few private Maven dependencies from Mulesoft in order to work. If you intend to run this template with Maven support, you need to add three dependencies in the pom.xml file that begin with the following group id: 
-	**com.sap.conn.jco** or **com.sap.conn.idoc**
+This Anypoint template uses a few private Maven dependencies from Mulesoft in order to work. If you intend to run this template with Maven support, you need to add three extra dependencies for SAP to the pom.xml file.
 ]]>
-		</section>
-		<section id="sap_src">
-		<![CDATA[
-
-		</section>
-		<section id="sfdc_dst">
-		<![CDATA[
-
 		</section>
 		<section id="running_on_studio">
 		<![CDATA[
@@ -43,7 +34,7 @@ Please check this Documentation Page:
 		<section id="application_configuration">
 		<![CDATA[
 
-** HTTP Connector configuration **
+**HTTP Connector configuration**
 + http.port `9090`
 
 **SAP Connector configuration**

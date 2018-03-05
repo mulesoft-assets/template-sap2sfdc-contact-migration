@@ -41,8 +41,7 @@ Before using this Anypoint Template, you may want to check out this [Documentati
 
 ## Disclaimer
 
-This Anypoint template uses a few private Maven dependencies from Mulesoft in order to work. If you intend to run this template with Maven support, you need to add three dependencies in the pom.xml file that begin with the following group id: 
-	**com.sap.conn.jco** or **com.sap.conn.idoc**
+This Anypoint template uses a few private Maven dependencies from Mulesoft in order to work. If you intend to run this template with Maven support, you need to add three extra dependencies for SAP to the pom.xml file.
 
 
 ## SAP Considerations <a name="sapconsiderations"/>
@@ -54,17 +53,7 @@ There may be a few things that you need to know regarding SAP, in order for this
 SAP backend system is used as source of data. SAP Connector is used to send and receive the data from the SAP backend. 
 The connector can either use RFC calls of BAPI functions and/or IDoc messages for data exchange and needs to be properly customized as per chapter: [Properties to be configured](#propertiestobeconfigured)
 
-</section>
-		<section id="sfdc_dst">
-		<![CDATA[
 
-		</section>
-		<section id="running_on_studio">
-		<![CDATA[
-In order to make this Anypoint Template run on Anypoint Studio there are a few extra steps that needs to be made.
-Please check this Documentation Page:
-
-+ [Enabling Your Studio Project for SAP](http://www.mulesoft.org/documentation/display/current/SAP+Connector#SAPConnector-EnablingYourStudioProjectforSAP)
 
 ## Salesforce Considerations <a name="salesforceconsiderations"/>
 
@@ -133,7 +122,10 @@ Once you have imported you Anypoint Template into Anypoint Studio you need to fo
 + Once that is done, right click on you Anypoint Template project folder 
 + Hover you mouse over `"Run as"`
 + Click on  `"Mule Application"`
+In order to make this Anypoint Template run on Anypoint Studio there are a few extra steps that needs to be made.
+Please check this Documentation Page:
 
++ [Enabling Your Studio Project for SAP](http://www.mulesoft.org/documentation/display/current/SAP+Connector#SAPConnector-EnablingYourStudioProjectforSAP)
 
 ### Running on Mule ESB stand alone <a name="runonmuleesbstandalone"/>
 Complete all properties in one of the property files, for example in [mule.prod.properties] (../master/src/main/resources/mule.prod.properties) and run your app with the corresponding environment variable to use it. To follow the example, this will be `mule.env=prod`. 
@@ -150,7 +142,8 @@ Mule Studio provides you with really easy way to deploy your Template directly t
 ## Properties to be configured (With examples) <a name="propertiestobeconfigured"/>
 In order to use this Mule Anypoint Template you need to configure properties (Credentials, configurations, etc.) either in properties file or in CloudHub as Environment Variables. Detail list with examples:
 ### Application configuration
-** HTTP Connector configuration **
+
+**HTTP Connector configuration**
 + http.port `9090`
 
 **SAP Connector configuration**

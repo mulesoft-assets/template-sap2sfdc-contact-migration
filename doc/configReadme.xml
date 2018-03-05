@@ -1,0 +1,117 @@
+<?xml version="1.0"?>
+<configuration>
+	<placeholders>
+		<placeholder id="template_name">SAP to Salesforce contact migration</placeholder>
+	</placeholders>
+	<sections>
+		<section id="use_case">
+		Use this template if would like to sync Contacts from SAP to Salesforce in manner of one time synchronization by hitting the HTTP endpoint. 
+		Inbound SAP endpoint retrieves all Contacts in SAP using standard BAPI  **BAPI_CUSTOMER_GETCONTACTLIST** and transforms them to Salesforce Contacts
+		In this template you may choose whether Account for Contact should be created as well during the migration process. 
+		This functionality relies on standard BAPI for retrieving details about customers **BAPI_CUSTOMER_GETDETAIL2**
+		</section>
+		<section id="considerations">
+		<![CDATA[
+To make this Anypoint Template run, there are certain preconditions that must be considered.
+All of them deal with the preparations in both source (SAP) and destination (SFDC) systems, that must be made in order for everything to run smoothly.
+**Failing to do so could lead to unexpected behavior of the template.**
+
+Before using this Anypoint Template, you may want to check out this [Documentation Page](http://www.mulesoft.org/documentation/display/current/SAP+Connector#SAPConnector-EnablingYourStudioProjectforSAP), that will teach you how to work with SAP and Anypoint Studio.
+
+## Disclaimer
+
+This Anypoint template uses a few private Maven dependencies from Mulesoft in order to work. If you intend to run this template with Maven support, you need to add three extra dependencies for SAP to the pom.xml file.
+]]>
+		</section>
+		<section id="running_on_studio">
+		<![CDATA[
+In order to make this Anypoint Template run on Anypoint Studio there are a few extra steps that needs to be made.
+Please check this Documentation Page:
+
++ [Enabling Your Studio Project for SAP](http://www.mulesoft.org/documentation/display/current/SAP+Connector#SAPConnector-EnablingYourStudioProjectforSAP)
+		]]>
+		</section>
+		<section id="application_configuration">
+		<![CDATA[
+
+**HTTP Connector configuration**
++ http.port `9090`
+
+**SAP Connector configuration**
+
++ sap.jco.ashost `your.sap.address.com`
++ sap.jco.user `SAP_USER`
++ sap.jco.passwd `SAP_PASS`
++ sap.jco.sysnr `14`
++ sap.jco.client `800`
++ sap.jco.lang `EN`
+
+**SalesForce Connector configuration**
+
++ sfdc.username `bob.dylan@sfdc`
++ sfdc.password `DylanPassword123`
++ sfdc.securityToken `avsfwCUl7apQs56Xq2AKi3X`
+
+**SMTP Services configuration**
+
++ smtp.host `smtp.gmail.com`
++ smtp.port `587`
++ smtp.user `gmailuser`
++ smtp.password `gmailpassword`
+
+**Mail details**
+
++ mail.from `your.email@gmail.com`
++ mail.to `your.email@gmail.com`
++ mail.subject `Mail subject`
+
+**Policy for creating accounts in SF syncAccount, doNotCreateAccount**
+
++ account.sync.policy `syncAccount`
+]]>
+		</section>
+		<section id="api_calls">
+		<![CDATA[
+Salesforce imposes limits on the number of API Calls that can be made.
+Therefore calculating this amount may be an important factor to
+consider. Product Broadcast Template calls to the API can be
+calculated using the formula:
+
+**X * 3 + X / 200**
+
+Being X the number of Contacts to be synchronized on each run.
+
+Multiplication by 3 is because for every user if account.sync.policy is set to value **syncAccounts** for every contact will be checked
+if an account with matching name exists in Salesforce and if not it will be created.
+
+The division by 200 is because, by default, contacts are gathered in groups
+of 200 for each Upsert API Call in the commit step. 
+
+For instance if 10 records are fetched from origin instance, then 31 api
+calls to SFDC will be made (worst case scenario). If accounts already exist or syncing of accounts is disabled, there will be fewer API calls made.
+]]>
+		</section>
+		<section id="default_business_logic_xml">
+		<![CDATA[
+Functional aspect of the Template is implemented on this XML, directed by one flow that will check for Salesforce creations/updates. The several message processors constitute four high level actions that fully implement the logic of this Template:
+1. During the Input stage the Template will go to the SAP and query all the existing Contacts that match the filter criteria.
+2. During the Process Records stage, each SAP Contact will be checked by name against Salesforce, if it has an existing matching objects in Salesforce.
+3. Account associated with SAP Contact is migrated to Account associated with Contact in Salesforce. The matching is performed by querying a Salesforce instance for an entry with name same as the given SAP Account name.
+4. Then the upsert of Contact in Salesforce is performed.
+5. Finally during the On Complete stage the Template will log output statistics data into the console and send email.
+]]>
+		</section>
+		<section id="default_endpoints_xml">
+		<![CDATA[
+This is the file where you will found the inbound and outbound sides of your integration app.
+This Template has only an [HTTP Listener Connector](http://www.mulesoft.org/documentation/display/current/HTTP+Listener+Connector) as the way to trigger the use case.
+$H$H# Trigger Flow
+**HTTP Listener Connector** - Start Report Generation
++ `${http.port}` is set as a property to be defined either on a property file or in CloudHub environment variables.
++ The path configured by default is `migratecontacts` and you are free to change for the one you prefer.
++ The host name for all endpoints in your CloudHub configuration should be defined as `localhost`. CloudHub will then route requests from your application domain URL to the endpoint.
++ The endpoint is a *request-response* and a result of calling it is the response with the total records fetched by the criteria specified.
+]]>
+		</section>
+	</sections>
+</configuration>

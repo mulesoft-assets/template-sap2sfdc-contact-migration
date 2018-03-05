@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:salesforce="http://www.mulesoft.org/schema/mule/salesforce"
+	xmlns:sap="http://www.mulesoft.org/schema/mule/sap" xmlns:email="http://www.mulesoft.org/schema/mule/email"
+	xmlns:batch="http://www.mulesoft.org/schema/mule/batch" xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+http://www.mulesoft.org/schema/mule/email http://www.mulesoft.org/schema/mule/email/current/mule-email.xsd 
+http://www.mulesoft.org/schema/mule/batch http://www.mulesoft.org/schema/mule/batch/current/mule-batch.xsd 
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/sap http://www.mulesoft.org/schema/mule/sap/current/mule-sap.xsd
+http://www.mulesoft.org/schema/mule/salesforce http://www.mulesoft.org/schema/mule/salesforce/current/mule-salesforce.xsd">
+	<flow name="businessLogicFlow" doc:id="6598baa3-0de9-4ed3-922a-aa1d8b1d9a40">
+		<ee:transform doc:name="Set XML input"
+			doc:id="1ba13da0-0208-49f1-8b16-5ee80aeb42e9">
+			<ee:message>
+				<ee:set-payload><![CDATA[%dw 2.0
+output application/xml
+---
+{
+  "BAPI_CUSTOMER_GETCONTACTLIST": {
+    "import": {
+      "MAXROWS": "5"
+    },
+    "tables": {
+      "CUSTOMERRANGE": {
+        "row": {
+          "SIGN": "I",
+          "OPTION": "CP",
+          "LOW": "*",
+          "HIGH": null
+        }
+      }
+    }
+  }
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<sap:execute-synchronous-remote-function-call
+			doc:name="Query SAP for contacts" doc:id="774ef7ea-93f0-45c6-94c5-d61d54c03294"
+			key="BAPI_CUSTOMER_GETCONTACTLIST" config-ref="SAP" >
+		</sap:execute-synchronous-remote-function-call>
+		<ee:transform doc:name="XML to Contact"
+			doc:id="1a855817-b88b-4a5d-93b8-8e36fe954494">
+			<ee:message>
+				<ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+payload.BAPI_CUSTOMER_GETCONTACTLIST.tables.CONTACTADDRESSDATA.*row map {
+  LastName          : $.LASTNAME,
+  FirstName         : $.FIRSTNAME,
+  Email             : $.E_MAIL,
+  MailingCity       : $.CITY,
+  MailingCountry    : $.COUNTRY,
+  MailingPostalCode : $.POSTL_COD1,
+  MailingStreet     : $.STREET,
+  Description       : $.PERS_NO,
+  MailingState      : $.STREET,
+  (AccountId        : $.CUSTOMER) if ($.CUSTOMER != null)
+}]]>
+				</ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<batch:job jobName="syncContactBatch" doc:id="5fef0ef5-69c0-4b28-9d5b-523a0f26123c" >
+			<batch:process-records >
+				<batch:step name="getContactInSalesforceStep" doc:id="304da619-13b3-4574-89f4-61759d285d8d" >
+					<salesforce:query-single doc:name="Query Salesforce for Contact" doc:id="86ebc18e-5b15-4762-8e3d-ef6f0fc59725" target="IdInSF" config-ref="Salesforce">
+						<salesforce:salesforce-query >SELECT Id FROM Contact WHERE FirstName=':firstname' AND LastName = ':lastname'</salesforce:salesforce-query>
+						<salesforce:parameters ><![CDATA[#[output applicaton/java
+---
+{
+	"lastname" : payload.LastName,
+	"firstname" : payload.FirstName
+}]]]>
+</salesforce:parameters>
+					
+</salesforce:query-single>
+					<ee:transform doc:name="Push Id to payload" doc:id="a9ed90b8-10d2-46e9-9026-ee182c8098d4" >
+						<ee:message >
+							<ee:set-payload ><![CDATA[%dw 2.0
+output application/java
+---
+payload.AccountId]]></ee:set-payload>
+						</ee:message>
+						<ee:variables >
+							<ee:set-variable variableName="recordPayload" ><![CDATA[%dw 2.0
+output application/java
+---
+payload ++ vars.IdInSF]]></ee:set-variable>
+						</ee:variables>
+					
+</ee:transform>
+				
+</batch:step>
+				<batch:step name="findOrCreateAccountInSalesforceStep" doc:id="245116f2-d901-4b9b-829d-ac3b0d2df982" acceptExpression="#['${account.sync.policy}' == 'syncAccount' and payload != null]">
+					<ee:transform doc:name="Set XML input" doc:id="695db540-b78f-4aba-9ef9-8c6f5f5e7a32" >
+						<ee:message >
+							<ee:set-payload ><![CDATA[%dw 2.0
+output application/xml
+---
+{
+  "BAPI_CUSTOMER_GETDETAIL2": {
+    "import": {
+      "CUSTOMERNO": payload
+    },
+    "tables": null
+  }
+}]]></ee:set-payload>
+						</ee:message>
+					</ee:transform>
+					<sap:execute-synchronous-remote-function-call doc:name="Get Customer by Number" doc:id="28cd310f-3063-419b-9943-467dccff9c8d" config-ref="SAP" key="BAPI_CUSTOMER_GETDETAIL2">
+					</sap:execute-synchronous-remote-function-call>
+					<ee:transform doc:name="SAP Customer to Salesforce Account" doc:id="62d9db47-25ac-4904-a00e-650c38d3293f" >
+						<ee:message >
+						</ee:message>
+						<ee:variables >
+							<ee:set-variable variableName="sapCustomer" ><![CDATA[%dw 2.0
+output application/java
+var export = payload.BAPI_CUSTOMER_GETDETAIL2.export
+---
+{
+  Name: export.CUSTOMERADDRESS.NAME,
+  Fax: export.CUSTOMERCOMPANYDETAIL.FAX
+}]]></ee:set-variable>
+						</ee:variables>
+					
+</ee:transform>
+					<salesforce:query-single doc:name="Query Account in  Salesforce Instance " doc:id="9f4f4371-c3c1-41f7-b524-298432d01621" config-ref="Salesforce" target="sfAccount">
+						<salesforce:salesforce-query >SELECT Id, Name FROM Account WHERE Name = ':name'</salesforce:salesforce-query>
+						<salesforce:parameters ><![CDATA[#[output applicaton/java
+---
+{
+	name : vars.sapCustomer.Name
+}]]]></salesforce:parameters>
+					
+</salesforce:query-single>
+					<choice doc:name="Choice" doc:id="7f416201-27d2-4f24-a5b2-b86288ed44d7" >
+						<when expression="#[vars.sfAccount == null]" >
+							<ee:transform doc:name="Set Account input " doc:id="34e2b79c-48e8-4d91-af54-99bf87b88330">
+						<ee:message>
+							<ee:set-payload><![CDATA[%dw 2.0
+output application/java
+---
+{
+ 	Name: vars.sapCustomer.Name
+}]]></ee:set-payload>
+						</ee:message>
+					</ee:transform>
+							<salesforce:create-single doc:name="Create Account in Salesforce" doc:id="e367be8b-683f-403e-a4ee-f306aa3c0574" config-ref="Salesforce" type="Account">
+								
+							</salesforce:create-single>
+							<ee:transform doc:name="Store new accountId to payload" doc:id="9ad4464d-f459-456d-a190-350dc18d8423" >
+								<ee:message >
+									<ee:set-payload ><![CDATA[%dw 2.0
+output application/java
+---
+vars.recordPayload - 'AccountId' ++ {AccountId : payload.id}]]></ee:set-payload>
+								</ee:message>
+							</ee:transform>
+						
+</when>
+						<otherwise >
+							<logger level="INFO" doc:name="Log - Existing Account Id is already set" doc:id="ebc05348-dc48-4cc3-81b3-f3e0d8555390" message="Log - Existing Account Id is already set"/>
+							<ee:transform doc:name="Store existing accountId to payload" doc:id="44ccd4e2-dad5-4052-8232-1bdf3430df8c" >
+								<ee:message >
+									<ee:set-payload ><![CDATA[%dw 2.0
+output application/java
+---
+vars.recordPayload - 'AccountId' ++ {AccountId : vars.sfAccount.Id}]]>
+</ee:set-payload>
+								</ee:message>
+							</ee:transform>
+						
+</otherwise>
+					</choice>
+</batch:step>
+				<batch:step name="upsertContactInSalesforceStep" doc:id="cb8c3498-8462-4fc1-a11f-418154d3e857" >
+					<logger level="INFO" doc:name="Log before upsert" doc:id="842675d7-1104-4dd4-9339-722afc308d82" message="before upsert:  #[output application/json --- payload] "/>
+					<batch:aggregator doc:name="Batch Commit" doc:id="c3c49596-c695-4199-a2d2-5322afa91270" size="200">
+						<salesforce:upsert doc:name="Upsert Contact in Salesforce" doc:id="8d3a21bc-ec0e-40e4-bc34-5df7a0648c9e" config-ref="Salesforce" externalIdFieldName="Id" type="Contact"/>
+						<logger level="INFO" doc:name="Log result" doc:id="2d1e9178-f0d9-4a9f-81a4-9ecd5ae09b57" message="Upsert result: #[output application/json --- payload]"/>
+					</batch:aggregator>
+				</batch:step>
+			</batch:process-records>
+			<batch:on-complete >
+				<scatter-gather doc:name="All" doc:id="c34666fc-9617-4c90-9e01-ebe444347934" >
+					<route >
+						<logger level="INFO" doc:name="Log 'Migration process has finished'" doc:id="ec1e1ec9-6944-4e84-aefa-d050ed2fb4e6" message="Migration process has finished"/>
+					</route>
+					<route >
+						<ee:transform doc:name="Prepare migration result email" doc:id="2b708562-4958-4a2e-9d93-e82de4f5f821">
+							<ee:message>
+								<ee:set-payload><![CDATA[%dw 2.0
+ output text/plain
+ ---
+ "Migration Report: \n"
+  
+ ++ "\n Time [milliseconds]: " 		++ payload.elapsedTimeInMillis
+ ++ "\n Total Records: "			++ payload.totalRecords
+ ++ "\n Successful Records: "		++ payload.successfulRecords
+ ++ "\n Failed Records: "			++ payload.failedRecords
+ ++ "\n Loaded Records: "			++ payload.loadedRecords
+ ++ "\n Processed Records: " 		++ payload.processedRecords]]></ee:set-payload>
+							</ee:message>
+						</ee:transform>
+ 						<email:send doc:name="Send migration email" doc:id="29911194-de15-4d0e-b180-3806633577ce" fromAddress="${mail.from}" subject="${mail.subject}" config-ref="Gmail_SMTP">
+							<email:to-addresses >
+								<email:to-address value="${mail.to}" />
+							</email:to-addresses>
+						</email:send>
+					</route>
+				</scatter-gather>
+			</batch:on-complete>
+		</batch:job>
+	</flow>
+	<flow name="mainFlow" doc:id="7c0a5bef-b3d5-442f-bff3-10d038f69a5e">
+		<flow-ref doc:name="businessLogicFlow" doc:id="91360ede-4d71-44c7-9b64-8ee762e04ea0"
+			name="businessLogicFlow" />
+		<error-handler>
+			<on-error-propagate enableNotifications="true"
+				logException="true" doc:name="On Error Propagate" doc:id="488b507d-e26c-4c56-8759-8bb4f6645d71"
+				type="ANY">
+				<flow-ref doc:name="errorHandlingFlow" doc:id="afdaf73c-0137-4d60-84f6-5c41234771a3"
+					name="errorHandlingFlow" />
+			</on-error-propagate>
+		</error-handler>
+	</flow>
+</mule>

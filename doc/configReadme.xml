@@ -94,11 +94,11 @@ calls to SFDC will be made (worst case scenario). If accounts already exist or s
 		<section id="default_business_logic_xml">
 		<![CDATA[
 Functional aspect of the Template is implemented on this XML, directed by one flow that will check for Salesforce creations/updates. The several message processors constitute four high level actions that fully implement the logic of this Template:
-1. During the Input stage the Template will go to the SAP and query all the existing Contacts that match the filter criteria.
-2. During the Process Records stage, each SAP Contact will be checked by name against Salesforce, if it has an existing matching objects in Salesforce.
+1. Migration process starts from fetching all the existing Contacts that match the filter criteria from SAP.
+2. Then each SAP Contact will be checked by name against Salesforce, if it has an existing matching objects in Salesforce.
 3. Account associated with SAP Contact is migrated to Account associated with Contact in Salesforce. The matching is performed by querying a Salesforce instance for an entry with name same as the given SAP Account name.
 4. Then the upsert of Contact in Salesforce is performed.
-5. Finally during the On Complete stage the Template will log output statistics data into the console and send email.
+5. Finally during the *On Complete* stage the Template will log output statistics data into the console and send email.
 ]]>
 		</section>
 		<section id="default_endpoints_xml">

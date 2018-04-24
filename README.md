@@ -106,10 +106,8 @@ First thing to know if you are a newcomer to Mule is where to get the tools.
 ### Importing an Anypoint Template into Studio
 Mule Studio offers several ways to import a project into the workspace, for instance: 
 
-+ Anypoint Studio generated Deployable Archive (.zip)
-+ Anypoint Studio Project from External Location
-+ Maven-based Mule Project from pom.xml
-+ Mule ESB Configuration XML from External Location
++ Anypoint Studio Project from File System
++ Packaged mule application (.jar)
 
 You can find a detailed description on how to do so in this [Documentation Page](http://www.mulesoft.org/documentation/display/current/Importing+and+Exporting+in+Studio).
 
@@ -142,7 +140,6 @@ Mule Studio provides you with really easy way to deploy your Template directly t
 ## Properties to be configured (With examples) <a name="propertiestobeconfigured"/>
 In order to use this Mule Anypoint Template you need to configure properties (Credentials, configurations, etc.) either in properties file or in CloudHub as Environment Variables. Detail list with examples:
 ### Application configuration
-
 **HTTP Connector configuration**
 + http.port `9090`
 
@@ -219,11 +216,11 @@ In the visual editor they can be found on the *Global Element* tab.
 
 ## businessLogic.xml<a name="businesslogicxml"/>
 Functional aspect of the Template is implemented on this XML, directed by one flow that will check for Salesforce creations/updates. The several message processors constitute four high level actions that fully implement the logic of this Template:
-1. During the Input stage the Template will go to the SAP and query all the existing Contacts that match the filter criteria.
-2. During the Process Records stage, each SAP Contact will be checked by name against Salesforce, if it has an existing matching objects in Salesforce.
+1. Migration process starts from fetching all the existing Contacts that match the filter criteria from SAP.
+2. Then each SAP Contact will be checked by name against Salesforce, if it has an existing matching objects in Salesforce.
 3. Account associated with SAP Contact is migrated to Account associated with Contact in Salesforce. The matching is performed by querying a Salesforce instance for an entry with name same as the given SAP Account name.
 4. Then the upsert of Contact in Salesforce is performed.
-5. Finally during the On Complete stage the Template will log output statistics data into the console and send email.
+5. Finally during the *On Complete* stage the Template will log output statistics data into the console and send email.
 
 
 

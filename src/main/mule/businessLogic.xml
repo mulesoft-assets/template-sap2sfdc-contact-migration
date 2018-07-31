@@ -196,12 +196,12 @@ vars.recordPayload - 'AccountId' ++ {AccountId : vars.sfAccount.Id}]]>
  ---
  "Migration Report: \n"
   
- ++ "\n Time [milliseconds]: " 		++ payload.elapsedTimeInMillis
- ++ "\n Total Records: "			++ payload.totalRecords
- ++ "\n Successful Records: "		++ payload.successfulRecords
- ++ "\n Failed Records: "			++ payload.failedRecords
- ++ "\n Loaded Records: "			++ payload.loadedRecords
- ++ "\n Processed Records: " 		++ payload.processedRecords]]></ee:set-payload>
+ ++ "\n Time [milliseconds]: " 		++ payload.elapsedTimeInMillis!
+ ++ "\n Total Records: "			++ payload.totalRecords!
+ ++ "\n Successful Records: "		++ payload.successfulRecords!
+ ++ "\n Failed Records: "			++ payload.failedRecords!
+ ++ "\n Loaded Records: "			++ payload.loadedRecords!
+ ++ "\n Processed Records: " 		++ payload.processedRecords!]]></ee:set-payload>
 							</ee:message>
 						</ee:transform>
  						<email:send doc:name="Send migration email" doc:id="29911194-de15-4d0e-b180-3806633577ce" fromAddress="${mail.from}" subject="${mail.subject}" config-ref="Gmail_SMTP">

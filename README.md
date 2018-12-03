@@ -1,8 +1,14 @@
 
-# Anypoint Template: SAP to Salesforce contact migration	
+# Anypoint Template: SAP to Salesforce Contact Migration	
 
 <!-- Header (start) -->
+This template moves a large set of contacts from SAP to Salesforce. It is triggered by an HTTP call either manually or programmatically. Contacts are upserted so that the migration can be run multiple times without worrying about creating duplicates. 
 
+The parent accounts are also migrated if they do not already exist in Salesforce. This template uses the Mule batch module to make moving a large set of data easier and more transparent.
+
+![1436d68f-b82d-4f6a-80a4-87e3cb9abb76-image.png](https://exchange2-file-upload-service-kprod.s3.us-east-1.amazonaws.com:443/1436d68f-b82d-4f6a-80a4-87e3cb9abb76-image.png)
+
+[![YouTube Video](http://img.youtube.com/vi/lg-HQ8H0k7c/0.jpg)](https://www.youtube.com/watch?v=lg-HQ8H0k7c)
 <!-- Header (end) -->
 
 # License Agreement
@@ -13,26 +19,21 @@ with the Mule Enterprise Edition, CloudHub, or as a trial in Anypoint Studio.
 
 # Use Case
 <!-- Use Case (start) -->
-Use this template if would like to sync Contacts from SAP to Salesforce in manner of one time synchronization by browse toting the HTTP endpoint. 
-		Inbound SAP endpoint retrieves all Contacts in SAP using standard BAPI  **BAPI_CUSTOMER_GETCONTACTLIST** and transforms them to Salesforce Contacts
-		In this template you may choose whether Account for Contact should be created as well during the migration process. 
-		This functionality relies on standard BAPI for retrieving details about customers **BAPI_CUSTOMER_GETDETAIL2**
+Use this template to sync contacts from SAP to Salesforce for one time synchronization by browsing to an HTTP endpoint. The inbound SAP endpoint retrieves all contacts in SAP using the standard BAPI BAPI_CUSTOMER_GETCONTACTLIST and transforms the SAP contacts to Salesforce contacts. You can choose to either create an account or contact during the migration process. This functionality relies on the standard BAPI BAPI_CUSTOMER_GETDETAIL2 to retrieve details about customers.
 <!-- Use Case (end) -->
 
 # Considerations
 
 <!-- Considerations (start) -->
 To make this template run, there are certain preconditions that must be considered.
-All of them deal with the preparations in both source (SAP) and destination (Salesforce) systems, that must be made in order for everything to run smoothly.
-**Failing to do so could lead to unexpected behavior of the template.**
+All of them deal with the preparations in both source (SAP) and destination (Salesforce) systems, that must be made for everything to run smoothly. Failing to do so could lead to unexpected behavior of the template.
 
-Before using this template, you may want to check out this [Documentation Page](http://www.mulesoft.org/documentation/display/current/SAP+Connector#SAPConnector-EnablingYourStudioProjectforSAP), that will teach you how to work with SAP and Anypoint Studio.
+Before using this template, see [Install the SAP Connector in Studio](https://docs.mulesoft.com/connectors/sap/sap-connector#install-the-sap-connector-in-studio), that helps you work with SAP and Anypoint Studio.
 
 ## Disclaimer
 
-This Anypoint template uses a few private Maven dependencies from Mulesoft in order to work. If you intend to run this template with Maven support, you need to add three extra dependencies for SAP to the pom.xml file.
+This template uses private Maven dependencies from MuleSoft to work. If you intend to run this template with Maven support, you need to add extra dependencies for SAP to the pom.xml file.
 <!-- Considerations (end) -->
-
 
 ## SAP Considerations
 
@@ -43,29 +44,16 @@ Here's what you need to know to get this template to work with SAP.
 The SAP backend system is used as a source of data. The SAP connector is used to send and receive the data from the SAP backend. 
 The connector can either use RFC calls of BAPI functions and/or IDoc messages for data exchange, and needs to be properly customized per the "Properties to Configure" section.
 
-
-
 ## Salesforce Considerations
 
 Here's what you need to know about Salesforce to get this template to work.
 
-### FAQ
-
 - Where can I check that the field configuration for my Salesforce instance is the right one? See: <a href="https://help.salesforce.com/HTViewHelpDoc?id=checking_field_accessibility_for_a_particular_field.htm&language=en_US">Salesforce: Checking Field Accessibility for a Particular Field</a>
 - Can I modify the Field Access Settings? How? See: <a href="https://help.salesforce.com/HTViewHelpDoc?id=modifying_field_access_settings.htm&language=en_US">Salesforce: Modifying Field Access Settings</a>
-
 
 ### As a Data Destination
 
 There are no considerations with using Salesforce as a data destination.
-
-
-
-
-
-
-
-
 
 # Run it!
 Simple steps to get SAP to Salesforce contact migration running.
@@ -101,15 +89,12 @@ After you import your template into Anypoint Studio, follow these steps to run i
 + Locate the properties file `mule.dev.properties`, in src/main/resources.
 + Complete all the properties required as per the examples in the "Properties to Configure" section.
 + Right click the template project folder.
-+ Hover your mouse over `Run as`
-+ Click `Mule Application (configure)`
-+ Inside the dialog, select Environment and set the variable `mule.env` to the value `dev`
-+ Click `Run`
++ Hover your mouse over `Run as`.
++ Click `Mule Application (configure)`.
++ Inside the dialog, select Environment and set the variable `mule.env` to the value `dev`.
++ Click `Run`.
 <!-- Running on Studio (start) -->
-In order to make this template run on Anypoint Studio there are a few extra steps that needs to be made.
-Please check this Documentation Page:
-
-+ [Enabling Your Studio Project for SAP](https://docs.mulesoft.com/connectors/sap-connector#configuring-the-connector-in-studio-7)
+To make this template run on Anypoint Studio, see [Enabling Your Studio Project for SAP](https://docs.mulesoft.com/connectors/sap-connector#configuring-the-connector-in-studio-7)
 <!-- Running on Studio (end) -->
 
 ### Running on Mule Standalone
@@ -170,23 +155,21 @@ To use this template, configure properties (credentials, configurations, etc.) i
 
 # API Calls
 <!-- API Calls (start) -->
-Salesforce imposes limits on the number of API Calls that can be made.
+Salesforce imposes limits on the number of API calls that can be made.
 Therefore calculating this amount may be an important factor to
 consider. Product Broadcast Template calls to the API can be
 calculated using the formula:
 
-**X * 3 + X / 200**
+**X * 3 + X / 200** -- Where X is the number of contacts to synchronize on each run.
 
-Being X the number of Contacts to be synchronized on each run.
-
-Multiplication by 3 is because for every user if account.sync.policy is set to value **syncAccounts** for every contact is checked
+Multiply by 3 because for every user if account.sync.policy is set to value **syncAccounts** for every contact is checked
 if an account with matching name exists in Salesforce and if not it will be created.
 
-The division by 200 is because, by default, contacts are gathered in groups
-of 200 for each Upsert API Call in the commit step. 
+Then divide by 200 because, by default, contacts are gathered in groups
+of 200 for each Upsert API call in the commit step. 
 
-For instance if 10 records are fetched from origin instance, then 31 api
-calls to Salesforce will be made (worst case scenario). If accounts already exist or syncing of accounts is disabled, there will be fewer API calls made.
+For instance if 10 records are fetched from an origin instance, then 31 API
+calls to Salesforce are made (worst case scenario). If accounts already exist or syncing of accounts is disabled, there will be fewer API calls made.
 <!-- API Calls (end) -->
 
 # Customize It!
@@ -198,7 +181,9 @@ More files are available such as test classes and Mule application files, but to
 * config.xml
 * businessLogic.xml
 * endpoints.xml
-* errorHandling.xml<!-- Customize it (start) -->
+* errorHandling.xml
+
+<!-- Customize it (start) -->
 
 <!-- Customize it (end) -->
 
@@ -211,19 +196,19 @@ In the Studio visual editor, the properties are on the *Global Element* tab.
 <!-- Config XML (end) -->
 
 ## businessLogic.xml
-Functional aspect of the Template is implemented on this XML, directed by one flow that will check for Salesforce creations/updates. The several message processors constitute four high level actions that fully implement the logic of this Template:
-1. Migration process starts from fetching all the existing Contacts that match the filter criteria from SAP.
-2. Then each SAP Contact is checked by name against Salesforce, if it has an existing matching objects in Salesforce.
-3. Account associated with SAP Contact is migrated to Account associated with Contact in Salesforce. The matching is performed by querying a Salesforce instance for an entry with name same as the given SAP Account name.
-4. Then the upsert of Contact in Salesforce is performed.
-5. Finally during the *On Complete* stage the Template logs output statistics data into the console and send email.
+Functional aspect of the template is implemented in this XML file, directed by one flow that checks for Salesforce creates or updates. The several message processors constitute these high level actions that fully implement the logic of this template:
+1. Migration process starts by fetching all the existing contacts that match the filter criteria from SAP.
+2. Each SAP contact is checked by name against Salesforce, if there is an existing matching objects in Salesforce.
+3. Accounts associated with SAP Contact are migrated to an account associated with contact in Salesforce. The matching is performed by querying a Salesforce instance for an entry with name same as the given SAP Account name.
+4. Then the upsert of contact in Salesforce is performed.
+5. Finally during the *On Complete* stage the template logs output statistics data into the console and send email.
 <!-- Business Logic XML (start) -->
 
 <!-- Business Logic XML (end) -->
 
 ## endpoints.xml
 This file provides the inbound and outbound sides of your integration app.
-This Template has only an HTTP Listener as the way to trigger the use case.
+This template has only an HTTP Listener as the way to trigger the use case.
 ### Trigger Flow
 **HTTP Listener Connector** - Start Report Generation
 + `${http.port}` is set as a property to be defined either on a property file or in CloudHub environment variables.
@@ -235,7 +220,7 @@ This Template has only an HTTP Listener as the way to trigger the use case.
 <!-- Endpoints XML (end) -->
 
 ## errorHandling.xml
-This is the right place to handle how your integration reacts depending on the different exceptions. 
+This file handles how your integration reacts depending on the different exceptions. 
 This file provides error handling that is referenced by the main flow in the business logic.
 <!-- Error Handling XML (start) -->
 

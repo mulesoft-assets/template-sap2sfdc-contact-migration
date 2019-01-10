@@ -12,56 +12,6 @@ http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/
 http://www.mulesoft.org/schema/mule/sap http://www.mulesoft.org/schema/mule/sap/current/mule-sap.xsd
 http://www.mulesoft.org/schema/mule/salesforce http://www.mulesoft.org/schema/mule/salesforce/current/mule-salesforce.xsd">
 	<flow name="businessLogicFlow" doc:id="6598baa3-0de9-4ed3-922a-aa1d8b1d9a40">
-		<ee:transform doc:name="Set XML input"
-			doc:id="1ba13da0-0208-49f1-8b16-5ee80aeb42e9">
-			<ee:message>
-				<ee:set-payload><![CDATA[%dw 2.0
-output application/xml
----
-{
-  "BAPI_CUSTOMER_GETCONTACTLIST": {
-    "import": {
-      "MAXROWS": "5"
-    },
-    "tables": {
-      "CUSTOMERRANGE": {
-        "row": {
-          "SIGN": "I",
-          "OPTION": "CP",
-          "LOW": "*",
-          "HIGH": null
-        }
-      }
-    }
-  }
-}]]></ee:set-payload>
-			</ee:message>
-		</ee:transform>
-		<sap:execute-synchronous-remote-function-call
-			doc:name="Query SAP for contacts" doc:id="774ef7ea-93f0-45c6-94c5-d61d54c03294"
-			key="BAPI_CUSTOMER_GETCONTACTLIST" config-ref="SAP" >
-		</sap:execute-synchronous-remote-function-call>
-		<ee:transform doc:name="XML to Contact"
-			doc:id="1a855817-b88b-4a5d-93b8-8e36fe954494">
-			<ee:message>
-				<ee:set-payload><![CDATA[%dw 2.0
-output application/json
----
-payload.BAPI_CUSTOMER_GETCONTACTLIST.tables.CONTACTADDRESSDATA.*row map {
-  LastName          : $.LASTNAME,
-  FirstName         : $.FIRSTNAME,
-  Email             : $.E_MAIL,
-  MailingCity       : $.CITY,
-  MailingCountry    : $.COUNTRY,
-  MailingPostalCode : $.POSTL_COD1,
-  MailingStreet     : $.STREET,
-  Description       : $.PERS_NO,
-  MailingState      : $.STREET,
-  (AccountId        : $.CUSTOMER) if ($.CUSTOMER != null)
-}]]>
-				</ee:set-payload>
-			</ee:message>
-		</ee:transform>
 		<batch:job jobName="syncContactBatch" doc:id="5fef0ef5-69c0-4b28-9d5b-523a0f26123c" >
 			<batch:process-records >
 				<batch:step name="getContactInSalesforceStep" doc:id="304da619-13b3-4574-89f4-61759d285d8d" >
@@ -214,7 +164,56 @@ vars.recordPayload - 'AccountId' ++ {AccountId : vars.sfAccount.Id}]]>
 			</batch:on-complete>
 		</batch:job>
 	</flow>
+	<sub-flow name="getSAPContactSubFlow" doc:id="b1f61a08-9967-4b3f-bc47-1baaec012428">
+		<ee:transform doc:name="Set XML input" doc:id="1ba13da0-0208-49f1-8b16-5ee80aeb42e9">
+			<ee:message>
+				<ee:set-payload><![CDATA[%dw 2.0
+output application/xml
+---
+{
+  "BAPI_CUSTOMER_GETCONTACTLIST": {
+    "import": {
+      "MAXROWS": "5"
+    },
+    "tables": {
+      "CUSTOMERRANGE": {
+        "row": {
+          "SIGN": "I",
+          "OPTION": "CP",
+          "LOW": "*",
+          "HIGH": null
+        }
+      }
+    }
+  }
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<sap:execute-synchronous-remote-function-call doc:name="Query SAP for contacts" doc:id="774ef7ea-93f0-45c6-94c5-d61d54c03294" key="BAPI_CUSTOMER_GETCONTACTLIST" config-ref="SAP">
+		</sap:execute-synchronous-remote-function-call>
+		<ee:transform doc:name="XML to Contact" doc:id="1a855817-b88b-4a5d-93b8-8e36fe954494">
+			<ee:message>
+				<ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+payload.BAPI_CUSTOMER_GETCONTACTLIST.tables.CONTACTADDRESSDATA.*row map {
+  LastName          : $.LASTNAME,
+  FirstName         : $.FIRSTNAME,
+  Email             : $.E_MAIL,
+  MailingCity       : $.CITY,
+  MailingCountry    : $.COUNTRY,
+  MailingPostalCode : $.POSTL_COD1,
+  MailingStreet     : $.STREET,
+  Description       : $.PERS_NO,
+  MailingState      : $.STREET,
+  (AccountId        : $.CUSTOMER) if ($.CUSTOMER != null)
+}]]>
+				</ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</sub-flow>
 	<flow name="mainFlow" doc:id="7c0a5bef-b3d5-442f-bff3-10d038f69a5e">
+		<flow-ref doc:name="getSAPContactSubFlow" doc:id="f9414aa4-ed9e-442d-98e5-26f37c4d9a01" name="getSAPContactSubFlow"/>
 		<flow-ref doc:name="businessLogicFlow" doc:id="91360ede-4d71-44c7-9b64-8ee762e04ea0"
 			name="businessLogicFlow" />
 		<error-handler>

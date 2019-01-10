@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:salesforce="http://www.mulesoft.org/schema/mule/salesforce" xmlns:scripting="http://www.mulesoft.org/schema/mule/scripting" xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
+    xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:munit="http://www.mulesoft.org/schema/mule/munit"
+    xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+    xsi:schemaLocation="
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mule/scripting/current/mule-scripting.xsd
+http://www.mulesoft.org/schema/mule/salesforce http://www.mulesoft.org/schema/mule/salesforce/current/mule-salesforce.xsd">
+    <munit:config name="test-suite.xml" />
+    <configuration-properties doc:name="Configuration properties" doc:id="32f1ef44-302d-4b92-a5d5-c371bce83a8f" file="mule.test.properties" />
+    <munit:before-test name="test-suiteBefore_Test" description="Before tests actions" doc:id="0d3a80e3-ca05-469c-b2a7-00191aed87f1">
+        <flow-ref doc:name="getSAPContactSubFlow" doc:id="1a60ca85-ed42-43cc-b30f-9bbe4621ef17" name="getSAPContactSubFlow" />
+		<ee:transform doc:name="Prepare test data" doc:id="c6ee1827-4ac5-448b-b9b3-6833cd3953b0" >
+			<ee:message >
+			</ee:message>
+			<ee:variables >
+                            <ee:set-variable variableName="testDataUpdate" ><![CDATA[%dw 2.0
+output application/java
+---
+payload[0] -'LastName' ++
+{
+	LastName: "MigrationUpdateTest" ++ randomInt(10000)
+}]]></ee:set-variable>
+				<ee:set-variable variableName="testDataCreate" ><![CDATA[%dw 2.0
+output application/java
+---
+payload[1] -'LastName' ++
+{
+	LastName: "MigrationCreateTest" ++ randomInt(10000)
+}
+]]></ee:set-variable>
+			</ee:variables>
+		</ee:transform>
+		<salesforce:create doc:name="Create Contact in Salesforce" doc:id="ee9e111a-2282-406a-9c12-aee547877337" config-ref="Salesforce" type="Contact">
+			<salesforce:records ><![CDATA[#[[
+	{
+		LastName: vars.testDataUpdate.LastName,
+		FirstName: vars.testDataUpdate.FirstName,
+		MailingCountry    : "Country"	
+    }
+]]]]></salesforce:records>
+		</salesforce:create>
+		<ee:transform doc:name="Store IDs to variable sfdcIds and set payload" doc:id="478c556b-e5ec-4acf-98b3-7bc087600cbc" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/java
+---
+[vars.testDataCreate, vars.testDataUpdate]]]></ee:set-payload>
+			</ee:message>
+			<ee:variables >
+				<ee:set-variable variableName="sfdcIds" ><![CDATA[%dw 2.0
+output application/java
+---
+payload map ($.Id)]]></ee:set-variable>
+			</ee:variables>
+		</ee:transform>
+		<munit-tools:mock-when doc:name="Mock email processor to avoid sending email" doc:id="a04c1792-0a85-4c1e-8c69-de2d399efd38" processor="email:send">
+            <munit-tools:then-return />
+        </munit-tools:mock-when>
+    </munit:before-test>
+    <munit:test name="test-suite-businesslogicFlowTest" description="Test" doc:id="063fe516-4531-4d41-ac20-7acf06fc7da1">
+        <munit:execution>
+			<flow-ref doc:name="businessLogicFlow" doc:id="4186cc95-ce39-4a6a-9f03-d282547b70e8" name="businessLogicFlow" />
+            <scripting:execute doc:name="Sleep for 10s until the processing is completed" doc:id="ed759b2a-7e2c-422e-979f-1487a00945b6" engine="Groovy">
+                <scripting:code>sleep(10000)</scripting:code>
+            </scripting:execute>
+			<salesforce:query-single doc:name="Query record should be created in Salesforce" doc:id="a5616236-7941-4f87-b4da-c9165d85f49f"
+                config-ref="Salesforce" target="resultCreated">
+                <salesforce:salesforce-query>SELECT Id, LastName FROM Contact WHERE LastName = ':lastname'</salesforce:salesforce-query>
+                <salesforce:parameters><![CDATA[#[output application/java
+---
+{
+	"lastname" : vars.testDataCreate.LastName
+}]]]></salesforce:parameters>
+            </salesforce:query-single>
+			<ee:transform doc:name="Store ID to variable sfdcIds" doc:id="0c96abcb-f56c-40b7-b2cc-3103f3ce1311">
+                <ee:message>
+                </ee:message>
+                <ee:variables>
+                    <ee:set-variable variableName="sfdcIds"><![CDATA[%dw 2.0
+output application/java
+---
+vars.sfdcIds + vars.resultCreated.Id]]></ee:set-variable>
+                </ee:variables>
+            </ee:transform>
+            <salesforce:query-single doc:name="Query record should be updated in Salesforce" doc:id="0ea8c57f-edca-403b-ba85-10ec529cda9b"
+                config-ref="Salesforce" target="resultUpdated">
+                <salesforce:salesforce-query>SELECT Id, LastName, MailingCountry FROM Contact WHERE LastName = ':lastname'</salesforce:salesforce-query>
+                <salesforce:parameters><![CDATA[#[output application/java
+---
+{
+	"lastname" : vars.testDataUpdate.LastName
+}]]]></salesforce:parameters>
+            </salesforce:query-single>
+        </munit:execution>
+        <munit:validation>
+            <munit-tools:assert-that doc:name="Assert that record is created in Salesforce" expression="#[vars.resultCreated.Id]"
+                is="#[MunitTools::notNullValue()]" message="Record isn't created in Salesforce" />
+            <munit-tools:assert-that doc:name="Assert that record is updated in Salesforce" expression="#[vars.resultUpdated.MailingCountry]"
+                is="#[MunitTools::equalTo(vars.testDataUpdate.MailingCountry)]" message="Record isn't updated in Salesforce" />
+        </munit:validation>
+    </munit:test>
+    <munit:after-test name="test-suiteAfter_Test" description="After tests actions" doc:id="206b635a-8deb-4691-9a71-7fabc98bd355">
+		<salesforce:delete doc:name="Delete test Accounts from Salesforce" doc:id="aba981b2-6457-4be1-974e-da5d0146e23a"
+            config-ref="Salesforce">
+            <salesforce:delete-ids><![CDATA[#[vars.sfdcIds]]]></salesforce:delete-ids>
+        </salesforce:delete>
+    </munit:after-test>
+
+</mule>

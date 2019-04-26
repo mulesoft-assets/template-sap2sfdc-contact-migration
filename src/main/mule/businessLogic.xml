@@ -6,8 +6,8 @@
 	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="
-http://www.mulesoft.org/schema/mule/email http://www.mulesoft.org/schema/mule/email/current/mule-email.xsd 
-http://www.mulesoft.org/schema/mule/batch http://www.mulesoft.org/schema/mule/batch/current/mule-batch.xsd 
+http://www.mulesoft.org/schema/mule/email http://www.mulesoft.org/schema/mule/email/current/mule-email.xsd
+http://www.mulesoft.org/schema/mule/batch http://www.mulesoft.org/schema/mule/batch/current/mule-batch.xsd
 http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
 http://www.mulesoft.org/schema/mule/sap http://www.mulesoft.org/schema/mule/sap/current/mule-sap.xsd
 http://www.mulesoft.org/schema/mule/salesforce http://www.mulesoft.org/schema/mule/salesforce/current/mule-salesforce.xsd">
@@ -24,7 +24,7 @@ http://www.mulesoft.org/schema/mule/salesforce http://www.mulesoft.org/schema/mu
 	"firstname" : payload.FirstName
 }]]]>
 </salesforce:parameters>
-					
+
 </salesforce:query-single>
 					<ee:transform doc:name="Push Id to payload" doc:id="a9ed90b8-10d2-46e9-9026-ee182c8098d4" >
 						<ee:message >
@@ -39,9 +39,9 @@ output application/java
 ---
 payload ++ vars.IdInSF]]></ee:set-variable>
 						</ee:variables>
-					
+
 </ee:transform>
-				
+
 </batch:step>
 				<batch:step name="findOrCreateAccountInSalesforceStep" doc:id="245116f2-d901-4b9b-829d-ac3b0d2df982" acceptExpression="#['${account.sync.policy}' == 'syncAccount' and payload != null]">
 					<ee:transform doc:name="Set XML input" doc:id="695db540-b78f-4aba-9ef9-8c6f5f5e7a32" >
@@ -74,7 +74,7 @@ var export = payload.BAPI_CUSTOMER_GETDETAIL2.export
   Fax: export.CUSTOMERCOMPANYDETAIL.FAX
 }]]></ee:set-variable>
 						</ee:variables>
-					
+
 </ee:transform>
 					<salesforce:query-single doc:name="Query Account in  Salesforce Instance " doc:id="9f4f4371-c3c1-41f7-b524-298432d01621" config-ref="Salesforce" target="sfAccount">
 						<salesforce:salesforce-query >SELECT Id, Name FROM Account WHERE Name = ':name'</salesforce:salesforce-query>
@@ -83,7 +83,7 @@ var export = payload.BAPI_CUSTOMER_GETDETAIL2.export
 {
 	name : vars.sapCustomer.Name
 }]]]></salesforce:parameters>
-					
+
 </salesforce:query-single>
 					<choice doc:name="Choice" doc:id="7f416201-27d2-4f24-a5b2-b86288ed44d7" >
 						<when expression="#[vars.sfAccount == null]" >
@@ -98,7 +98,7 @@ output application/java
 						</ee:message>
 					</ee:transform>
 							<salesforce:create-single doc:name="Create Account in Salesforce" doc:id="e367be8b-683f-403e-a4ee-f306aa3c0574" config-ref="Salesforce" type="Account">
-								
+
 							</salesforce:create-single>
 							<ee:transform doc:name="Store new accountId to payload" doc:id="9ad4464d-f459-456d-a190-350dc18d8423" >
 								<ee:message >
@@ -108,7 +108,7 @@ output application/java
 vars.recordPayload - 'AccountId' ++ {AccountId : payload.id}]]></ee:set-payload>
 								</ee:message>
 							</ee:transform>
-						
+
 </when>
 						<otherwise >
 							<logger level="INFO" doc:name="Log - Existing Account Id is already set" doc:id="ebc05348-dc48-4cc3-81b3-f3e0d8555390" message="Log - Existing Account Id is already set"/>
@@ -121,13 +121,13 @@ vars.recordPayload - 'AccountId' ++ {AccountId : vars.sfAccount.Id}]]>
 </ee:set-payload>
 								</ee:message>
 							</ee:transform>
-						
+
 </otherwise>
 					</choice>
 </batch:step>
 				<batch:step name="upsertContactInSalesforceStep" doc:id="cb8c3498-8462-4fc1-a11f-418154d3e857" >
 					<logger level="INFO" doc:name="Log before upsert" doc:id="842675d7-1104-4dd4-9339-722afc308d82" message="before upsert:  #[output application/json --- payload] "/>
-					<batch:aggregator doc:name="Batch Commit" doc:id="c3c49596-c695-4199-a2d2-5322afa91270" size="200">
+					<batch:aggregator doc:name="Batch Commit" doc:id="c3c49596-c695-4199-a2d2-5322afa91270" size="${page.size}">
 						<salesforce:upsert doc:name="Upsert Contact in Salesforce" doc:id="8d3a21bc-ec0e-40e4-bc34-5df7a0648c9e" config-ref="Salesforce" externalIdFieldName="Id" type="Contact"/>
 						<logger level="INFO" doc:name="Log result" doc:id="2d1e9178-f0d9-4a9f-81a4-9ecd5ae09b57" message="Upsert result: #[output application/json --- payload]"/>
 					</batch:aggregator>
@@ -145,7 +145,7 @@ vars.recordPayload - 'AccountId' ++ {AccountId : vars.sfAccount.Id}]]>
  output text/plain
  ---
  "Migration Report: \n"
-  
+
  ++ "\n Time [milliseconds]: " 		++ payload.elapsedTimeInMillis!
  ++ "\n Total Records: "			++ payload.totalRecords!
  ++ "\n Successful Records: "		++ payload.successfulRecords!
